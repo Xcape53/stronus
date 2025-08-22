@@ -88,8 +88,8 @@ button:focus {
 }
 
 :root {
-  --colorPrimary: #c7d300;
-  --colorSecondary: #37c33e;
+  --colorPrimary: #2c7ffe;
+  --colorSecondary: #642efd;
   --colorWhite: #ffffff;
   --colorBlack: #0c0c08;
   --colorBodyText: rgba(177, 177, 177, 1);
@@ -2936,3 +2936,92 @@ html.lenis {
 .bg-fixed {
   background-attachment: fixed !important;
 }
+/* ===============================================
+   AGRESYWNE STYLE DLA ANIMACJI W BANNERZE (z !important)
+   =============================================== */
+
+/* 1. Upewniamy się, że kontener animacji jest widoczny i ma rozmiar */
+.tf__banner_img {
+  display: block !important;
+  position: relative !important;
+  width: 750px !important;
+  height: 750px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 2. Upewniamy się, że SVG wewnątrz idealnie go wypełnia */
+.tf__banner_img svg {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  z-index: 2 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 3. Dostosowujemy obracające się tło do kontenera */
+.tf__banner_img::after {
+  width: 755px !important;
+  height: 755px !important;
+  top: -2.5px !important;
+  left: -2.5px !important;
+}
+
+/* === Media Queries dla responsywności (również z !important) === */
+
+@media (max-width: 1199.98px) {
+  .tf__banner_img {
+    width: 590px !important;
+    height: 590px !important;
+    margin: 0 auto !important;
+  }
+  .tf__banner_img::after {
+    width: 595px !important;
+    height: 595px !important;
+  }
+  /* Pozostałe style dla tekstu nie wymagają !important */
+  .tf__banner_text {
+    padding-top: 40px; 
+    text-align: center;
+  }
+  .tf__banner_text p {
+    max-width: 100%;
+  }
+  .tf__banner_text ul {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .tf__banner {
+    height: auto !important;
+    padding-top: 150px !important;
+    padding-bottom: 50px !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .tf__banner_img {
+    width: 480px !important;
+    height: 480px !important;
+  }
+  .tf__banner_img::after {
+    width: 485px !important;
+    height: 485px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .tf__banner_img {
+    width: 90vw !important;
+    height: 90vw !important;
+  }
+  .tf__banner_img::after {
+    width: calc(90vw + 5px) !important;
+    height: calc(90vw + 5px) !important;
+  }
+} 
