@@ -112,10 +112,7 @@ expand_less
 <!--============================
     BANNER START
 ==============================-->
-<section
-  class="tf__banner pt_100 pl_60 pr_60 bg-fixed"
-  style="background: url(images/banner_bg.jpg)"
->
+<section class="tf__banner pt_100 pl_60 pr_60 bg-fixed" style="background: url(images/banner_bg.jpg)">
   <div class="container-fluid h-100">
     <div class="row align-items-center h-100">
       <!-- ... -->
@@ -125,14 +122,6 @@ expand_less
         </div>
       </div>
 <!-- ... -->
-
-code
-Code
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
 <div class="col-xxl-5 col-xl-6 ms-auto">
         <div class="tf__banner_text">
           <h3 data-text-animation="rotate-in">Hello I'm Piotr Jeleniewicz</h3>
@@ -145,22 +134,14 @@ IGNORE_WHEN_COPYING_END
 
           <ul class="d-flex flex-wrap">
             <li>
-              <a
-                href="#"
-                class="tf__common_btn d-flex align-items-center download_btn"
-                >Download Cv <i class="isti-download"></i
-              ></a>
+              <a href="#" class="tf__common_btn d-flex align-items-center download_btn">Download Cv <i class="isti-download"></i></a>
             </li>
             <li>
-              <a
-                class="tf__common_btn tf___video_btn venobox"
+              <a bclass="tf__common_btn tf___video_btn venobox"
                 data-autoplay="true"
                 data-vbtype="video"
-                href="https://youtu.be/668nUCeBHyY?si=sHtcsCQRzAET5GOt"
-              >
-                <i class="fa-sharp fa-solid fa-circle-play"></i>Watch The
-                Video</a
-              >
+                href="https://youtu.be/668nUCeBHyY?si=sHtcsCQRzAET5GOt">
+                <i class="fa-sharp fa-solid fa-circle-play"></i>Watch The Video</a>
             </li>
           </ul>
         </div>
@@ -337,7 +318,7 @@ IGNORE_WHEN_COPYING_END
                             <div class="tf__single_skill_left">
                                 <h6>2023 - present</h6>
                                 <span>Gdańsk University of Technology</span>
-                                <p>Electronics and Telecommunications, 3 semesters completed</p>
+                                <p>Electronics and Telecommunications, 4 semesters completed</p>
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-5">

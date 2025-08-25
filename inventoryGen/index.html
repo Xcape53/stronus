@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<!-- basic -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Xcape's Shop</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="author" content="_Xcape_#8286">	
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+	</head>
+  <body>
+    <!--lib -->
+      <script src="js/lib/math.js"></script>
+      <script src="js/lib/jquery-3.6.0.min.js"></script>
+    <!--rest -->
+      <script type="text/javascript" src="js/search.js"></script>
+      <script type="text/javascript" src="js/java.js"></script>
+      <script type="text/javascript" src="js/gen.js"></script> 
+      <div class="Main">
+        <div id="mcBlock">
+          <h1 id="h1"> Welcome!</h1>
+          <h3>Input number of slots</h3>
+        </div>
+        <div class="noi">
+          <input type="input" class="noiField" min="1" max="1080" onkeyup="genDivs()" placeholder="Name" id="name" autocomplete="off" required/>
+          <label for="name" class="noiLabel">Number of Items</label>
+        </div>
+        <div class="sr" id="srd">
+          <div id="dis">
+            <img id="stream"></img>
+          </div>
+          <input type="input" class="srField" id="search" onkeyup="searchDB(this); fade(this)" placeholder="Name1" autocomplete="off" required/>
+          <label class="srLabel">Add item</label>
+          <div id="resize">
+            <div id="slotd">
+              <label id="slot">Slot</label>
+              <input type="number" id="sloti" min="1" max="0">
+          </div>
+          <div id="amntd">
+            <label id="amnt">Amount</label>
+            <input type="number" id="amnti" min="1" max="0">
+          </div>
+            <button class="buttoff" id="add" onclick="placeItem()">Add</button>
+            <button class="buttoff" id ="rem" onclick="removeItem()">Remove</button>
+            <button class="buttoff" id="clr" onclick="clearAll()">Clear</button>
+          </div>
+        </div>	
+      </div>	
+        <div id="code">
+          <div id="inv">
+          </div>
+        </div>
+  </body>
+</html>

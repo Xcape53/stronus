@@ -91,8 +91,9 @@ button:focus {
   --colorPrimary: #2c7ffe;
   --colorSecondary: #642efd;
   --colorWhite: #ffffff;
-  --colorBlack: #0c0c08;
+  --colorBlack: #09080c;
   --colorBodyText: rgba(177, 177, 177, 1);
+  --colorDarkAccent: #0e1216;
   --bodyFont: "Spline Sans", sans-serif;
   --secondaryFont: "Spline Sans", sans-serif;
 }
@@ -633,7 +634,7 @@ button:focus {
 
 .tf___video_btn {
   color: var(--colorWhite) !important;
-  background: #15160e !important;
+  background: var(--colorDarkAccent) !important;
 }
 
 .tf___video_btn i {
@@ -667,6 +668,32 @@ button:focus {
 
 .tf__about_img {
   height: 660px;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-gallery img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+}
+
+.about-gallery img.active {
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 1;
+}
+
+.about-gallery img.exit {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 0;
 }
 
 /* about end */
@@ -726,10 +753,10 @@ button:focus {
   line-height: 25px;
 }
 
-/* .tf__single_service:hover .tf__single_service_img span {
-  background: #37c33e;
+ .tf__single_service:hover .tf__single_service_img span {
+  background: var(--colorSecondary);
   color: var(--colorWhite);
-} */
+} 
 
 .tf__single_service_text a:hover {
   color: var(--colorPrimary);
@@ -796,6 +823,45 @@ button:focus {
 
 /* skill end */
 
+/* semester progress bar start */
+.barfiller.barfiller-semesters {
+  overflow: visible;
+}
+
+.barfiller-semesters .mark {
+  position: absolute;
+  width: 2px;
+  height: 12px; /* Taller than the bar (6px) */
+  background-color: white;
+  top: -3px;
+  z-index: 2;
+}
+
+/* 7 semesters = 6 lines */
+.barfiller-semesters .mark:nth-of-type(1) { left: calc(100% / 7 * 1); }
+.barfiller-semesters .mark:nth-of-type(2) { left: calc(100% / 7 * 2); }
+.barfiller-semesters .mark:nth-of-type(3) { left: calc(100% / 7 * 3); }
+.barfiller-semesters .mark:nth-of-type(4) { left: calc(100% / 7 * 4); }
+.barfiller-semesters .mark:nth-of-type(5) { left: calc(100% / 7 * 5); }
+.barfiller-semesters .mark:nth-of-type(6) { left: calc(100% / 7 * 6); }
+/* semester progress bar end */
+
+/* ----------------------------
+   Progress fill color + tip style
+   ---------------------------- */
+.barfiller .fill {
+  background: #00a500 !important; /* zielony - #00a500 */
+}
+ 
+.barfiller .tip {
+  color: var(--colorBlack);
+  font-weight: 700;
+  background: #eaffd8;
+  padding: 6px 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
 /* portfolio start */
 .tf__portfolio {
   background: var(--colorBlack);
@@ -826,7 +892,7 @@ button:focus {
   text-align: center;
   margin-right: 15px;
   color: var(--colorPrimary);
-  background: #15160e;
+  background: var(--colorDarkAccent);
   bottom: 5px;
   right: -121px;
   cursor: pointer;
@@ -872,7 +938,7 @@ button:focus {
   text-align: center;
   margin-right: 15px;
   color: var(--colorPrimary);
-  background: #15160e;
+  background: var(--colorDarkAccent);
   top: -110px;
   right: -5px;
   cursor: pointer;
@@ -894,7 +960,7 @@ button:focus {
 }
 
 .tf__single_testimonial {
-  background: #15160e;
+  background: var(--colorDarkAccent);
   padding: 47px 115px 50px 40px;
   position: relative;
   margin: 35px 12px 60px 12px;
@@ -1242,7 +1308,7 @@ button:focus {
 
 .tf__form {
   padding: 55px 30px;
-  background: #15160e;
+  background: var(--colorDarkAccent);
 }
 
 .tf__single_form input,
@@ -1328,7 +1394,7 @@ button:focus {
   line-height: 60px;
   text-align: center;
   color: var(--colorWhite);
-  background: #15160e;
+  background: var(--colorDarkAccent);
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -1453,6 +1519,45 @@ button:focus {
 
 /* skill end */
 
+/* semester progress bar start */
+.barfiller.barfiller-semesters {
+  overflow: visible;
+}
+
+.barfiller-semesters .mark {
+  position: absolute;
+  width: 2px;
+  height: 12px; /* Taller than the bar (6px) */
+  background-color: white;
+  top: -3px;
+  z-index: 2;
+}
+
+/* 7 semesters = 6 lines */
+.barfiller-semesters .mark:nth-of-type(1) { left: calc(100% / 7 * 1); }
+.barfiller-semesters .mark:nth-of-type(2) { left: calc(100% / 7 * 2); }
+.barfiller-semesters .mark:nth-of-type(3) { left: calc(100% / 7 * 3); }
+.barfiller-semesters .mark:nth-of-type(4) { left: calc(100% / 7 * 4); }
+.barfiller-semesters .mark:nth-of-type(5) { left: calc(100% / 7 * 5); }
+.barfiller-semesters .mark:nth-of-type(6) { left: calc(100% / 7 * 6); }
+/* semester progress bar end */
+
+/* ----------------------------
+   Progress fill color + tip style
+   ---------------------------- */
+.barfiller .fill {
+  background: #00a500 !important; /* zielony - #00a500 */
+}
+ 
+.barfiller .tip {
+  color: var(--colorBlack);
+  font-weight: 700;
+  background: #eaffd8;
+  padding: 6px 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
 /* portfolio start */
 .tf__portfolio_2 {
   background: var(--colorBlack);
@@ -1519,7 +1624,7 @@ button:focus {
 }
 
 .tf__single_counter_2 {
-  background: #15160e;
+  background: var(--colorDarkAccent);
   padding: 80px 20px 40px 20px;
   text-align: center;
   margin-left: 0;
@@ -1604,7 +1709,7 @@ button:focus {
 .tf__single_review {
   position: relative;
   text-align: center !important;
-  background: #15160e;
+  background: var(--colorDarkAccent);
   padding: 60px 50px 50px 50px;
   border-radius: 0px 50px 50px 50px;
   -webkit-border-radius: 0px 50px 50px 50px;
@@ -1777,7 +1882,7 @@ button:focus {
 }
 
 .tf__blog_clasic_text {
-  background: #15160e;
+  background: var(--colorDarkAccent);
   margin: 0px 30px;
   position: relative;
   padding: 50px;
@@ -1868,7 +1973,7 @@ button:focus {
   line-height: 67px;
   border-radius: 50%;
   margin: 0px 5px;
-  background: #15160e;
+  background: var(--colorDarkAccent);
   border: none;
   transition: all linear 0.3s;
 }
@@ -1906,7 +2011,7 @@ button:focus {
 .tf__blog_searchbar input {
   width: 100%;
   padding: 15px;
-  background: #15160e;
+  background: var(--colorDarkAccent);
   border: none;
   color: var(--colorWhite);
 }
@@ -1934,7 +2039,7 @@ button:focus {
 .tf__blog_categories li {
   padding-top: 15px;
   padding-bottom: 15px;
-  border-bottom: 2px solid #15160e;
+  border-bottom: 2px solid var(--colorDarkAccent);
 }
 
 .tf__blog_categories li:first-child {
@@ -2031,7 +2136,7 @@ button:focus {
   font-size: 14px;
   font-weight: 400;
   padding: 7px 12px;
-  background: #15160e;
+  background: var(--colorDarkAccent);
   text-transform: capitalize;
   color: var(--colorWhite);
   transition: all linear 0.3s;
@@ -2219,7 +2324,7 @@ button:focus {
   height: 50px;
   line-height: 50px;
   text-align: center;
-  background: #d1db2442;
+  background: #246ddb42;
   margin-right: 15px;
   color: var(--colorPrimary);
   transition: all linear 0.3s;
@@ -2241,8 +2346,8 @@ button:focus {
 
 .tf__blog_details_post {
   padding: 45px 0px;
-  border-top: 2px solid #15160e;
-  border-bottom: 2px solid #15160e;
+  border-top: 2px solid var(--colorDarkAccent);
+  border-bottom: 2px solid var(--colorDarkAccent);
 }
 
 .tf__privious_post .next_btn {
@@ -2250,7 +2355,7 @@ button:focus {
   height: 60px;
   line-height: 60px;
   text-align: center;
-  background: #d1db2442;
+  background: #2445db42;
   color: var(--colorWhite);
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -2286,7 +2391,7 @@ button:focus {
   height: 60px;
   line-height: 60px;
   text-align: center;
-  background: #d1db2442;
+  background: #2445db42;
   color: var(--colorWhite);
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -2326,7 +2431,7 @@ button:focus {
   padding: 20px;
   margin-bottom: 25px;
   background: transparent;
-  border: 2px solid #15160e;
+  border: 2px solid var(--colorDarkAccent);
   color: var(--colorWhite);
 }
 
@@ -2473,7 +2578,7 @@ button:focus {
   left: -24px;
   top: 40px;
   padding: 35px 30px 35px 60px;
-  background: rgb(21, 22, 14);
+  background: var(--colorDarkAccent);
 }
 
 .tf__emargency_contact_bg p {
@@ -2505,7 +2610,7 @@ button:focus {
   line-height: 40px;
   text-align: center;
   color: var(--colorPrimary);
-  background: #15160e;
+  background: var(--colorDarkAccent);
   margin-right: 10px;
   border: 1px solid transparent;
   border-radius: 5px;
@@ -2530,7 +2635,7 @@ button:focus {
 .tf__main_contact_area_text textarea {
   padding: 23px;
   width: 100%;
-  background: #15160e;
+  background: var(--colorDarkAccent);
   border: none;
   margin-bottom: 25px;
   color: var(--colorWhite);
@@ -2746,6 +2851,7 @@ h5.preloader-text::after {
 
 /*==============================
      PRELOADER END
+  
    ===============================*/
 
 /*==============================
@@ -2908,7 +3014,7 @@ html.lenis {
 /* pogressbar */
 .barfiller .tip {
   margin-top: -60px;
-  transition: 1s ease-in-out 0s;
+  transition: left 1.2s ease-out 0s; /* PRZYWRÓCONO I WYDŁUŻONO ANIMACJĘ */
   margin-left: -20px;
 }
 .barfiller .tipWrap {
@@ -2918,7 +3024,7 @@ html.lenis {
 .barfiller .fill {
   position: absolute;
   top: 0;
-  transition: width 1s ease-in-out 0s;
+  transition: width 1.2s ease-out 0s; /* WYDŁUŻONO ANIMACJĘ */
 }
 
 /* testimonial 2 */
@@ -3024,4 +3130,59 @@ html.lenis {
     width: calc(90vw + 5px) !important;
     height: calc(90vw + 5px) !important;
   }
-} 
+}
+
+/* About Me (replaces blog section) */
+.tf__about_me {
+  background: var(--colorBlack);
+}
+
+.tf__about_me_content {
+  background: var(--colorDarkAccent);
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.about-me-list {
+  margin-top: 18px;
+}
+
+.about-me-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 10px;
+  color: var(--colorBodyText);
+}
+
+.about-me-list li::before {
+  content: "\f00c"; /* check icon */
+  font-family: "Font Awesome 6 Pro";
+  font-weight: 700;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--colorPrimary);
+}
+
+.tf__about_me_highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tf__about_me_highlights .chip {
+  display: inline-block;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid var(--colorPrimary);
+  color: var(--colorWhite);
+  background: transparent;
+  border-radius: 999px;
+  transition: all .2s linear;
+}
+
+.tf__about_me_highlights .chip:hover {
+  background: var(--colorPrimary);
+  color: var(--colorBlack);
+}
