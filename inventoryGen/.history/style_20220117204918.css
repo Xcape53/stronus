@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@import url('http://fonts.cdnfonts.com/css/minecraftia');
+
+
+ html::-webkit-scrollbar {
+    display: none;
+  }
+  html{
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+  
+  }
+  body {
+    font-family: 'Minecraftia', sans-serif;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1.5rem;
+    background-color: #363636;
+  }
+
+  .sr {
+  position: absolute;
+  padding: 0px;
+  right: 0;
+  
+  width: 25%;
+}
+.srField {
+  font-family: inherit;
+  width: 80%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 0.95rem;
+  color: #fff;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.srField::placeholder {
+  color: transparent;
+}
+.srField:placeholder-shown ~ .srLabel {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 20px;
+}
+.srLabel {
+  position: absolute;
+  top: 0;
+  display: block;
+  margin-top:-20px;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #9b9b9b;
+  pointer-events: none;
+}
+.srField:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #51019E, #0F52F8);
+  border-image-slice: 1;
+}
+.srField:focus ~ .srLabel {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color:rgba(41, 205, 255, 0.712);
+  font-weight: 700;
+}
+/* reset input */
+.srField:required, .srField:invalid {
+  box-shadow: none;
+}
+
+html, body {
+  margin: 0;
+  padding: 0; 
+  height: 100%;
+  width: 100%;
+}
+
+
+input#search.dropdown {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#selector {
+  position: fixed;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-top: 2px;
+  max-height: 150px;
+  overflow: auto;
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+  background: linear-gradient(to bottom right, #51019E, #0F52F8);
+
+}
+#selector::-webkit-scrollbar {
+  display: none;
+}
+
+
+#selector button {
+  appearance: none;
+  outline: none;
+  font-size: 20px;
+  padding: 10px 20px; 
+  cursor: pointer;
+  border: none;
+  display: block;
+  margin: 0;
+  border-radius: 5px;
+  background-color: transparent;
+  border-width: 0;
+  width: 100%;
+  text-align: left;
+}
+
+#selector button:hover {
+  background-color: #f2f2f2;
+}

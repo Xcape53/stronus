@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@font-face {
+  font-family: 'Minecraftia';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Minecraftia'), url('font/Minecraftia.woff') format('woff');
+}
+
+ html::-webkit-scrollbar {
+    display: none;
+  }
+  html{
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+  
+  }
+  body {
+    font-family: 'Minecraftia', sans-serif;
+    font-size: 1.5rem;
+    background: linear-gradient(195deg, #0f2a74, #1f2981, #30278c, #432196, #57159f) fixed;
+  }
+
+  .sr {
+  position: fixed;
+  padding: 0px;
+  right: 0;
+  
+  width: 25%;
+}
+.srField {
+  margin-right: 5vw;
+  font-family: inherit;
+  width: 72%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 0.95rem;
+  color: #fff;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  margin-top: 64px;
+}
+.srField::placeholder {
+  color: transparent;
+}
+.srField:placeholder-shown ~ .srLabel {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 20px;
+}
+.srLabel {
+  position: absolute;
+  top: 0;
+  display: block;
+  margin-top:-5px;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #9b9b9b;
+  pointer-events: none;
+}
+.srField:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #51019E, #0F52F8);
+  border-image-slice: 1;
+}
+.srField:focus ~ .srLabel {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color:rgb(255, 255, 255);
+  font-weight: 700;
+}
+/* reset input */
+.srField:required, .srField:invalid {
+  box-shadow: none;
+}
+
+#dis{
+margin-top: -164px;
+width: 72px;
+height: 72px;
+position: relative;
+margin-left: calc(29% - 28px);
+background: url('inventory1.png');
+padding: 28px;
+margin-right: -28px;
+border-bottom: 100px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0; 
+  height: 100%;
+  width: 100%;
+}
+
+
+input#search.dropdown {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#selector {
+  position: fixed;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-top: 2px;
+  max-height: 400px;
+  overflow: auto;
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+  background: linear-gradient(to bottom right, #39066850, #0f2d6e6c);
+
+}
+#selector::-webkit-scrollbar {
+  display: none;
+}
+
+
+#selector button {
+  font-family: inherit;
+  appearance: none;
+  outline: none;
+  font-size: 12px;
+  padding: 10px 20px; 
+  cursor: pointer;
+  border: none;
+  display: block;
+  margin: 0;
+  border-radius: 5px;
+  background-color: transparent;
+  border-width: 0;
+  width: 100%;
+  text-align: left;
+  color:white;
+}
+
+#selector button:hover {
+  background-color: #0000006b;
+}
+
+/*-------------------------------------------------------------------------------------------------*/
+h1,h3{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  letter-spacing: 2.5px;
+}
+
+h1{
+  animation: cycle 5s linear infinite;
+  color: rgba(255, 0, 0, 0.9);
+}
+
+@keyframes cycle {
+  0% { color: rgba(255, 0, 0, 0.9);}
+  20% { color: rgba(255, 255, 0, 0.9);}
+  40% { color: rgba(0, 255, 0, 0.9);}
+  60% { color: rgba(0, 255, 255, 0.9);}
+  80% { color: rgba(0, 0, 255, 0.9);}
+  100% { color: rgba(255, 0, 0, 0.9);}
+}
+
+#mcBlock {
+  padding-top: 3.5vw;
+  text-align: center;
+  display: block;
+  color: white;
+  left: 0;
+  right: 0;
+  margin-block-end: 0.0em;
+  margin: 0 auto;
+  max-width: 600px;
+ font-family: 'Minecraftia';
+ font-size: x-large;
+}
+
+
+.noi {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  margin-left: 32vw;
+  width: 50%;
+}
+.noiField {
+  font-family: inherit;
+  width: 72%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 0.95rem;
+  color: #fff;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.noiField::placeholder {
+  color: transparent;
+}
+.noiField:placeholder-shown ~ .noiLabel {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 20px;
+}
+.noiLabel {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #9b9b9b;
+}
+.noiField:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #51019E, #0F52F8);
+  border-image-slice: 1;
+}
+.noiField:focus ~ .noiLabel {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color:rgb(255, 255, 255);
+  font-weight: 700;
+}
+/* reset input */
+.noiField:required, .noiField:invalid {
+  box-shadow: none;
+}
+
+#code {
+  position: relative;
+width: 648px;
+margin: 0 auto;
+margin-top: 90px;
+margin-bottom: 60px;
+left: 0px;
+}
+
+.item {
+  width: 64px;
+  height: 64px;
+  justify-content: center;
+  margin: 4px 4px;
+  flex-wrap: wrap;
+  position: relative;
+  display: inline-block;
+} 
+
+div#inv{
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.cell{
+  width: 64px;
+  height: 64px;
+  margin: 4px;
+}
+img{
+  width: 64px;
+  height: 64px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-color: rgba(255, 255, 255, 0);
+}
+#stream{
+  margin: 4px;
+  transform: scale(0,1);
+}
+
+#sloti{
+  margin-top: 32px;
+}
+
+#amnti, #sloti{
+  margin-top: 8px;
+  width: 72px;
+  height: 56px;
+  position: relative;
+  font-size: x-large;
+  border: none;
+  border-bottom: 2px solid #9b9b9b;
+  background-color: transparent;
+  font-family: inherit;
+  color: #fff;
+  text-align: center;
+  }
+
+
+  #resize{
+    text-align: center;
+  }
+  #amntd, #slotd {
+    max-height: 100px;
+  }
+
+  #amnt, #slot{
+  margin-top: 122px;
+  font-size: 1.4rem;
+  color: #ececec;
+  text-shadow: 3px 3px #3a3a3a;
+  }
+
+  .buttoff {
+  margin-top: 15px;
+  margin-right: 3vw;
+  width: 179px;
+  height: 59px;
+  font-size: xx-large;
+  font-family: inherit;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  }
+  
+  button.buttoff {
+    border:3px black;
+    border-style: solid;
+    background-image: url("img/white.png");
+    background-repeat: no-repeat;
+    text-shadow: 3px 3px #3a3a3a;
+    font-size: x-large;
+  }
+  .itm{
+    position: absolute;
+    display: table-cell;
+  vertical-align: bottom;
+    text-align: right;
+    width: 68px;
+    color: #fcfcfc;
+    font-size: 32px;
+    margin-top: 24px;
+    vertical-align: text-bottom;
+    text-shadow: 4px 4px #3e3e3e;
+  }
+
+  button:hover.buttoff {
+    border: 3px #fff;
+    border-style: solid;
+  }
+  button:active.buttoff {
+    border: 3px rgb(0, 0, 0);
+    border-style: solid;
+  background-image: url("img/black.png");
+  background-repeat: no-repeat;
+  
+ }
+
+  textarea:focus, input:focus{
+    outline: none;
+}
+
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+img:not([src]) {
+  visibility: hidden;
+}
+
+
