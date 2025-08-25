@@ -20,7 +20,8 @@
   var isti = {
     /* Init */
     init() {
-      isti.imgToSvg(),
+      isti.updateGUTProgress(), // <--- DODAJ TĘ LINIĘ
+        isti.imgToSvg(),
         isti.slider(),
         isti.customMouse(),
         isti.lenisScrollAnimation(),
@@ -31,7 +32,8 @@
         isti.mobile_menu_icon(),
         isti.parallax(),
         isti.menu2(),
-        isti.progressbar();
+        isti.progressbar(),
+        isti.aboutImageSlider();
     },
     imgToSvg() {
       document.querySelectorAll("img.svg").forEach((el) => {
@@ -59,31 +61,149 @@
           });
       });
     },
+    aboutImageSlider() {
+      const gallery = document.querySelector(".about-gallery");
+      if (!gallery) return;
+
+      const images = gallery.querySelectorAll("img");
+      let currentIndex = 0;
+
+      if (images.length > 0) {
+        images[currentIndex].classList.add("active");
+
+        setInterval(() => {
+          const nextIndex = (currentIndex + 1) % images.length;
+
+          images[currentIndex].classList.add("exit");
+          images[currentIndex].classList.remove("active");
+
+          images[nextIndex].classList.remove("exit");
+          images[nextIndex].classList.add("active");
+
+          setTimeout(() => {
+            images[currentIndex].classList.remove("exit");
+          }, 800);
+
+          currentIndex = nextIndex;
+        }, 5000);
+      }
+    },
+    updateGUTProgress() {
+      const startDate = new Date("2023-10-01");
+      const endDate = new Date("2027-02-01");
+      const currentDate = new Date();
+
+      // Całkowity czas trwania studiów w milisekundach
+      const totalDuration = endDate.getTime() - startDate.getTime();
+      // Czas, który upłynął od rozpoczęcia
+      let elapsedDuration = currentDate.getTime() - startDate.getTime();
+
+      // Zabezpieczenie, aby procent nie był < 0 lub > 100
+      if (elapsedDuration < 0) {
+        elapsedDuration = 0;
+      }
+      if (elapsedDuration > totalDuration) {
+        elapsedDuration = totalDuration;
+      }
+
+      const percentage = (elapsedDuration / totalDuration) * 100;
+      const roundedPercentage = Math.round(percentage);
+
+      // Znajdź odpowiedni pasek i zaktualizuj jego atrybut data-percentage
+      $("#bar2 .fill").attr("data-percentage", roundedPercentage);
+    },
     progressbar() {
       var progressbar = $(".tf__team_skills_bar_single .barfiller");
+
+      // initial reset
+      progressbar.each(function () {
+        var $this = $(this);
+        $this.children(".fill").css("width", "0%");
+        $this.children(".tipWrap").children(".tip").text("0%").css("left", "0%");
+        $this.data("completed", false);
+        $this.data("animating", false);
+        // kill any existing tweens if present
+        if (window.gsap) {
+          try {
+            gsap.killTweensOf($this.children(".fill").get(0));
+          } catch (e) {}
+        }
+      });
 
       $(window).on("scroll", function () {
         let scroll = $(window).scrollTop();
 
-        $(".tf__team_skills_bar_single .barfiller").each(function () {
-          let value = $(this).children(".fill").attr("data-percentage");
+        progressbar.each(function () {
+          var $this = $(this);
           if (progressbar.length > 0) {
-            let oTop = $(this).offset().top - window.innerHeight;
-            $(this).children(".tipWrap").children(".tip").html(`${value}%`);
+            let oTop = $this.offset().top - window.innerHeight;
+            var $fill = $this.children(".fill");
+            var $tip = $this.children(".tipWrap").children(".tip");
+            var target = parseInt($fill.attr("data-percentage")) || 0;
+            target = Math.max(0, Math.min(100, target)); // clamp 0-100
+
             if (scroll > oTop) {
-              $(this).addClass("progressbar-active");
-              $(this).children(".fill").css("width", `${value}%`);
-              $(this)
-                .children(".tipWrap")
-                .children(".tip")
-                .css("left", `${value}%`);
+              // enter view
+              if (!$this.data("completed") && !$this.data("animating")) {
+                $this.addClass("progressbar-active");
+                $this.data("animating", true);
+
+                if (window.gsap) {
+                  // Use a proxy object as a single source of truth for the animation
+                  let proxy = { value: 0 };
+                  gsap.to(proxy, {
+                    value: target,
+                    duration: 1.2,
+                    ease: "power2.out",
+                    onUpdate: function () {
+                      let currentVal = Math.round(proxy.value);
+                      $fill.css("width", currentVal + "%");
+
+                      // --- ZMIANA ---
+                      // Zmień tekst na "Complete" tuż przed końcem animacji
+                      if (target === 100 && currentVal >= 99) {
+                        $tip.text("Complete").css("left", "100%");
+                      } else {
+                        $tip.text(currentVal + "%").css("left", currentVal + "%");
+                      }
+                    },
+                    onComplete: function () {
+                      // Upewnij się, że stan końcowy jest poprawny
+                      if (target === 100) {
+                        $tip.text("Complete").css("left", "100%");
+                      } else {
+                        $tip.text(target + "%").css("left", target + "%");
+                      }
+                      $this.data("completed", true);
+                      $this.data("animating", false);
+                    },
+                  });
+                } else {
+                  // fallback without GSAP
+                  $fill.css("width", target + "%");
+                  if (target === 100) {
+                    $tip.text("Complete").css("left", "100%");
+                  } else {
+                    $tip.text(target + "%").css("left", target + "%");
+                  }
+                  $this.data("completed", true);
+                  $this.data("animating", false);
+                }
+              }
             } else {
-              $(this).removeClass("progressbar-active");
-              $(this).children(".fill").css("width", `${0}%`);
-              $(this)
-                .children(".tipWrap")
-                .children(".tip")
-                .css("left", `${0}%`);
+              // leave view -> reset to 0
+              if ($this.data("completed") || $this.data("animating")) {
+                $this.removeClass("progressbar-active");
+                if (window.gsap) {
+                  try {
+                    gsap.killTweensOf($this.children(".fill").get(0));
+                  } catch (e) {}
+                }
+                $fill.css("width", "0%");
+                $tip.css("left", "0%").text("0%");
+                $this.data("completed", false);
+                $this.data("animating", false);
+              }
             }
           }
         });
@@ -218,9 +338,9 @@
         css: {
           borderWidth: 0,
           opacity: "1!important",
-          width: "100px!important",
-          height: "100px!important",
-          backgroundColor: "#c7d300",
+          width: "70px!important",
+          height: "70px!important",
+          backgroundColor: "#642efd",
         },
       };
       gsap.set(ball, {
@@ -747,9 +867,9 @@
             let tl = gsap.timeline({ paused: true });
             tl.from(animation.querySelectorAll(`.${split}`), {
               opacity: 0,
-              duration,
               ease,
-              opacity: 0,
+              duration,
+              delay,
               stagger: { amount: stagger },
             });
             isti.createScrollTrigger(animation, tl);

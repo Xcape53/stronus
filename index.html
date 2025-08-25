@@ -10,7 +10,7 @@
     />
     <meta name="description" content="Isti personal portfolio HTML Template." />
     <meta name="author" content="codeefly" />
-    <title>Isti - Creative Portfolio HTML Template</title>
+    <title>Xcape - Portfolio</title>
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="stylesheet" href="css/font-awesome-pro.css" />
     <link rel="stylesheet" href="css/plugin.css" />
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="./isti-icon/style.css" />
   </head>
 
-  <body>
+  <body id="top">
     <!--================================
         PRELOADER START
     =================================-->
@@ -56,13 +56,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active text_hover_animaiton" href="#"
-                >Home <i class="far fa-angle-down"></i
-              ></a>
-              <ul class="tf__dropdown">
-                <li><a href="./index.html">Multipage</a></li>
-                <li><a href="./index-2.html">Onepage</a></li>
-              </ul>
+              <a class="nav-link active text_hover_animaiton" href="#top">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text_hover_animaiton" href="#about"
@@ -80,18 +74,8 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link text_hover_animaiton" href="#"
-                >Blog <i class="far fa-angle-down"></i
-              ></a>
-              <ul class="tf__dropdown">
-                <li><a href="./blog.html">blog</a></li>
-                <li><a href="./blog-details.html">blog details</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text_hover_animaiton" href="./contact.html"
-                >Contact
-              </a>
+              <a class="nav-link text_hover_animaiton" href="#contact">Contact</a>
+              <!-- outbound removed: ./contact.html -->
             </li>
           </ul>
         </div>
@@ -141,7 +125,8 @@
                     class="tf__common_btn tf___video_btn venobox"
                     data-autoplay="true"
                     data-vbtype="video"
-                    href="https://youtu.be/668nUCeBHyY?si=sHtcsCQRzAET5GOt"
+                    href="#"
+                    aria-disabled="true"
                   >
                     <i class="fa-sharp fa-solid fa-circle-play"></i>Watch The
                     Video</a
@@ -176,11 +161,13 @@
           </div>
           <div class="col-xl-8 col-lg-8">
             <div class="tf__about_img">
-              <img
-                src="images/about_img.jpg"
-                alt="about img"
-                class="img-fluid w-100 parallax-image"
-              />
+              <div class="about-gallery">
+                <img src="images/set/blackBox.png" alt="about img" class="img-fluid w-100 active">
+                <img src="images/set/stock.png" alt="about img" class="img-fluid w-100">
+                <img src="images/set/inventoryGen.png" alt="about img" class="img-fluid w-100">
+                <img src="images/set/blockbench.png" alt="about img" class="img-fluid w-100">
+                <img src="images/set/roomRender.jpg" alt="about img" class="img-fluid w-100">
+              </div>
             </div>
           </div>
         </div>
@@ -299,39 +286,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-xl-12">
-            <div class="tf__single_skill" data-animation="fade-bottom">
-              <div class="row">
-                <div class="col-xl-3 col-lg-3">
-                  <div class="tf__single_skill_left">
-                   <h6>2024.09 - 2024.10</h6>
-                                <span>ASSECO</span>
-                                <p>Telecommunications and Media Division</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-5 col-lg-5">
-                            <div class="tf__single_skill_middle">
-                                <p>
-                                    - Creation of a REST API interface: Implementation of an API endpoint for receiving certificate issuance requests from clients and returning completed certificates in response.
-                                    - Integration with MS ADCS: Establishing communication with the certificate authority server (MS ADCS) using the DCOM protocol to transfer processed requests to the CA system for their final issuance.
-                                    - Preparation for deployment: Configuration and preparation of the application for startup and hosting in the Microsoft IIS server environment.
-                                </p>
-                  </div>
-                </div>
-                <div class="col-xl-4 col-lg-4">
-                  <div class="tf__team_skills_bar_single">
-                    <p>Performence</p>
-                    <div id="bar1" class="barfiller">
-                      <div class="tipWrap">
-                        <span class="tip"> 70% </span>
-                      </div>
-                      <span class="fill" data-percentage="70"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!-- Gdańsk University of Technology moved to top and re-laid out -->
           <div class="col-xl-12">
             <div
               class="tf__single_skill"
@@ -339,36 +294,80 @@
               data-delay=".25"
             >
               <div class="row">
+                <!-- Left: dates and school -->
+                <div class="col-xl-6 col-lg-6">
+                  <div class="tf__single_skill_left">
+                    <h6>2023 - present</h6>
+                    <span>Gdańsk University of Technology</span>
+                    <p>Electronics and Telecommunications, 3 year</p>
+                  </div>
+                </div>
+                <!-- Right: description -->
+                <div class="col-xl-6 col-lg-6">
+                  <div class="tf__single_skill_middle">
+                    <p>
+                      I am an active member of the 'Simle' student research circle. It's a fantastic experience where I am part of an awesome team working on an ambitious project: building a fully functional radiotelescope. This hands-on work is an incredible opportunity to apply my engineering studies to a real-world challenge, and I am thrilled to be a part of it.
+                    </p>
+                  </div>
+                </div>
+                <!-- Below: performance -->
+                <div class="col-xl-12">
+                  <div class="tf__team_skills_bar_single">
+                    <p>Completion</p>
+                     <div id="bar2" class="barfiller barfiller-semesters">
+                       <span class="mark"></span>
+                       <span class="mark"></span>
+                       <span class="mark"></span>
+                       <span class="mark"></span>
+                       <span class="mark"></span>
+                       <span class="mark"></span>
+                       <div class="tipWrap">
+                         <span class="tip"></span>
+                       </div>
+                      <span class="fill" data-percentage="80"></span>
+                     </div>
+                   </div>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ASSECO (unchanged) -->
+          <div class="col-xl-12">
+            <div class="tf__single_skill" data-animation="fade-bottom">
+              <div class="row">
                 <div class="col-xl-3 col-lg-3">
                   <div class="tf__single_skill_left">
-                     <h6>2023 - present</h6>
-                                <span>Gdańsk University of Technology</span>
-                                <p>Electronics and Telecommunications, 3 semesters completed</p>
+                    <h6>2024.09 - 2024.10</h6>
+                    <span>ASSECO</span>
+                    <p>Telecommunications and Media Division</p>
                   </div>
                 </div>
                 <div class="col-xl-5 col-lg-5">
                   <div class="tf__single_skill_middle">
                     <p>
-                      Nemo enim ipsam voluptatem designr quia voluptas sit
-                      aspernatur aut odit aut fugit sed thisnquia consequuntur
-                      magni dolores eos qUI Designe ratione
+                      - Creation of a REST API interface: Implementation of an API endpoint for receiving certificate issuance requests from clients and returning completed certificates in response.<br><br>
+                      - Integration with MS ADCS: Establishing communication with the certificate authority server (MS ADCS) using the DCOM protocol to transfer processed requests to the CA system for their final issuance.<br><br>
+                      - Preparation for deployment: Configuration and preparation of the application for startup and hosting in the Microsoft IIS server environment.
                     </p>
                   </div>
                 </div>
                 <div class="col-xl-4 col-lg-4">
                   <div class="tf__team_skills_bar_single">
-                    <p>Performence</p>
-                    <div id="bar2" class="barfiller">
+                    <p>Completion</p>
+                    <div id="bar1" class="barfiller">
                       <div class="tipWrap">
-                        <span class="tip"></span>
+                        <span class="tip">Complete</span>
                       </div>
-                      <span class="fill" data-percentage="80"></span>
+                      <span class="fill" data-percentage="100"></span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- High school (unchanged) -->
           <div class="col-xl-12">
             <div
               class="tf__single_skill"
@@ -378,34 +377,33 @@
               <div class="row">
                 <div class="col-xl-3 col-lg-3">
                   <div class="tf__single_skill_left">
-                    <h6>2008-2013</h6>
-                    <span>METAVERSE </span>
-                    <p>Framer Designer & Developer</p>
+                    <h6>2019-2023</h6>
+                    <span>III Liceum Ogólnokształcące in Sopot</span>
+                    <p>Polytechnic profile (mathematics and IT)</p>
                   </div>
                 </div>
                 <div class="col-xl-5 col-lg-5">
                   <div class="tf__single_skill_middle">
                     <p>
-                      Nemo enim ipsam voluptatem designr quia voluptas sit
-                      aspernatur aut odit aut fugit sed thisnquia consequuntur
-                      magni dolores eos qUI Designe ratione
+                      My studies in the polytechnic profile at this high school were foundational. It's where I solidified my interest in computer science and began applying my knowledge by creating my very first IT projects.
                     </p>
                   </div>
                 </div>
                 <div class="col-xl-4 col-lg-4">
                   <div class="tf__team_skills_bar_single">
-                    <p>Performence</p>
+                    <p>Completion</p>
                     <div id="bar3" class="barfiller">
                       <div class="tipWrap">
-                        <span class="tip"></span>
+                        <span class="tip">Complete</span>
                       </div>
-                      <span class="fill" data-percentage="90"></span>
+                      <span class="fill" data-percentage="100"></span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <!-- /end items -->
         </div>
       </div>
     </section>
@@ -680,142 +678,69 @@
     ==============================-->
 
     <!--============================
-        BLOG START
+        ABOUT ME START (was: BLOG)
     ==============================-->
-    <section class="tf__blog pt_145 pb_120">
+    <section class="tf__about_me pt_145 pb_120" id="about-me">
       <div class="container">
         <div class="row">
           <div class="row justify-content-center">
             <div class="col-xl-10">
-              <div
-                class="tf__common_heading tf__common_heading2 tf__blog_heading"
-              >
-                <h5>ALL Blogs</h5>
+              <div class="tf__common_heading tf__common_heading2">
+                <h5>About Me</h5>
                 <h2 data-text-animation="rotate-in">
-                  From Vision to Reality My Portfolio of Accomplishments
+                  About me
                 </h2>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xl-4 col-md-6">
-            <div
-              class="tf__single_blog"
-              data-animation="fade-left"
-              data-offset="100"
-            >
-              <div class="tf__single_blog_img">
-                <a
-                  href="./blog-details.html"
-                  data-cursor='<i class="fa-light fa-arrow-up-right"></i>'
-                >
-                  <img
-                    src="images/blog_1.jpg"
-                    alt="blog img"
-                    class="img-fluid w-100"
-                /></a>
-                <p>31 December, 2023</p>
-              </div>
-              <div class="tf__single_blog_text">
-                <ul class="d-flex flex-wrap">
-                  <li><i class="far fa-user"></i>By admin</li>
-                  <li><i class="far fa-comments"></i>Comments (05)</li>
-                </ul>
-                <a href="./blog-details.html" class="tf__single_blog_heading"
-                  >These cases are perfectly simple and easy</a
-                >
 
-                <a
-                  href="./blog-details.html"
-                  class="tf__common_btn tf__blog_btn"
-                  >read more<i class="fa-solid fa-arrow-right-long"></i
-                ></a>
-              </div>
+        <div class="row align-items-stretch">
+          <div class="col-xl-7 col-lg-7">
+            <div class="tf__about_me_content">
+              <p>
+              My name is Piotr and I am passionate about technology and electronics. I like to learn new things,
+              design and build, as well as automate tasks and optimize processes.
+              </p>
+              <p>
+              Below are a few things that I'm particularly into. Feel free to edit this list:
+              </p>
+              <ul class="about-me-list">
+              <li>Practical electronics, measurements and circuit simulations</li>
+              <li>Programming (C++, JavaScript) and tool development</li>
+              <li>CAD / 3D design and 3D printing</li>
+              <li>Automation (AutoHotkey, scripts, integrations)</li>
+              <li>Systems and virtualization (Linux, VMware/VirtualBox)</li>
+              <li>Sports and activity: cycling, gym, walks</li>
+              <li>Music and events — guitar, concerts</li>
+              </ul>
             </div>
           </div>
-          <div class="col-xl-4 col-md-6">
-            <div
-              class="tf__single_blog"
-              data-animation="fade-left"
-              data-delay=".25"
-              data-offset="100"
-            >
-              <div class="tf__single_blog_img">
-                <a
-                  href="./blog-details.html"
-                  data-cursor='<i class="fa-light fa-arrow-up-right"></i>'
-                >
-                  <img
-                    src="images/blog_2.jpg"
-                    alt="blog img"
-                    class="img-fluid w-100"
-                /></a>
-                <p>31 December, 2023</p>
-              </div>
-              <div class="tf__single_blog_text">
-                <ul class="d-flex flex-wrap">
-                  <li><i class="far fa-user"></i>By admin</li>
-                  <li><i class="far fa-comments"></i>Comments (05)</li>
-                </ul>
-                <a href="./blog-details.html" class="tf__single_blog_heading"
-                  >which is the same as saying through shrinking from toil
-                </a>
 
-                <a
-                  href="./blog-details.html"
-                  class="tf__common_btn tf__blog_btn"
-                  >read more<i class="fa-solid fa-arrow-right-long"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-md-6">
-            <div
-              class="tf__single_blog"
-              data-animation="fade-left"
-              data-delay=".5"
-            >
-              <div class="tf__single_blog_img">
-                <a
-                  href="./blog-details.html"
-                  data-cursor='<i class="fa-light fa-arrow-up-right"></i>'
-                >
-                  <img
-                    src="images/blog_3.jpg"
-                    alt="blog img"
-                    class="img-fluid w-100"
-                /></a>
-                <p>31 December, 2023</p>
-              </div>
-              <div class="tf__single_blog_text">
-                <ul class="d-flex flex-wrap">
-                  <li><i class="far fa-user"></i>By admin</li>
-                  <li><i class="far fa-comments"></i>Comments (05)</li>
-                </ul>
-                <a href="./blog-details.html" class="tf__single_blog_heading"
-                  >when our power of choice is design untrammelled and when</a
-                >
-
-                <a
-                  href="./blog-details.html"
-                  class="tf__common_btn tf__blog_btn"
-                  >read more<i class="fa-solid fa-arrow-right-long"></i
-                ></a>
-              </div>
+          <div class="col-xl-5 col-lg-5">
+            <div class="tf__about_me_highlights">
+              <span class="chip">C++</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">LTspice</span>
+              <span class="chip">EAGLE</span>
+              <span class="chip">Vivado</span>
+              <span class="chip">AutoHotkey</span>
+              <span class="chip">VS Code</span>
+              <span class="chip">VMware</span>
+              <span class="chip">VirtualBox</span>
+              <span class="chip">Linux</span>
             </div>
           </div>
         </div>
       </div>
     </section>
     <!--============================
-        BLOG END
+        ABOUT ME END
     ==============================-->
-
     <!--============================
         CONTACT START
     ==============================-->
-    <section class="tf__contact pb_80">
+    <section class="tf__contact pb_80" id="contact">
       <div class="container">
         <div class="row">
           <div class="col-xl-6 col-md-12">
@@ -856,24 +781,24 @@
                     <ul>
                       <li>
                         <a href="#"
-                          ><i class="far fa-angle-double-right"></i
-                          ><span class="text_hover_animaiton"
+                          ><i class="far fa-angle-double-right"></i>
+                          <span class="text_hover_animaiton"
                             >UI Design</span
                           ></a
                         >
                       </li>
                       <li>
                         <a href="#"
-                          ><i class="far fa-angle-double-right"></i
-                          ><span class="text_hover_animaiton"
+                          ><i class="far fa-angle-double-right"></i>
+                          <span class="text_hover_animaiton"
                             >UX Design</span
                           ></a
                         >
                       </li>
                       <li>
                         <a href="#"
-                          ><i class="far fa-angle-double-right"></i
-                          ><span class="text_hover_animaiton"
+                          ><i class="far fa-angle-double-right"></i>
+                          <span class="text_hover_animaiton"
                             >Digital Marketing</span
                           ></a
                         >
