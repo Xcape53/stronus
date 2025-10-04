@@ -2831,7 +2831,7 @@ h5.preloader-text {
 }
 
 h5.preloader-text::after {
-  content: "Isti";
+  content: "////////";
   position: absolute;
   left: 0;
   top: 0;
