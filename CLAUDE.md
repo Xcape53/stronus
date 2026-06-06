@@ -1,0 +1,41 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Overview
+
+Static personal portfolio website (Piotr Jeleniewicz / "Xcape"), built by customizing the "Isti" ThemeForest HTML template, extended with custom electronics-themed canvas parallax backgrounds. Plain HTML/CSS/JS - no build system, package manager, linter, or test suite.
+
+**Backups (never delete, never edit):**
+- `C:\Users\user1\Documents\GitHub\stronus_backup_2026-07-03\` - the design before effects were added (template look, no parallax).
+- `C:\Users\user1\Documents\GitHub\stronus_backup_2026-07-03_v2-efekty\` - the first effects version (spectrum under content, telescope dish + signal rings still present).
+- `C:\Users\user1\Documents\GitHub\stronus_backup_2026-07-03_v3\` - version with the wave behind About and the spectrum band at the bottom of Services (both removed afterwards).
+- `C:\Users\user1\Documents\GitHub\stronus_backup_2026-07-03_v4-led\` - version with the tuned LED band, before the contact-section redesign (old "LET'S GET IN TOUCH!" h4s, template absolute-positioned EMAIL ME).
+- `C:\Users\user1\Documents\GitHub\stronus_backup_brutal_2026-07-03\` - a rejected full "brutal" redesign (index.html + site.css + site.js), kept for reference.
+- Rule from the user: before any major design edit, make a fresh backup copy first - a pristine backup must always exist.
+
+## Development
+
+- No build step. Serve the repo root with any static server (e.g. `python -m http.server`).
+- Deployment is automatic: `.github/workflows/static.yml` publishes the entire repository root to GitHub Pages on every push to `main`. Everything committed goes live.
+- To verify visually, Playwright is available in `C:\Users\user1\Documents\ROBOTA\node_modules` (`@playwright/test`); run screenshot scripts with module resolution inside that folder (copy the script there first).
+
+## Structure
+
+- `index.html` - single page. Sections: banner (D3 force graph + intro, fixed gradient `banner_bg.jpg`), `#about` (bio + image gallery, no effects), oscilloscope separator, `#service` (skills cards), **P4 LED-matrix band** (`#fx-led-band`, sits between `#service` and `#edu`), `#edu` (education timeline, **P6 starfield only**), `#projects` (3 main projects: LabInc, Job Search Aggregator, Password Manager), `#online` (side projects: Inventory Generator, Stock Tool, BlackBox, Florist Website, This Portfolio), `#activity` ("My Activity": left - live GitHub contribution tiles drawn by effects.js from `github-contributions-api.jogruber.de` (falls back to a note + profile link on fetch error); right - Claude Code usage stat tiles, a STATIC snapshot hardcoded in index.html; refresh by running `npx ccusage@latest --json`, summing claude-* modelBreakdowns and editing the `.cc-num` values) - these three sections all carry class `bg-window` (the fixed banner gradient shows through, a full-width "hole" in the dark background; the +200px window padding sits on `#projects` top and `#activity` bottom), `#about-me`, oscilloscope separator, `#contact` (kicker + big "LET'S TALK" heading - the `.talk` span is a white `-webkit-text-stroke` outline that fills blue on hover; it MUST stay `font-family: Poppins` - Spline Sans glyphs have self-overlapping contours and text-stroke renders broken lines inside them (also override the global `span{font-size:16px}` rule) - plus magnetic EMAIL ME button; `#magzone` gets its capture area from padding + negative margin), footer. Nav: Home, Projects, CV (opens `cv/Piotr_Jeleniewicz_CV.pdf`), Contact.
+- `js/effects.js` - custom, single rAF loop driving all added effects: LED matrix (`#fx-led`), starfield (`#fx-sky`), mouse-reactive oscilloscope separators (`.osc-sep`), magnetic button (`#magzone`/`#mag`). The P3 wave and P2 spectrum were removed at the user's request ("za dużo" - too much at once); the telescope dish and signal rings likewise. Canvases draw only when near the viewport; `prefers-reduced-motion` renders one static frame. Every element lookup is null-guarded. Comments in Polish.
+- `js/animacja-banner.js` - custom D3 force-graph hero animation (needs `js/d3.v7.min.js` and a `.tf__banner_img` element containing an `<svg>` with nonzero size). Comments/console messages in Polish - keep that convention here and in `effects.js`.
+- `js/main.js` - template init script (jQuery IIFE, `isti` object) with local modifications (e.g. `updateGUTProgress`); edit carefully, don't replace with a stock copy. `js/animation.js` (Lenis), `js/plugin.js`, `js/d3.v7.min.js` are vendor - do not hand-edit.
+- `css/style.css` - template styles plus custom blocks appended at the end (about-me chips, semester bar marks, `tf__project_card`, `tf__online_card`, and the FX block: `.fx-host`, `.fx-bg`, `.osc-sep`, `.fx-led-band`, `.fx-dish`). Other CSS files are vendor/utility.
+- `cv/Piotr_Jeleniewicz_CV.pdf` - copy of an export from the CV project at `C:\Users\user1\Documents\ROBOTA` (source of truth, incl. structured profile data in `source/user_profile.json`). Regenerate there and re-copy to update.
+- `inventoryGen/` - separate self-contained mini-app (Minecraft inventory generator, linked from the projects section). Leave it alone unless asked.
+- `images/set/` - the user's own graphics (do not delete).
+
+## Conventions
+
+- Content edits happen in `index.html`; anchors: `#top`, `#about`, `#service`, `#edu`, `#projects`, `#online`, `#about-me`, `#contact`.
+- The site relies on template class prefixes `tf__*` and spacing utilities (`pt_100`, ...) from `css/spacing.css` - reuse them.
+- FX pattern: a section gets class `fx-host`, a `<canvas class="fx-bg">` as first child, and a draw function registered in the `js/effects.js` rAF loop gated by `near(el)`. New effects must join that loop, not spawn their own.
+- Do NOT use the template's `data-animation` GSAP reveal on elements in `#projects`/`#online` - their ScrollTriggers never fire there (cards stayed at opacity 0; root cause in main.js/Lenis not found, time-boxed). Use the custom `.fx-reveal` class instead: effects.js arms it (`html.fx-armed`) and reveals via IntersectionObserver; without JS or with reduced-motion the cards are simply visible.
+- Projects in `#projects` mirror `C:\Users\user1\Documents\ROBOTA\source\user_profile.json` - keep in sync.
+- Design history: the user rejected both glassmorphism "AI default" looks and a full brutal redesign; the agreed direction is the original template look + electronics-themed parallax (spectrum, LED matrix, radiotelescope, oscilloscope). Keep new elements in that language and subtle enough not to fight the template.

@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="keywords"
-      content="html, personal, personal portfolio, dark, minimal, html template, site template, designer, developer, youtuber, vloger, bloger, bootstrap, dark theme, personal dark theme, personal dark template"
+      content="Piotr Jeleniewicz, portfolio, engineering, electronics, telecommunications, programming, C++, JavaScript"
     />
-    <meta name="description" content="Isti personal portfolio HTML Template." />
-    <meta name="author" content="codeefly" />
+    <meta
+      name="description"
+      content="Portfolio of Piotr Jeleniewicz - engineering student based in Poland."
+    />
+    <meta name="author" content="Piotr Jeleniewicz" />
     <title>Xcape - Portfolio</title>
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="stylesheet" href="css/font-awesome-pro.css" />
@@ -59,23 +62,21 @@
               <a class="nav-link active text_hover_animaiton" href="#top">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text_hover_animaiton" href="#about"
-                >About Me</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text_hover_animaiton" href="#service"
-                >Services</a
-              >
-            </li>
-            <li class="nav-item">
               <a class="nav-link text_hover_animaiton" href="#projects"
                 >Projects</a
               >
             </li>
             <li class="nav-item">
+              <a
+                class="nav-link text_hover_animaiton"
+                href="cv/Piotr_Jeleniewicz_CV.pdf"
+                target="_blank"
+                rel="noopener"
+                >CV</a
+              >
+            </li>
+            <li class="nav-item">
               <a class="nav-link text_hover_animaiton" href="#contact">Contact</a>
-              <!-- outbound removed: ./contact.html -->
             </li>
           </ul>
         </div>
@@ -115,21 +116,21 @@
               <ul class="d-flex flex-wrap">
                 <li>
                   <a
-                    href="#"
+                    href="cv/Piotr_Jeleniewicz_CV.pdf"
+                    target="_blank"
+                    rel="noopener"
                     class="tf__common_btn d-flex align-items-center download_btn"
-                    >Download Cv <i class="isti-download"></i
+                    >Download CV <i class="isti-download"></i
                   ></a>
                 </li>
                 <li>
                   <a
-                    class="tf__common_btn tf___video_btn venobox"
-                    data-autoplay="true"
-                    data-vbtype="video"
-                    href="#"
-                    aria-disabled="true"
+                    class="tf__common_btn tf___video_btn"
+                    href="https://github.com/Xcape53"
+                    target="_blank"
+                    rel="noopener"
                   >
-                    <i class="fa-sharp fa-solid fa-circle-play"></i>Watch The
-                    Video</a
+                    <i class="fab fa-github"></i>My GitHub</a
                   >
                 </li>
               </ul>
@@ -176,6 +177,9 @@
     <!--============================
         ABOUT END
     ==============================-->
+
+    <!-- separator: oscyloskop (efekt 13, reaguje na mysz) -->
+    <canvas class="osc-sep" aria-hidden="true"></canvas>
 
     <!--============================
         SERVICE START
@@ -268,10 +272,17 @@
         SERVICE END
     ==============================-->
 
+    <!-- P4: macierz LED — scroll przewija komunikat na wyświetlaczu -->
+    <div class="fx-led-band" id="fx-led-band" aria-hidden="true">
+      <canvas id="fx-led"></canvas>
+    </div>
+
     <!--============================
         SKILL START
     ==============================-->
-    <section class="tf__skill pt_140">
+    <section class="tf__skill pt_140 fx-host" id="edu">
+      <!-- P6: gwiezdne niebo w dwóch głębokościach (tło sekcji, SimLE) -->
+      <canvas class="fx-bg" id="fx-sky" aria-hidden="true"></canvas>
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-xl-9">
@@ -414,59 +425,79 @@
     <!--============================
         PORTFOLIO START
     ==============================-->
-    <section class="tf__portfolio pt_150" id="projects">
+    <!-- "dziura" w ciemnym tle: ten sam gradient co banner, fixed -->
+    <section class="tf__portfolio pt_150 bg-window" id="projects">
       <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-9">
+            <div class="tf__common_heading tf__common_heading2">
+              <h5>My Projects</h5>
+              <h2 data-text-animation="rotate-in" data-split="word">
+                Things I Have Built
+              </h2>
+            </div>
+          </div>
+        </div>
         <div class="row">
-          <div class="col-xl-8 order-xl-1 order-2">
-            <div class="row portfolio_slider">
-              <div class="col-xl-6">
-                <div class="tf__portfolio_img">
-                  <img
-                    src="images/portfolio_1.jpg"
-                    alt="portfolio img"
-                    class="img-fluid w-100"
-                  />
-                </div>
+          <div class="col-xl-4 col-md-6 d-flex">
+            <div class="tf__project_card fx-reveal">
+              <div class="tf__project_card_head">
+                <h4>LabInc: Chemical Tycoon</h4>
               </div>
-              <div class="col-xl-6">
-                <div class="tf__portfolio_img">
-                  <img
-                    src="images/portfolio_2.jpg"
-                    alt="portfolio img"
-                    class="img-fluid w-100"
-                  />
-                </div>
+              <p>
+                Incremental/idle simulation game - manage mines and chemical
+                factories, from a coal mine up to a nuclear reactor producing
+                synthetic elements. 16 factories, 118 chemical elements, an
+                achievement system and save/load functionality.
+              </p>
+              <div class="tf__project_tags">
+                <span class="chip">Java</span>
+                <span class="chip">Swing</span>
+                <span class="chip">Maven</span>
               </div>
-              <div class="col-xl-6">
-                <div class="tf__portfolio_img">
-                  <img
-                    src="images/portfolio_1.jpg"
-                    alt="portfolio img"
-                    class="img-fluid w-100"
-                  />
-                </div>
-              </div>
-              <div class="col-xl-6">
-                <div class="tf__portfolio_img">
-                  <img
-                    src="images/portfolio_2.jpg"
-                    alt="portfolio img"
-                    class="img-fluid w-100"
-                  />
-                </div>
+              <div class="tf__project_links">
+                <a
+                  href="https://github.com/Xcape53/LabInc"
+                  target="_blank"
+                  rel="noopener"
+                  ><i class="fab fa-github"></i> View on GitHub</a
+                >
               </div>
             </div>
           </div>
-          <div class="col-xl-4 my-auto order-xl-2 order-1">
-            <div class="tf__common_heading tf__portfolio_heading">
-              <h5>gallery</h5>
-              <h2 data-text-animation="rotate-in">Latests Portfolio</h2>
+          <div class="col-xl-4 col-md-6 d-flex">
+            <div class="tf__project_card fx-reveal">
+              <div class="tf__project_card_head">
+                <h4>Job Search Aggregator</h4>
+                <span class="chip chip-status">In development</span>
+              </div>
               <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                design accusantium doloremque laudantium Sed ut perspiciatis
-                unde omnis iste natus error sit voluptatem design accusantium
-                doloremque laudantium
+                Tool that aggregates job offers from major job portals, filters
+                and ranks them, then runs a Deep Research stage (Gemini API)
+                returning company reputation, salary vs. market median, real
+                tech stack and red flags.
               </p>
+              <div class="tf__project_tags">
+                <span class="chip">Web scraping</span>
+                <span class="chip">Gemini API</span>
+                <span class="chip">Data aggregation</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6 d-flex">
+            <div class="tf__project_card fx-reveal">
+              <div class="tf__project_card_head">
+                <h4>Password Manager</h4>
+                <span class="chip chip-status">In development</span>
+              </div>
+              <p>
+                Simple cross-platform password manager for Windows and Linux,
+                developed as a group project.
+              </p>
+              <div class="tf__project_tags">
+                <span class="chip">Windows</span>
+                <span class="chip">Linux</span>
+              </div>
             </div>
           </div>
         </div>
@@ -477,72 +508,111 @@
     ==============================-->
 
     <!--============================
-        TESTIMONIAL START
+        FIND ME ONLINE START
     ==============================-->
-    <section class="tf__testimonial pt_145">
+    <section class="tf__online pt_100 pb_80 bg-window" id="online">
       <div class="container">
-        <div class="row">
-          <div class="col-xl-5">
-            <div class="tf__common_heading tf__testimonial_heading">
-              <h5>Testomonial</h5>
-              <h2 data-text-animation="rotate-in">What our clients say?</h2>
+        <div class="row justify-content-center">
+          <div class="col-xl-9">
+            <div class="tf__common_heading tf__common_heading2">
+              <h5>Side Projects</h5>
+              <h2 data-text-animation="rotate-in" data-split="word">
+                More of My Work
+              </h2>
             </div>
           </div>
         </div>
-        <div class="tf__testimonial_slider">
-          <div class="row testimonial_slider">
-            <div class="col-xl-6">
-              <div class="tf__single_testimonial">
-                <div class="tf__single_testimonial_img">
-                  <img
-                    src="images/testimonial_1.jpg"
-                    alt="testimonial"
-                    class="img-fluid w-100"
-                  />
-                </div>
-                <h4>Eleanor Pena</h4>
-                <span>Marketing Coordinator</span>
-                <p>
-                  Financial planners help people to knowledge in about how to
-                  invest and in save their moneye the most efficient way eve
-                  plan ners help people tioniio know ledige in about how.
-                </p>
+        <div class="row">
+          <div class="col-xl-4 col-md-6 d-flex">
+            <div class="tf__project_card fx-reveal">
+              <div class="tf__project_card_head">
+                <h4>Game Inventory Generator</h4>
+              </div>
+              <p>
+                Visual video game inventory generator - a web tool that builds
+                a Minecraft-style inventory from a searchable item database,
+                with configurable slots and amounts.
+              </p>
+              <div class="tf__project_tags">
+                <span class="chip">JavaScript</span>
+                <span class="chip">HTML</span>
+                <span class="chip">CSS</span>
+              </div>
+              <div class="tf__project_links">
+                <a href="inventoryGen/index.html" target="_blank" rel="noopener"
+                  ><i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                  demo</a
+                >
               </div>
             </div>
-            <div class="col-xl-6">
-              <div class="tf__single_testimonial">
-                <div class="tf__single_testimonial_img">
-                  <img
-                    src="images/testimonial_2.jpg"
-                    alt="testimonial"
-                    class="img-fluid w-100"
-                  />
-                </div>
-                <h4>Eleanor Pena</h4>
-                <span>Marketing Coordinator</span>
-                <p>
-                  Financial planners help people to knowledge in about how to
-                  invest and in save their moneye the most efficient way eve
-                  plan ners help people tioniio know ledige in about how.
-                </p>
+          </div>
+          <div class="col-xl-4 col-md-6 d-flex">
+            <div class="tf__project_card fx-reveal">
+              <div class="tf__project_card_head">
+                <h4>Stock Market Analysis Tool</h4>
+              </div>
+              <p>
+                Terminal application written in C++ that parses stock market
+                data and draws bar charts directly in the console.
+              </p>
+              <div class="tf__project_tags">
+                <span class="chip">C++</span>
               </div>
             </div>
-            <div class="col-xl-6">
-              <div class="tf__single_testimonial">
-                <div class="tf__single_testimonial_img">
-                  <img
-                    src="images/testimonial_1.jpg"
-                    alt="testimonial"
-                    class="img-fluid w-100"
-                  />
-                </div>
-                <h4>Eleanor Pena</h4>
-                <span>Marketing Coordinator</span>
-                <p>
-                  Financial planners help people to knowledge in about how to
-                  invest and in save their moneye the most efficient way eve
-                  plan ners help people tioniio know ledige in about how.
-                </p>
+          </div>
+          <div class="col-xl-4 col-md-6 d-flex">
+            <div class="tf__project_card fx-reveal">
+              <div class="tf__project_card_head">
+                <h4>BlackBox</h4>
+              </div>
+              <p>
+                Simple terminal-based logic game written in C++ - find the
+                hidden boxes by shooting rays and interpreting how they
+                deflect.
+              </p>
+              <div class="tf__project_tags">
+                <span class="chip">C++</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6 d-flex">
+            <div class="tf__project_card fx-reveal">
+              <div class="tf__project_card_head">
+                <h4>Florist Website</h4>
+                <span class="chip chip-status">In development</span>
+              </div>
+              <p>
+                Website for a local florist - a real client project, built as
+                a small team.
+              </p>
+              <div class="tf__project_tags">
+                <span class="chip">Web</span>
+                <span class="chip">Client project</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6 d-flex">
+            <div class="tf__project_card fx-reveal">
+              <div class="tf__project_card_head">
+                <h4>This Portfolio</h4>
+              </div>
+              <p>
+                The site you are looking at - customized HTML template with
+                custom canvas parallax effects (LED matrix, starfield,
+                oscilloscopes) and a D3 force-graph hero.
+              </p>
+              <div class="tf__project_tags">
+                <span class="chip">JavaScript</span>
+                <span class="chip">Canvas</span>
+                <span class="chip">D3.js</span>
+              </div>
+              <div class="tf__project_links">
+                <a
+                  href="https://github.com/Xcape53/stronus"
+                  target="_blank"
+                  rel="noopener"
+                  ><i class="fab fa-github"></i> View on GitHub</a
+                >
               </div>
             </div>
           </div>
@@ -550,123 +620,79 @@
       </div>
     </section>
     <!--============================
-        TESTIMONIAL END
+        FIND ME ONLINE END
     ==============================-->
 
     <!--============================
-        EXPERIANCE START
+        MY ACTIVITY START
     ==============================-->
-    <section class="tf__experiance pt_100 pb_80">
-      <div class="container-fluid">
-        <div class="tf__brand pl_90 pr_100">
-          <div class="row justify-content-xl-between justify-content-center">
-            <div class="col-xl-2 col-sm-6 col-md-4 col-lg-4 col-6">
-              <div
-                class="tf__brand_img"
-                data-animation="fade-left"
-                data-offset="100"
-              >
-                <img
-                  src="images/brand_1.png"
-                  alt="company logo"
-                  class="img-fluid w-100"
-                />
-              </div>
-            </div>
-            <div class="col-xl-2 col-sm-6 col-md-4 col-lg-4 col-6">
-              <div
-                class="tf__brand_img"
-                data-animation="fade-left"
-                data-offset="100"
-                data-delay=".25"
-              >
-                <img
-                  src="images/brand_2.png"
-                  alt="company logo"
-                  class="img-fluid w-100"
-                />
-              </div>
-            </div>
-            <div class="col-xl-2 col-sm-6 col-md-4 col-lg-4 col-6">
-              <div
-                class="tf__brand_img"
-                data-animation="fade-left"
-                data-offset="100"
-                data-delay=".5"
-              >
-                <img
-                  src="images/brand_3.png"
-                  alt="company logo"
-                  class="img-fluid w-100"
-                />
-              </div>
-            </div>
-            <div class="col-xl-2 col-sm-6 col-md-4 col-lg-4 col-6">
-              <div
-                class="tf__brand_img"
-                data-animation="fade-left"
-                data-offset="100"
-                data-delay=".75"
-              >
-                <img
-                  src="images/brand_4.png"
-                  alt="company logo"
-                  class="img-fluid w-100"
-                />
-              </div>
-            </div>
-            <div class="col-xl-2 col-sm-6 col-md-4 col-lg-4 col-6">
-              <div
-                class="tf__brand_img"
-                data-animation="fade-left"
-                data-offset="100"
-                data-delay="1"
-              >
-                <img
-                  src="images/brand_5.png"
-                  alt="company logo"
-                  class="img-fluid w-100"
-                />
-              </div>
+    <section class="tf__online pt_100 pb_80 bg-window" id="activity">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-9">
+            <div class="tf__common_heading tf__common_heading2">
+              <h5>Find Me Online</h5>
+              <h2 data-text-animation="rotate-in" data-split="word">
+                My Activity
+              </h2>
             </div>
           </div>
         </div>
-      </div>
-      <div class="tf__counter pt_75">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-3 col-md-6">
-              <div class="tf__single_counter">
-                <h4><span class="counter">200</span>+</h4>
-                <p>Team member</p>
-                <h5 class="tf__counter_icon">
-                  <i class="fas fa-users-cog"></i>
-                </h5>
+        <div class="row">
+          <div class="col-md-6 d-flex">
+            <div class="tf__online_card tf__activity_card fx-reveal">
+              <div class="tf__activity_head">
+                <i class="fab fa-github"></i>
+                <h4>GitHub Activity</h4>
+              </div>
+              <!-- kafelki kontrybucji rysowane przez effects.js z publicznego API -->
+              <div class="gh-graph" id="gh-graph" data-user="Xcape53">
+                <p class="gh-graph-note">Loading contribution activity...</p>
+              </div>
+              <p class="gh-graph-total" id="gh-graph-total"></p>
+              <div class="tf__project_links">
+                <a
+                  href="https://github.com/Xcape53"
+                  target="_blank"
+                  rel="noopener"
+                  ><i class="fab fa-github"></i> View profile</a
+                >
               </div>
             </div>
-            <div class="col-xl-3 col-md-6">
-              <div class="tf__single_counter">
-                <h4><span class="counter">20</span>+</h4>
-                <p>Winning award</p>
-                <h5 class="tf__counter_icon"><i class="fas fa-award"></i></h5>
+          </div>
+          <div class="col-md-6 d-flex">
+            <div class="tf__online_card tf__activity_card fx-reveal">
+              <div class="tf__activity_head">
+                <i class="fa-solid fa-robot"></i>
+                <h4>Claude Code Usage</h4>
               </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-              <div class="tf__single_counter">
-                <h4><span class="counter">10</span>k+</h4>
-                <p>Complete project</p>
-                <h5 class="tf__counter_icon">
-                  <i class="far fa-file-certificate"></i>
-                </h5>
+              <!-- snapshot z lokalnych logów (ccusage); odświeżanie: patrz CLAUDE.md -->
+              <div class="cc-stats">
+                <div class="cc-stat">
+                  <span class="cc-num">580M+</span>
+                  <span class="cc-label">tokens processed</span>
+                </div>
+                <div class="cc-stat">
+                  <span class="cc-num">3.6M</span>
+                  <span class="cc-label">tokens generated</span>
+                </div>
+                <div class="cc-stat">
+                  <span class="cc-num">26</span>
+                  <span class="cc-label">days of building</span>
+                </div>
+                <div class="cc-stat">
+                  <span class="cc-num">Fable 5</span>
+                  <span class="cc-label">current model</span>
+                </div>
               </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-              <div class="tf__single_counter">
-                <h4><span class="counter">900</span>+</h4>
-                <p>Client review</p>
-                <h5 class="tf__counter_icon">
-                  <i class="fas fa-users-crown"></i>
-                </h5>
+              <div class="tf__project_links">
+                <a
+                  href="https://claude.com/claude-code"
+                  target="_blank"
+                  rel="noopener"
+                  ><i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  Built with Claude Code</a
+                >
               </div>
             </div>
           </div>
@@ -674,7 +700,7 @@
       </div>
     </section>
     <!--============================
-        EXPERIANCE END
+        MY ACTIVITY END
     ==============================-->
 
     <!--============================
@@ -699,26 +725,30 @@
           <div class="col-xl-7 col-lg-7">
             <div class="tf__about_me_content">
               <p>
-              My name is Piotr and I am passionate about technology and electronics. I like to learn new things,
-              design and build, as well as automate tasks and optimize processes.
+              My name is Piotr. I study Electronics and Telecommunications at
+              Gdańsk University of Technology (WETI), currently in my 6th
+              semester on the Computer Electronic Systems profile. What drives
+              me most is automation - building bullet-proof setups that keep
+              working reliably across different systems.
               </p>
-              <p>
-              Below are a few things that I'm particularly into. Feel free to edit this list:
-              </p>
+              <p>What keeps me busy right now:</p>
               <ul class="about-me-list">
-              <li>Practical electronics, measurements and circuit simulations</li>
-              <li>Programming (C++, JavaScript) and tool development</li>
-              <li>CAD / 3D design and 3D printing</li>
-              <li>Automation (AutoHotkey, scripts, integrations)</li>
-              <li>Systems and virtualization (Linux, VMware/VirtualBox)</li>
-              <li>Sports and activity: cycling, gym, walks</li>
-              <li>Music and events — guitar, concerts</li>
+              <li>Engineering thesis - teaching a reinforcement-learning agent (PPO/DQN) to master an arcade game on its own</li>
+              <li>SimLE research club - lead software developer of a 3 m radio telescope: remote-control web app, star targeting and tracking, SDR data analysis</li>
+              <li>Personal projects - a job search aggregator, this portfolio and a few websites built for real clients</li>
+              <li>Math tutoring - from primary school up to advanced high-school level</li>
               </ul>
+              <p>
+              After hours you'll find me diving (Open Water Diver), playing
+              guitar and going to concerts, experimenting with computer
+              graphics and AI tools, or at the gym and on the bike.
+              </p>
             </div>
           </div>
 
           <div class="col-xl-5 col-lg-5">
             <div class="tf__about_me_highlights">
+              <span class="chip">Python</span>
               <span class="chip">C++</span>
               <span class="chip">JavaScript</span>
               <span class="chip">LTspice</span>
@@ -737,6 +767,9 @@
     <!--============================
         ABOUT ME END
     ==============================-->
+    <!-- separator: oscyloskop (efekt 13) -->
+    <canvas class="osc-sep" aria-hidden="true"></canvas>
+
     <!--============================
         CONTACT START
     ==============================-->
@@ -745,111 +778,79 @@
         <div class="row">
           <div class="col-xl-6 col-md-12">
             <div class="tf__contact_area">
-              <h4 data-text-animation="rotate-in">IF YOU WANT TO UPDATE ?</h4>
-              <h4 data-text-animation="rotate-in" data-delay=".25">
-                STAY CONECTED!
-              </h4>
-              <div class="tf__contact_mail">
-                <input type="text" placeholder="Enter email address" />
-                <a href="#" class="tf__subscribtion">SUBSCRIBE NOW</a>
-              </div>
-              <div class="row justify-content-between">
-                <div class="col-xl-5 col-md-5">
-                  <div class="tf__contact_address">
-                    <h4>Contact Me</h4>
-                    <div class="tf__single_address d-flex flex-wrap">
-                      <span
-                        ><i class="fa-sharp fa-solid fa-paper-plane"></i
-                      ></span>
-                      <div class="tf__address_area">
-                        <p>Old city street,USA</p>
-                        <p>1212 New york-3500</p>
-                      </div>
-                    </div>
-                    <div class="tf__single_address d-flex flex-wrap">
-                      <span><i class="fa-sharp fa-solid fa-phone"></i></span>
-                      <div class="tf__address_area">
-                        <p>(+888) 123 456 765</p>
-                        <p>(+888) 123 456 765</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-5 col-md-5">
-                  <div class="tf__contact_address">
-                    <h4>OUR SERVICES</h4>
-                    <ul>
-                      <li>
-                        <a href="#"
-                          ><i class="far fa-angle-double-right"></i>
-                          <span class="text_hover_animaiton"
-                            >UI Design</span
-                          ></a
-                        >
-                      </li>
-                      <li>
-                        <a href="#"
-                          ><i class="far fa-angle-double-right"></i>
-                          <span class="text_hover_animaiton"
-                            >UX Design</span
-                          ></a
-                        >
-                      </li>
-                      <li>
-                        <a href="#"
-                          ><i class="far fa-angle-double-right"></i>
-                          <span class="text_hover_animaiton"
-                            >Digital Marketing</span
-                          ></a
-                        >
-                      </li>
-                      <li>
-                        <a href="#"
-                          ><i class="far fa-angle-double-right"></i>
-                          <span class="text_hover_animaiton"
-                            >Video Editing</span
-                          ></a
-                        >
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+              <span class="tf__contact_kicker">HAVE A PROJECT IN MIND?</span>
+              <!-- duży nagłówek; słowo TALK jest konturowe i wypełnia się na niebiesko po najechaniu -->
+              <h2 class="tf__lets_talk">
+                LET'S <span class="talk">TALK</span>
+              </h2>
+              <div class="tf__contact_mail" id="magzone">
+                <a href="mailto:xcape53@gmail.com" class="tf__subscribtion" id="mag"
+                  >EMAIL ME</a
+                >
               </div>
             </div>
           </div>
 
-          <div class="col-xl-6">
-            <form class="tf__form">
-              <div class="row">
-                <div class="col-xl-6">
-                  <div class="tf__single_form">
-                    <input type="text" placeholder="Name*" />
+          <div class="col-xl-6 col-md-12">
+            <div class="row justify-content-between">
+              <div class="col-xl-6 col-md-6">
+                <div class="tf__contact_address">
+                  <h4>Contact Me</h4>
+                  <div class="tf__single_address d-flex flex-wrap">
+                    <span
+                      ><i class="fa-sharp fa-solid fa-paper-plane"></i
+                    ></span>
+                    <div class="tf__address_area">
+                      <p>
+                        <a href="mailto:xcape53@gmail.com"
+                          >xcape53@gmail.com</a
+                        >
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div class="col-xl-6">
-                  <div class="tf__single_form">
-                    <input type="email" placeholder="E-mail" />
-                  </div>
-                </div>
-                <div class="col-xl-12">
-                  <div class="tf__single_form">
-                    <input type="text" placeholder="Phone Number" />
-                  </div>
-                </div>
-                <div class="col-xl-12">
-                  <div class="tf__single_form">
-                    <textarea rows="6" placeholder="Comment"></textarea>
-                  </div>
-                </div>
-                <div class="col-xl-12">
-                  <div class="tf__single_form">
-                    <button type="submit" class="tf__common_btn">
-                      Submit<i class="fa-solid fa-arrow-right-long"></i>
-                    </button>
+                  <div class="tf__single_address d-flex flex-wrap">
+                    <span><i class="fa-sharp fa-solid fa-location-dot"></i></span>
+                    <div class="tf__address_area">
+                      <p>Tricity, Poland</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </form>
+              <div class="col-xl-6 col-md-6">
+                <div class="tf__contact_address">
+                  <h4>Links</h4>
+                  <ul>
+                    <li>
+                      <a
+                        href="https://github.com/Xcape53"
+                        target="_blank"
+                        rel="noopener"
+                        ><i class="far fa-angle-double-right"></i>
+                        <span class="text_hover_animaiton">GitHub</span></a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://www.linkedin.com/in/piotr-jeleniewicz/"
+                        target="_blank"
+                        rel="noopener"
+                        ><i class="far fa-angle-double-right"></i>
+                        <span class="text_hover_animaiton">LinkedIn</span></a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="cv/Piotr_Jeleniewicz_CV.pdf"
+                        target="_blank"
+                        rel="noopener"
+                        ><i class="far fa-angle-double-right"></i>
+                        <span class="text_hover_animaiton">CV (PDF)</span></a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -867,15 +868,26 @@
           <div
             class="tf__main_copyright d-flex flex-wrap justify-content-between"
           >
-            <p>© Codeefly 2024 | All Rights Reserved</p>
+            <p>© Piotr Jeleniewicz 2026</p>
             <ul class="d-flex flex-wrap">
               <li>
-                <a href="#" class="text_hover_animaiton">Trams & Condition</a>
+                <a
+                  href="https://github.com/Xcape53"
+                  target="_blank"
+                  rel="noopener"
+                  class="text_hover_animaiton"
+                  >GitHub</a
+                >
               </li>
               <li>
-                <a href="#" class="text_hover_animaiton">Privacy Policy</a>
+                <a
+                  href="https://www.linkedin.com/in/piotr-jeleniewicz/"
+                  target="_blank"
+                  rel="noopener"
+                  class="text_hover_animaiton"
+                  >LinkedIn</a
+                >
               </li>
-              <li><a href="#" class="text_hover_animaiton">Sitemap</a></li>
             </ul>
           </div>
         </div>
@@ -912,5 +924,6 @@
     <script src="js/d3.v7.min.js"></script>
     <script src="js/animacja-banner.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/effects.js"></script>
   </body>
 </html>
