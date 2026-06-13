@@ -1,11 +1,11 @@
 /* ============================================================
-   effects.js — parallaxowe tła sekcji i mikro-efekty
+   effects.js - parallaxowe tła sekcji i mikro-efekty
    dołożone do oryginalnego designu strony:
    - P6: gwiezdne niebo w dwóch głębokościach (tło #edu / SimLE)
    - efekt 13: separatory-oscyloskopy (.osc-sep, reagują na mysz)
    - efekt 05: magnetyczny przycisk EMAIL ME (#magzone / #mag)
    Wszystko w jednej pętli rAF; canvasy rysują tylko przy viewporcie.
-   Komentarze po polsku — konwencja jak w animacja-banner.js.
+   Komentarze po polsku - konwencja jak w animacja-banner.js.
    ============================================================ */
 (function () {
   "use strict";
@@ -97,7 +97,7 @@
     });
     magzone.addEventListener("mousemove", function (e) {
       if (!magR) magR = mag.getBoundingClientRect();
-      // odległość kursora od środka PRZYCISKU (nie strefy) — magnes ciągnie w stronę kursora
+      // odległość kursora od środka PRZYCISKU (nie strefy) - magnes ciągnie w stronę kursora
       var dx = e.clientX - (magR.left + magR.width / 2);
       var dy = e.clientY - (magR.top + magR.height / 2);
       mag.style.transition = "transform .15s ease-out";
@@ -113,7 +113,7 @@
   /* ---------- odsłanianie kart (.fx-reveal) ----------
      Zastępuje szablonowe data-animation (GSAP), które zostawiało karty
      w #projects/#online na opacity:0. Klasa fx-armed na <html> uzbraja
-     stan ukryty w CSS — bez JS lub przy reduced-motion karty są po
+     stan ukryty w CSS - bez JS lub przy reduced-motion karty są po
      prostu widoczne od razu. */
   var reveals = document.querySelectorAll(".fx-reveal");
   if (reveals.length && !reduced && "IntersectionObserver" in window) {
@@ -135,9 +135,9 @@
   /* ---------- galeria screenów (.tf__ph_gallery) ----------
      Kilka zdjęć nałożonych na siebie w tym samym boxie o stałej,
      znormalizowanej wysokości (CSS). Szerokość boxu dopasowuje się co
-     zdjęcie do jego naturalnych proporcji — bez czarnych pasów i bez
+     zdjęcie do jego naturalnych proporcji - bez czarnych pasów i bez
      przycinania. Scroll myszką nad zdjęciem przełącza między nimi z
-     fade in/out zamiast przewijać stronę — ale tylko dopóki jest gdzie
+     fade in/out zamiast przewijać stronę - ale tylko dopóki jest gdzie
      przełączać; na pierwszym/ostatnim zdjęciu scroll w tę stronę
      przechodzi normalnie do przewijania strony. */
   function sizeGalleryTo(g, img) {
@@ -148,7 +148,7 @@
     } else {
       // wysokość stała, zmienia się szerokość
       var w = (img.naturalWidth / img.naturalHeight) * g.clientHeight;
-      if (g.classList.contains("tf__ph_gallery--wide")) w *= 1.16; // trochę szerzej niż naturalne proporcje — dół się przycina (object-position: top)
+      if (g.classList.contains("tf__ph_gallery--wide")) w *= 1.16; // trochę szerzej niż naturalne proporcje - dół się przycina (object-position: top)
       g.style.width = Math.round(w) + "px";
     }
   }
@@ -180,7 +180,7 @@
       setTimeout(function () { cooling = false; }, 550);
     }, { passive: false });
 
-    // Galeria "--fixed" (karta usługi Electronics) siedzi w gridzie usług —
+    // Galeria "--fixed" (karta usługi Electronics) siedzi w gridzie usług -
     // nikt nie scrolluje myszką nad małą miniaturką, więc bez auto-cyklu
     // widać tylko pierwsze zdjęcie. Przełącza się sama, w pętli.
     if (g.classList.contains("tf__ph_gallery--fixed") && !reduced) {
@@ -191,27 +191,117 @@
     }
   });
 
-  /* ---------- lightbox: kliknięcie na screen go powiększa ---------- */
+  /* ---------- lightbox: pełna galeria ze strzałkami i gestem przesunięcia ---------- */
   var lightbox = document.createElement("div");
   lightbox.id = "fx-lightbox";
+  lightbox.setAttribute("role", "dialog");
+  lightbox.setAttribute("aria-modal", "true");
+  lightbox.setAttribute("aria-hidden", "true");
+  var lightboxStage = document.createElement("div");
+  lightboxStage.className = "fx-lightbox_stage";
   var lightboxImg = document.createElement("img");
-  lightbox.appendChild(lightboxImg);
+  var lightboxClose = document.createElement("button");
+  lightboxClose.className = "fx-lightbox_close";
+  lightboxClose.type = "button";
+  lightboxClose.innerHTML = "&times;";
+  var lightboxPrev = document.createElement("button");
+  lightboxPrev.className = "fx-lightbox_nav fx-lightbox_prev";
+  lightboxPrev.type = "button";
+  var lightboxNext = document.createElement("button");
+  lightboxNext.className = "fx-lightbox_nav fx-lightbox_next";
+  lightboxNext.type = "button";
+  var lightboxCounter = document.createElement("span");
+  lightboxCounter.className = "fx-lightbox_counter";
+  lightboxStage.appendChild(lightboxImg);
+  lightbox.appendChild(lightboxStage);
+  lightbox.appendChild(lightboxClose);
+  lightbox.appendChild(lightboxPrev);
+  lightbox.appendChild(lightboxNext);
+  lightbox.appendChild(lightboxCounter);
   document.body.appendChild(lightbox);
-  lightbox.addEventListener("click", function () { lightbox.classList.remove("is-open"); });
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") lightbox.classList.remove("is-open");
+
+  var lightboxImages = [];
+  var lightboxIndex = 0;
+  var touchStartX = null;
+
+  function updateLightboxLabels() {
+    var polish = document.documentElement.lang === "pl";
+    lightbox.setAttribute("aria-label", polish ? "Podgląd galerii" : "Gallery preview");
+    lightboxClose.setAttribute("aria-label", polish ? "Zamknij podgląd" : "Close preview");
+    lightboxPrev.setAttribute("aria-label", polish ? "Poprzednie zdjęcie" : "Previous image");
+    lightboxNext.setAttribute("aria-label", polish ? "Następne zdjęcie" : "Next image");
+  }
+
+  function renderLightbox() {
+    var img = lightboxImages[lightboxIndex];
+    if (!img) return;
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt;
+    var hasGallery = lightboxImages.length > 1;
+    lightbox.classList.toggle("has-gallery", hasGallery);
+    lightboxCounter.textContent = hasGallery
+      ? (lightboxIndex + 1) + " / " + lightboxImages.length
+      : "";
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("fx-lightbox-open");
+  }
+
+  function moveLightbox(step) {
+    if (lightboxImages.length < 2) return;
+    lightboxIndex = (lightboxIndex + step + lightboxImages.length) % lightboxImages.length;
+    renderLightbox();
+  }
+
+  lightbox.addEventListener("click", function (e) {
+    if (e.target === lightbox || e.target === lightboxStage) closeLightbox();
   });
+  lightboxClose.addEventListener("click", closeLightbox);
+  lightboxPrev.addEventListener("click", function () { moveLightbox(-1); });
+  lightboxNext.addEventListener("click", function () { moveLightbox(1); });
+  document.addEventListener("keydown", function (e) {
+    if (!lightbox.classList.contains("is-open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") moveLightbox(-1);
+    if (e.key === "ArrowRight") moveLightbox(1);
+  });
+  lightboxStage.addEventListener("touchstart", function (e) {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  lightboxStage.addEventListener("touchend", function (e) {
+    if (touchStartX === null) return;
+    var distance = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(distance) > 45) moveLightbox(distance > 0 ? -1 : 1);
+    touchStartX = null;
+  }, { passive: true });
+
+  updateLightboxLabels();
+  new MutationObserver(updateLightboxLabels).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["lang"]
+  });
+
   document.querySelectorAll(".tf__project_hero_media img").forEach(function (img) {
     img.addEventListener("click", function () {
-      lightboxImg.src = img.currentSrc || img.src;
-      lightboxImg.alt = img.alt;
+      var gallery = img.closest(".tf__ph_gallery");
+      lightboxImages = gallery
+        ? Array.prototype.slice.call(gallery.querySelectorAll("img"))
+        : [img];
+      lightboxIndex = Math.max(0, lightboxImages.indexOf(img));
+      renderLightbox();
       lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.classList.add("fx-lightbox-open");
+      lightboxClose.focus();
     });
   });
 
   /* ---------- chmury dryfujące w tle sekcji LabInc (#p-labinc) ----------
      Kilka miękkich "kłębów" (gradienty radialne) suwających się w poziomie,
-     część w lewo, część w prawo, różnymi prędkościami — pasuje do nieba
+     część w lewo, część w prawo, różnymi prędkościami - pasuje do nieba
      widocznego na screenie z gry. */
   var labHero = document.getElementById("p-labinc");
   var cloudsCv = document.getElementById("fx-clouds");
@@ -251,7 +341,7 @@
 
   /* ---------- glow wokół screenów wyróżnionych projektów ----------
      Zamiast tintu na cały viewport (za mocno "pływał" kolorem przy
-     scrollu) — stały, lokalny box-shadow w kolorze data-tint dookoła
+     scrollu) - stały, lokalny box-shadow w kolorze data-tint dookoła
      .tf__project_hero_media danej sekcji, ustawiany raz przez CSS var. */
   document.querySelectorAll(".tf__project_hero[data-tint]").forEach(function (el) {
     el.style.setProperty("--tint-rgb", el.getAttribute("data-tint"));

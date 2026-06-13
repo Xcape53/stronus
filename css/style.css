@@ -3334,7 +3334,7 @@ html.lenis {
   pointer-events: none;
 }
 
-/* "dziura" w ciemnym tle — ten sam gradient co banner, przyklejony do viewportu */
+/* "dziura" w ciemnym tle - ten sam gradient co banner, przyklejony do viewportu */
 .bg-window {
   background: url(../images/banner_bg.jpg) center / cover no-repeat;
   background-attachment: fixed !important;
@@ -3399,8 +3399,8 @@ html.lenis {
 .tf__project_hero_text .tf__project_tags { margin-top: 24px; }
 
 /* tekst wyrównany w stronę zdjęcia w danej sekcji: 01 LabInc i 03 Password
-   Manager (obrazek z prawej) — do prawej; 02 Job Aggregator (obrazek
-   z lewej, flex-lg-row-reverse) — do lewej */
+   Manager (obrazek z prawej) - do prawej; 02 Job Aggregator (obrazek
+   z lewej, flex-lg-row-reverse) - do lewej */
 .tf__project_hero_text .about-me-list li {
   width: fit-content;
   max-width: 480px;
@@ -3457,7 +3457,7 @@ html.lenis {
 /* galeria realnych screenów (Job Search Aggregator / Password Manager):
    jedno zdjęcie naraz, bez przycinania. Domyślnie (passmgr): wysokość
    znormalizowana (stała), szerokość boxu dopasowuje się dynamicznie do
-   proporcji aktywnego zdjęcia — box jest domyślnie wyrównany do lewej,
+   proporcji aktywnego zdjęcia - box jest domyślnie wyrównany do lewej,
    czyli "rośnie" w stronę przeciwną do tekstu (który jest po prawej).
    scroll myszką nad zdjęciem przełącza z fade in/out */
 .tf__ph_gallery {
@@ -3467,7 +3467,7 @@ html.lenis {
   transition: width 0.4s ease;
 }
 
-/* jobagg ma tekst PO PRAWEJ (flex-lg-row-reverse) — box ma wypełniać całą
+/* jobagg ma tekst PO PRAWEJ (flex-lg-row-reverse) - box ma wypełniać całą
    szerokość kolumny (taki sam odstęp do tekstu jak w LabInc) i "rosnąć"
    w pionie zamiast w poziomie, żeby lewa/prawa granica zawsze zostawały
    w tym samym miejscu, blisko tekstu */
@@ -3488,7 +3488,7 @@ html.lenis {
   transition: opacity 0.5s ease;
 }
 
-/* passmgr: box trochę szerszy niż naturalne proporcje zdjęcia — lekko
+/* passmgr: box trochę szerszy niż naturalne proporcje zdjęcia - lekko
    przycięty od dołu (object-position: top) zamiast dokładać czarne pasy */
 .tf__ph_gallery--wide.tf__project_hero_media img {
   object-fit: cover !important;
@@ -3546,18 +3546,100 @@ html.lenis {
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 48px;
-  background: rgba(9, 8, 12, 0.92);
-  cursor: zoom-out;
+  padding: 64px 96px;
+  background: rgba(9, 8, 12, 0.96);
 }
 
 #fx-lightbox.is-open { display: flex; }
 
-#fx-lightbox img {
+.fx-lightbox-open { overflow: hidden; }
+
+.fx-lightbox_stage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#fx-lightbox .fx-lightbox_stage img {
+  width: auto !important;
+  height: auto !important;
   max-width: 100%;
   max-height: 100%;
+  object-fit: contain !important;
   border-radius: 8px;
   box-shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
+  cursor: default;
+}
+
+.fx-lightbox_close,
+.fx-lightbox_nav {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+  background: rgba(16, 15, 22, 0.8);
+  color: var(--colorWhite);
+  font-family: Arial, sans-serif;
+  line-height: 1;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.fx-lightbox_close:hover,
+.fx-lightbox_nav:hover {
+  border-color: var(--colorPrimary);
+  background: var(--colorPrimary);
+}
+
+.fx-lightbox_close {
+  top: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  font-size: 32px;
+}
+
+.fx-lightbox_nav {
+  top: 50%;
+  display: none;
+  transform: translateY(-50%);
+}
+
+.fx-lightbox_nav::before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-right: 4px solid currentColor;
+  border-bottom: 4px solid currentColor;
+}
+
+.fx-lightbox_prev::before {
+  transform: translateX(3px) rotate(135deg);
+}
+
+.fx-lightbox_next::before {
+  transform: translateX(-3px) rotate(-45deg);
+}
+
+#fx-lightbox.has-gallery .fx-lightbox_nav { display: grid; }
+.fx-lightbox_prev { left: 24px; }
+.fx-lightbox_next { right: 24px; }
+
+.fx-lightbox_counter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+  letter-spacing: 0.08em;
 }
 
 /* --- My Activity: kafelki GitHub + snapshot użycia Claude Code --- */
@@ -3602,7 +3684,7 @@ html.lenis {
   margin: 0 0 20px;
 }
 
-/* odsłanianie kart — stan ukryty tylko gdy JS doda fx-armed na <html> */
+/* odsłanianie kart - stan ukryty tylko gdy JS doda fx-armed na <html> */
 html.fx-armed .fx-reveal {
   opacity: 0;
   transform: translateY(26px);
@@ -3618,11 +3700,11 @@ html.fx-armed .fx-reveal.is-in {
 #projects.bg-window { padding-top: 250px; }
 #activity.bg-window { padding-bottom: 180px; }
 
-/* glow za całym panelem wyróżnionego projektu (tekst + zdjęcie) — stały,
+/* glow za całym panelem wyróżnionego projektu (tekst + zdjęcie) - stały,
    lokalny, w kolorze data-tint danej sekcji (--tint-rgb ustawiane raz w
    effects.js), zamiast tintu na cały viewport który za mocno zmieniał
    kolor strony przy scrollu. Wypełniony zaokrąglony prostokąt na
-   bounding boxie panelu, rozmyty filtrem blur — stąd "scribble", miękka
+   bounding boxie panelu, rozmyty filtrem blur - stąd "scribble", miękka
    nierówna krawędź zamiast gradientowego rozlania od środka. Pod
    treścią (z-index:2), nad tłem sekcji. */
 .tf__project_hero[data-tint]::before {
@@ -3705,4 +3787,308 @@ html.fx-armed .fx-reveal.is-in {
   #activity.bg-window { padding-bottom: 120px; }
   .tf__lets_talk { font-size: 48px; }
   .tf__contact_mail { padding: 24px 24px; margin: -24px; }
+}
+
+/* ============================
+   RESPONSYWNOŚĆ TABLET / MOBILE
+   Desktop 16:9 (od 992px) zostaje bez zmian. Poniższe reguły naprawiają
+   znikające galerie szablonu, ograniczają poziomy overflow i układają
+   rozbudowane sekcje w czytelną, jednokolumnową narrację na telefonie.
+============================ */
+@media (max-width: 991.98px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  /* fixed background potrafi skakać i skalować się błędnie w mobilnym Safari */
+  .bg-window {
+    background-attachment: scroll !important;
+  }
+
+  .tf__banner {
+    min-height: 100svh;
+    padding: 120px 0 72px !important;
+  }
+
+  .tf__banner_img {
+    width: min(72vw, 520px) !important;
+    height: min(72vw, 520px) !important;
+    margin: 0 auto 28px !important;
+  }
+
+  .tf__banner_img::after {
+    width: calc(min(72vw, 520px) + 5px) !important;
+    height: calc(min(72vw, 520px) + 5px) !important;
+  }
+
+  .tf__banner_text {
+    padding-top: 0;
+  }
+
+  .tf__banner_text ul {
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+
+  .tf__banner_text ul li {
+    margin-right: 0;
+  }
+
+  /* Oba kontenery miały height:auto mimo absolutnie pozycjonowanych zdjęć. */
+  .tf__about_img {
+    height: clamp(300px, 60vw, 480px);
+    margin-top: 36px;
+  }
+
+  .tf__single_service_img {
+    height: clamp(240px, 42vw, 310px);
+  }
+
+  .tf__single_service_img > div,
+  .tf__single_service_img > div > div {
+    height: 100%;
+  }
+
+  .tf__single_service_img > div > img {
+    height: 100%;
+    object-fit: cover !important;
+  }
+
+  .tf__project_hero[data-tint]::before {
+    right: 0;
+    left: 0;
+    border-radius: 32px;
+    filter: blur(28px);
+  }
+
+  #p-passmgr::before {
+    right: 0;
+    left: 0;
+  }
+
+  #fx-lightbox {
+    padding: 68px 12px 76px;
+  }
+
+  .fx-lightbox_close {
+    top: 12px;
+    right: 12px;
+  }
+
+  .fx-lightbox_nav {
+    top: auto;
+    bottom: 14px;
+    transform: none;
+  }
+
+  .fx-lightbox_prev { left: calc(50% - 88px); }
+  .fx-lightbox_next { right: calc(50% - 88px); }
+
+  .fx-lightbox_counter {
+    bottom: 29px;
+  }
+
+  .tf__contact_mail {
+    padding: 18px 0;
+    margin: -18px 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .tf__banner {
+    padding: 104px 0 64px !important;
+  }
+
+  .tf__banner_img {
+    width: min(78vw, 420px) !important;
+    height: min(78vw, 420px) !important;
+    margin-bottom: 24px !important;
+  }
+
+  .tf__banner_img::after {
+    width: calc(min(78vw, 420px) + 5px) !important;
+    height: calc(min(78vw, 420px) + 5px) !important;
+  }
+
+  .tf__banner_text h1 {
+    font-size: clamp(36px, 10.5vw, 46px);
+    line-height: 1.08;
+    margin-bottom: 18px;
+  }
+
+  .tf__banner_text h3 {
+    font-size: clamp(20px, 6vw, 24px);
+  }
+
+  .tf__about,
+  .tf__service,
+  .tf__skill,
+  .tf__about_me {
+    padding-top: 90px !important;
+  }
+
+  .tf__about_text p {
+    margin-top: 26px;
+  }
+
+  .tf__about_img {
+    height: min(72vw, 320px);
+    margin-top: 24px;
+  }
+
+  .tf__single_service {
+    margin-top: 34px;
+    margin-bottom: 42px;
+  }
+
+  .tf__single_service_img {
+    height: clamp(210px, 58vw, 270px);
+  }
+
+  .tf__single_service_text a {
+    font-size: 21px;
+    line-height: 1.25;
+  }
+
+  .tf__project_hero {
+    margin-top: 56px;
+  }
+
+  .tf__project_hero_text h3 {
+    font-size: 26px;
+  }
+
+  /* Po ułożeniu obrazka pod tekstem czytelniejsze jest jedno wyrównanie. */
+  #p-labinc .tf__project_hero_text,
+  #p-jobagg .tf__project_hero_text,
+  #p-passmgr .tf__project_hero_text {
+    text-align: left;
+  }
+
+  #p-labinc .tf__project_hero_text .tf__project_card_head,
+  #p-jobagg .tf__project_hero_text .tf__project_card_head,
+  #p-passmgr .tf__project_hero_text .tf__project_card_head,
+  #p-labinc .tf__project_hero_text .tf__project_tags,
+  #p-jobagg .tf__project_hero_text .tf__project_tags,
+  #p-passmgr .tf__project_hero_text .tf__project_tags {
+    justify-content: flex-start;
+  }
+
+  #p-labinc .about-me-list li,
+  #p-jobagg .about-me-list li,
+  #p-passmgr .about-me-list li {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .tf__project_card,
+  .tf__online_card,
+  .tf__about_me_content {
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+
+  .tf__contact_kicker {
+    letter-spacing: 3px;
+  }
+
+  .tf__lets_talk {
+    font-size: clamp(40px, 12vw, 48px);
+  }
+
+  .tf__main_copyright {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .tf__main_copyright p {
+    margin-bottom: 0;
+  }
+
+  .tf__main_copyright ul {
+    gap: 18px;
+  }
+
+  .tf__main_copyright ul li a {
+    margin: 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .tf__banner_text h1 {
+    font-size: 36px;
+  }
+
+  .tf__online_card,
+  .tf__about_me_content {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .tf__activity_head {
+    gap: 10px;
+  }
+
+  .tf__activity_head h4 {
+    font-size: 19px;
+  }
+}
+
+/* Przełącznik języka w głównym menu. */
+.tf__lang_item {
+  display: flex;
+  align-items: center;
+}
+
+.tf__lang_toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 82px;
+  padding: 8px 12px;
+  margin: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  color: var(--colorBodyText);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 1px;
+  transition: border-color 0.2s linear, background-color 0.2s linear;
+}
+
+.tf__lang_toggle:hover,
+.tf__lang_toggle:focus-visible {
+  border-color: var(--colorPrimary);
+  background: rgba(44, 127, 254, 0.08);
+  outline: none;
+}
+
+.tf__lang_toggle [data-lang-option] {
+  color: var(--colorBodyText);
+  font-size: inherit;
+  transition: color 0.2s linear;
+}
+
+.tf__lang_toggle [data-lang-option].is-active {
+  color: var(--colorPrimary);
+}
+
+.tf__lang_separator {
+  color: rgba(255, 255, 255, 0.32);
+  font-size: inherit;
+}
+
+/* CV pozostaje widoczne, ale jest tymczasowo odłączone. */
+a.is-disabled,
+a.is-disabled:hover {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.55;
 }
