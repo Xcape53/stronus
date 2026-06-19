@@ -886,8 +886,14 @@
               <!-- prawdziwy graf kontrybucji GitHub (ghchart.rshah.org), zapisany
                    statycznie i przekolorowany pod ciemne tło karty (fill:#EEEEEE
                    -> #1d2024, odpowiednik dotychczasowego cc-day.lv0 na tym tle);
-                   odświeżanie: curl "https://ghchart.rshah.org/2c7ffe/Xcape53" | sed
-                   's/fill:#EEEEEE/fill:#1d2024/g' > images/gh-contributions.svg -->
+                   shape-rendering:crispedges jest usuwane i dodawany viewBox, bo
+                   crispedges + skalowanie CSS (width:100%) dawało nierówne odstępy
+                   między komórkami (raz 1px, raz 2px) - bez tego atrybutu każda
+                   komórka skaluje się tak samo. Odświeżanie:
+                   curl "https://ghchart.rshah.org/2c7ffe/Xcape53" | sed
+                   -e 's/fill:#EEEEEE/fill:#1d2024/g' -e 's/shape-rendering:crispedges;//g'
+                   -e 's/<svg version="1.1"/<svg viewBox="0 0 663 104" version="1.1"/'
+                   > images/gh-contributions.svg -->
               <img
                 class="cc-ghchart"
                 src="images/gh-contributions.svg"
@@ -909,10 +915,6 @@
                     <span class="cc-tool-stat_detail" data-i18n="activity.codexdetail">Everyday coding partner</span>
                   </a>
                 </div>
-              </div>
-              <div class="cc-tools">
-                <span class="cc-tools_label" data-i18n="activity.alsowith">Also using:</span>
-                <span class="chip">VS Code</span>
               </div>
             </div>
           </div>
