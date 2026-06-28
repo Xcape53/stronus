@@ -97,7 +97,7 @@
       "contact.title": "LET'S <span class=\"talk\">TALK</span>",
       "contact.email": "Email me",
       "contact.heading": "Contact Me",
-      "contact.location": "Tricity, Poland",
+      "contact.location": "Gdynia, Poland",
       "contact.links": "Links"
     },
     pl: {
@@ -193,7 +193,7 @@
       "contact.title": "NAPISZ <span class=\"talk\">DO MNIE</span>",
       "contact.email": "Wyślij e-mail",
       "contact.heading": "Kontakt",
-      "contact.location": "Trójmiasto, Polska",
+      "contact.location": "Gdynia, Polska",
       "contact.links": "Profile"
     }
   };
