@@ -652,7 +652,8 @@ button:focus {
 
 .tf__about_text {
   margin-top: 80px;
-  width: 608px !important;
+  width: 100%;
+  max-width: 420px;
   position: relative;
   z-index: 2;
 }
