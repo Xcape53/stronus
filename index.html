@@ -5,21 +5,106 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
-      name="keywords"
-      content="Piotr Jeleniewicz, portfolio, engineering, electronics, telecommunications, programming, C++, JavaScript"
-    />
-    <meta
       name="description"
-      content="Portfolio of Piotr Jeleniewicz - engineering student based in Poland."
+      content="Piotr Jeleniewicz is an electronics and telecommunications student and software developer in Gdynia. Explore his FPGA, Python, C++, web and automation projects."
     />
     <meta name="author" content="Piotr Jeleniewicz" />
-    <title>Xcape - Portfolio</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#07132d" />
+    <link rel="canonical" href="https://piotrjeleniewicz.com/" />
+    <link rel="alternate" hreflang="en" href="https://piotrjeleniewicz.com/" />
+    <link rel="alternate" hreflang="pl" href="https://piotrjeleniewicz.com/pl/" />
+    <link rel="alternate" hreflang="x-default" href="https://piotrjeleniewicz.com/" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Piotr Jeleniewicz" />
+    <meta property="og:title" content="Piotr Jeleniewicz | Electronics and Software Developer" />
+    <meta
+      property="og:description"
+      content="Electronics, software and automation portfolio featuring FPGA, Python, C++, web applications and radio telescope control systems."
+    />
+    <meta property="og:url" content="https://piotrjeleniewicz.com/" />
+    <meta property="og:image" content="https://piotrjeleniewicz.com/images/social-preview.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Piotr Jeleniewicz - electronics and software developer portfolio" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="pl_PL" />
+    <meta property="profile:first_name" content="Piotr" />
+    <meta property="profile:last_name" content="Jeleniewicz" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Piotr Jeleniewicz | Electronics and Software Developer" />
+    <meta
+      name="twitter:description"
+      content="Electronics, software and automation portfolio featuring FPGA, Python, C++, web applications and radio telescope control systems."
+    />
+    <meta name="twitter:image" content="https://piotrjeleniewicz.com/images/social-preview.png" />
+    <meta name="twitter:image:alt" content="Piotr Jeleniewicz - electronics and software developer portfolio" />
+
+    <title>Piotr Jeleniewicz | Electronics and Software Developer</title>
     <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="preload" as="image" href="images/banner_bg.jpg" fetchpriority="high" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://piotrjeleniewicz.com/#website",
+            "url": "https://piotrjeleniewicz.com/",
+            "name": "Piotr Jeleniewicz",
+            "alternateName": "Xcape Portfolio",
+            "inLanguage": ["en", "pl"]
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://piotrjeleniewicz.com/#profile",
+            "url": "https://piotrjeleniewicz.com/",
+            "name": "Piotr Jeleniewicz - Electronics and Software Portfolio",
+            "description": "Portfolio of Piotr Jeleniewicz, an electronics and telecommunications student and software developer based in Gdynia, Poland.",
+            "dateModified": "2026-07-13",
+            "isPartOf": { "@id": "https://piotrjeleniewicz.com/#website" },
+            "mainEntity": {
+              "@type": "Person",
+              "@id": "https://piotrjeleniewicz.com/#piotr-jeleniewicz",
+              "name": "Piotr Jeleniewicz",
+              "alternateName": "Xcape",
+              "url": "https://piotrjeleniewicz.com/",
+              "jobTitle": "Software Developer and Electronics Engineering Student",
+              "description": "Electronics and telecommunications student at Gdansk University of Technology, software developer and creator of FPGA, automation and web projects.",
+              "homeLocation": {
+                "@type": "Place",
+                "name": "Gdynia, Poland"
+              },
+              "affiliation": {
+                "@type": "CollegeOrUniversity",
+                "name": "Gdańsk University of Technology",
+                "sameAs": "https://pg.edu.pl/"
+              },
+              "knowsAbout": [
+                "Electronics",
+                "Telecommunications",
+                "FPGA",
+                "Python",
+                "C++",
+                "JavaScript",
+                "Web development",
+                "Automation",
+                "Radio telescope software"
+              ],
+              "sameAs": ["https://github.com/Xcape53"]
+            }
+          }
+        ]
+      }
+    </script>
     <link rel="stylesheet" href="css/font-awesome-pro.css" />
     <link rel="stylesheet" href="css/plugin.css" />
     <link rel="stylesheet" href="css/spacing.css" />
     <link rel="stylesheet" href="css/scroll_top.css" />
-    <link rel="stylesheet" href="css/style.css?v=20260712-cv-disabled" />
+    <link rel="stylesheet" href="css/style.css?v=20260712-service-banner" />
     <link rel="stylesheet" href="css/responsive.css?v=20260711-i18n" />
     <link rel="stylesheet" href="./isti-icon/style.css" />
   </head>
@@ -42,8 +127,9 @@
     ==============================-->
     <nav class="navbar navbar-expand-lg tf__main_menu pl_50 pr_60">
       <div class="container-fluid">
-        <a class="navbar-brand" href="./index.html"
-          ></a>
+        <a class="navbar-brand" href="/" aria-label="Piotr Jeleniewicz - home">
+          <span class="visually-hidden">Piotr Jeleniewicz</span>
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -78,16 +164,15 @@
               <a class="nav-link text_hover_animaiton" href="#contact" data-i18n="nav.contact">Contact</a>
             </li>
             <li class="nav-item tf__lang_item">
-              <button
+              <div
                 class="tf__lang_toggle"
                 id="lang-toggle"
-                type="button"
-                aria-label="Switch the website to Polish"
+                aria-label="Language versions"
               >
-                <span data-lang-option="en" class="is-active">EN</span>
+                <a href="/" data-lang-option="en" class="is-active" hreflang="en" lang="en">EN</a>
                 <span class="tf__lang_separator" aria-hidden="true">/</span>
-                <span data-lang-option="pl">PL</span>
-              </button>
+                <a href="/pl/" data-lang-option="pl" hreflang="pl" lang="pl">PL</a>
+              </div>
             </li>
           </ul>
         </div>
@@ -118,7 +203,7 @@
             <div class="tf__banner_text">
           <h3 data-text-animation="rotate-in" data-i18n="banner.hello">Hello, I am</h3>
           <h1 data-text-animation="rotate-in" data-i18n="banner.title">
-            AN ENGINEERING STUDENT BASED IN POLAND
+            PIOTR JELENIEWICZ - ELECTRONICS AND SOFTWARE DEVELOPER
           </h1>
           <p data-i18n="banner.lead">
             As a passionate engineering student interested in technology and electronics, I thrive on learning new things and developing my technical skills.
@@ -175,11 +260,11 @@
           <div class="col-xl-8 col-lg-8">
             <div class="tf__about_img">
               <div class="about-gallery">
-                <img src="images/set/blackBox.png" alt="about img" class="img-fluid w-100 active">
-                <img src="images/set/stock.png" alt="about img" class="img-fluid w-100">
-                <img src="images/set/inventoryGen.png" alt="about img" class="img-fluid w-100">
-                <img src="images/set/blockbench.png" alt="about img" class="img-fluid w-100">
-                <img src="images/set/roomRender.jpg" alt="about img" class="img-fluid w-100">
+                <img src="images/set/blackBox.png" alt="BlackBox terminal logic game board" class="img-fluid w-100 active" loading="lazy" decoding="async" width="800" height="800">
+                <img src="images/set/stock.png" alt="C++ stock market analysis tool with a terminal chart" class="img-fluid w-100" loading="lazy" decoding="async" width="1848" height="800">
+                <img src="images/set/inventoryGen.png" alt="Minecraft-style inventory generator web interface" class="img-fluid w-100" loading="lazy" decoding="async" width="1456" height="827">
+                <img src="images/set/blockbench.png" alt="3D model created in Blockbench" class="img-fluid w-100" loading="lazy" decoding="async" width="1920" height="982">
+                <img src="images/set/room-render.webp" alt="Architectural room visualization rendered by Piotr Jeleniewicz" class="img-fluid w-100" loading="lazy" decoding="async" width="1674" height="1050">
               </div>
             </div>
           </div>
@@ -222,27 +307,42 @@
                       src="images/projects/plain_axi4_lite.png"
                       alt="Vivado waveform simulation of an AXI4-Lite bus interface"
                       loading="lazy"
+                      decoding="async"
+                      width="789"
+                      height="632"
                       class="is-active"
                     />
                     <img
                       src="images/projects/anddd.png"
                       alt="Standard-cell IC layout view of a logic gate"
                       loading="lazy"
+                      decoding="async"
+                      width="1714"
+                      height="690"
                     />
                     <img
                       src="images/projects/image.png"
                       alt="Standard-cell IC layout and chip floorplan view"
                       loading="lazy"
+                      decoding="async"
+                      width="683"
+                      height="504"
                     />
                     <img
-                      src="images/projects/FLKC9BXIWMQUJ37.png"
+                      src="images/projects/basys3-fpga-board.webp"
                       alt="Basys 3 FPGA board wired to a breadboard, running a digital counter"
                       loading="lazy"
+                      decoding="async"
+                      width="2100"
+                      height="1749"
                     />
                     <img
-                      src="images/projects/Screenshot_13.png"
+                      src="images/projects/cnc-eti-logo.webp"
                       alt="CNC engraving machine milling the Gdańsk University of Technology ETI logo"
                       loading="lazy"
+                      decoding="async"
+                      width="1919"
+                      height="1079"
                     />
                     <div class="tf__ph_gallery_dots">
                       <span class="is-active"></span><span></span><span></span><span></span><span></span>
@@ -269,8 +369,12 @@
                 <div data-animation="img-blur">
                   <img
                     src="images/service_2.jpg"
-                    alt="service"
+                    alt="Source code open in a programming editor"
                     class="img-fluid w-100"
+                    loading="lazy"
+                    decoding="async"
+                    width="1200"
+                    height="801"
                   />
                 </div>
                 <span><i class="isti-settings"></i></span>
@@ -300,12 +404,18 @@
                       src="images/projects/Screenshot_14.png"
                       alt="Docker Desktop with the user's application containers"
                       loading="lazy"
+                      decoding="async"
+                      width="1436"
+                      height="682"
                       class="is-active"
                     />
                     <img
                       src="images/projects/eeeeee1212.png"
                       alt="VMware Workstation Pro used to manage virtual machines"
                       loading="lazy"
+                      decoding="async"
+                      width="1284"
+                      height="886"
                     />
                     <div class="tf__ph_gallery_dots">
                       <span class="is-active"></span><span></span>
@@ -536,6 +646,9 @@
                 src="images/projects/labinc.png"
                 alt="LabInc: Chemical Tycoon - mining panel with coal mine and oil derrick"
                 loading="lazy"
+                decoding="async"
+                width="1919"
+                height="1013"
               />
             </div>
           </div>
@@ -579,17 +692,26 @@
                 src="images/projects/jobagg-1.png"
                 alt="Job Search Aggregator - scraped offers table with filters, per-provider counts and AI analysis actions"
                 loading="lazy"
+                decoding="async"
+                width="1903"
+                height="915"
                 class="is-active"
               />
               <img
                 src="images/projects/jobagg-2.png"
                 alt="Job Search Aggregator - Gemini deep research on a company: reputation, salary vs. market, culture warning signals"
                 loading="lazy"
+                decoding="async"
+                width="1600"
+                height="697"
               />
               <img
                 src="images/projects/jobagg-3.png"
                 alt="Job Search Aggregator - technology stack dictionary with AI-generated explanations"
                 loading="lazy"
+                decoding="async"
+                width="1905"
+                height="915"
               />
               <div class="tf__ph_gallery_dots">
                 <span class="is-active"></span><span></span><span></span>
@@ -629,12 +751,18 @@
                 src="images/projects/passmgr-1.png"
                 alt="Password Manager - vault list with a Gmail entry open, showing username, password and notes fields"
                 loading="lazy"
+                decoding="async"
+                width="1496"
+                height="999"
                 class="is-active"
               />
               <img
                 src="images/projects/passmgr-2.png"
                 alt="Password Manager - security dashboard with a vault strength score and per-account status"
                 loading="lazy"
+                decoding="async"
+                width="1499"
+                height="1000"
               />
               <div class="tf__ph_gallery_dots">
                 <span class="is-active"></span><span></span>
@@ -667,17 +795,23 @@
           <div class="col-xl-4 col-md-6 d-flex">
             <div class="tf__project_card fx-reveal">
               <div class="tf__project_card_head">
-                <h4>Yapper</h4>
+                <h4>Game Inventory Generator</h4>
               </div>
-              <p data-i18n="side.yapper.text">
-                Windows desktop app for speech-to-text transcription with two
-                push-to-talk channels and switchable offline/online
-                transcription engines.
+              <p data-i18n="side.inventory.text">
+                Visual video game inventory generator - a web tool that builds
+                a Minecraft-style inventory from a searchable item database,
+                with configurable slots and amounts.
               </p>
               <div class="tf__project_tags">
-                <span class="chip">Python</span>
-                <span class="chip">PyQt6</span>
-                <span class="chip">Vosk</span>
+                <span class="chip">JavaScript</span>
+                <span class="chip">HTML</span>
+                <span class="chip">CSS</span>
+              </div>
+              <div class="tf__project_links">
+                <a href="inventoryGen/index.html" target="_blank" rel="noopener" data-i18n="side.demo"
+                  ><i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                  demo</a
+                >
               </div>
             </div>
           </div>
@@ -753,23 +887,17 @@
           <div class="col-xl-4 col-md-6 d-flex">
             <div class="tf__project_card fx-reveal">
               <div class="tf__project_card_head">
-                <h4>Game Inventory Generator</h4>
+                <h4>Yapper</h4>
               </div>
-              <p data-i18n="side.inventory.text">
-                Visual video game inventory generator - a web tool that builds
-                a Minecraft-style inventory from a searchable item database,
-                with configurable slots and amounts.
+              <p data-i18n="side.yapper.text">
+                Windows desktop app for speech-to-text transcription with two
+                push-to-talk channels and switchable offline/online
+                transcription engines.
               </p>
               <div class="tf__project_tags">
-                <span class="chip">JavaScript</span>
-                <span class="chip">HTML</span>
-                <span class="chip">CSS</span>
-              </div>
-              <div class="tf__project_links">
-                <a href="inventoryGen/index.html" target="_blank" rel="noopener" data-i18n="side.demo"
-                  ><i class="fa-solid fa-arrow-up-right-from-square"></i> Live
-                  demo</a
-                >
+                <span class="chip">Python</span>
+                <span class="chip">PyQt6</span>
+                <span class="chip">Vosk</span>
               </div>
             </div>
           </div>
@@ -908,6 +1036,7 @@
                 src="images/gh-contributions.svg"
                 alt="GitHub contribution graph for Xcape53"
                 loading="lazy"
+                decoding="async"
                 width="663"
                 height="104"
               />
@@ -921,7 +1050,7 @@
                   </a>
                   <a class="cc-tool-stat" href="https://chatgpt.com/codex" target="_blank" rel="noopener">
                     <span class="cc-tool-stat_name">Codex</span>
-                    <span class="cc-tool-stat_detail" data-i18n="activity.codexdetail">Everyday coding partner</span>
+                    <span class="cc-tool-stat_detail" data-i18n="activity.codexdetail">198.5M local tokens across 26 sessions</span>
                   </a>
                 </div>
               </div>
@@ -1110,9 +1239,9 @@
     <script src="js/animation.js"></script>
     <script src="js/scroll_top.js"></script>
     <script src="js/d3.v7.min.js"></script>
-    <script src="js/animacja-banner.js"></script>
-    <script src="js/i18n.js?v=20260712-polish-copy"></script>
+    <script src="js/animacja-banner.js?v=20260712-mobile-svg"></script>
+    <script src="js/i18n.js?v=20260713-seo"></script>
     <script src="js/main.js"></script>
-    <script src="js/effects.js?v=20260712-gallery-arrows"></script>
+    <script src="js/effects.js?v=20260712-service-gallery"></script>
   </body>
 </html>

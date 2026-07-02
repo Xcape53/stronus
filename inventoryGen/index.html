@@ -4,10 +4,13 @@
 		<!-- basic -->
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Xcape's Shop</title>
-		<meta name="keywords" content="">
-		<meta name="description" content="">
-		<meta name="author" content="_Xcape_#8286">	
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Minecraft Inventory Generator | Piotr Jeleniewicz</title>
+		<meta name="description" content="Build a Minecraft-style inventory from a searchable item database, choose slot positions and quantities, and preview the generated layout in your browser.">
+		<meta name="author" content="Piotr Jeleniewicz">
+		<meta name="robots" content="index, follow, max-image-preview:large">
+		<link rel="canonical" href="https://piotrjeleniewicz.com/inventoryGen/">
+		<link rel="icon" type="image/png" href="../images/favicon.png">
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 	</head>
   <body>
@@ -20,7 +23,7 @@
       <script type="text/javascript" src="js/gen.js"></script> 
       <div class="Main">
         <div id="mcBlock">
-          <h1 id="h1"> Welcome!</h1>
+          <h1 id="h1">Game Inventory Generator</h1>
           <h3>Input number of slots</h3>
         </div>
         <div class="noi">
@@ -29,7 +32,7 @@
         </div>
         <div class="sr" id="srd">
           <div id="dis">
-            <img id="stream"></img>
+            <img id="stream" alt="Selected Minecraft item preview">
           </div>
           <input type="input" class="srField" id="search" onkeyup="searchDB(this); fade(this)" placeholder="Name1" autocomplete="off" required/>
           <label class="srLabel">Add item</label>

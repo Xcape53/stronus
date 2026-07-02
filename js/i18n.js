@@ -1,15 +1,13 @@
 (() => {
   "use strict";
 
-  const STORAGE_KEY = "xcape-language";
-
   const translations = {
     en: {
       "nav.home": "Home",
       "nav.projects": "Projects",
       "nav.contact": "Contact",
       "banner.hello": "Hello, I am",
-      "banner.title": "AN ENGINEERING STUDENT BASED IN POLAND",
+      "banner.title": "PIOTR JELENIEWICZ - ELECTRONICS AND SOFTWARE DEVELOPER",
       "banner.lead": "As a passionate engineering student interested in technology and electronics, I thrive on learning new things and developing my technical skills.",
       "banner.download": "Download CV <i class=\"isti-download\"></i>",
       "banner.github": "<i class=\"fab fa-github\"></i>My GitHub",
@@ -77,7 +75,7 @@
       "activity.uptodate": "Software engineering never stands still, and the tools behind it move even faster - skip that curve and you fall behind. Staying current makes me more productive, not less careful: in sensitive systems, they need to be used carefully and methodically.",
       "activity.mytools": "My Tools",
       "activity.claudedetail": "772M+ tokens processed",
-      "activity.codexdetail": "Everyday coding partner",
+      "activity.codexdetail": "198.5M local tokens across 26 sessions",
       "activity.now": "Right Now",
       "activity.item1": "Engineering thesis - teaching a reinforcement-learning agent (PPO/DQN) to master an arcade game on its own",
       "activity.item2": "SimLE research club - lead software developer of a 3 m radio telescope",
@@ -105,7 +103,7 @@
       "nav.projects": "Projekty",
       "nav.contact": "Kontakt",
       "banner.hello": "Cześć, jestem",
-      "banner.title": "STUDENTEM ELEKTRONIKI Z TRÓJMIASTA",
+      "banner.title": "PIOTR JELENIEWICZ - ELEKTRONIKA I OPROGRAMOWANIE",
       "banner.lead": "Studiuję elektronikę i telekomunikację. Najbardziej interesuje mnie łączenie sprzętu z oprogramowaniem, automatyzacja i tworzenie rozwiązań, które sprawdzają się w praktyce.",
       "banner.download": "Pobierz CV <i class=\"isti-download\"></i>",
       "banner.github": "<i class=\"fab fa-github\"></i>Mój GitHub",
@@ -173,7 +171,7 @@
       "activity.uptodate": "Inżynieria oprogramowania nigdy nie stoi w miejscu, a narzędzia, które ją napędzają, zmieniają się jeszcze szybciej - kto nie nadąża, zostaje w tyle. Bycie na bieżąco czyni mnie bardziej produktywnym, a nie mniej ostrożnym: w czułych systemach trzeba ich używać uważnie i metodycznie.",
       "activity.mytools": "Moje narzędzia",
       "activity.claudedetail": "Ponad 772 mln przetworzonych tokenów",
-      "activity.codexdetail": "Codzienny partner w kodowaniu",
+      "activity.codexdetail": "198,5 mln lokalnych tokenów w 26 sesjach",
       "activity.now": "Na bieżąco",
       "activity.item1": "Praca inżynierska: rozwijam agenta uczenia ze wzmocnieniem (PPO/DQN), który samodzielnie uczy się grać w grę zręcznościową",
       "activity.item2": "SimLE: odpowiadam za oprogramowanie 3-metrowego radioteleskopu",
@@ -198,16 +196,8 @@
     }
   };
 
-  let currentLanguage = "en";
-
-  try {
-    const savedLanguage = localStorage.getItem(STORAGE_KEY);
-    if (savedLanguage === "pl" || savedLanguage === "en") {
-      currentLanguage = savedLanguage;
-    }
-  } catch (_) {
-    /* localStorage może być niedostępny w restrykcyjnym trybie prywatnym. */
-  }
+  const isPolishPage = /\/pl\/(?:index\.html)?$/.test(window.location.pathname);
+  let currentLanguage = isPolishPage ? "pl" : "en";
 
   const toggle = document.getElementById("lang-toggle");
 
@@ -217,9 +207,33 @@
 
     currentLanguage = language;
     document.documentElement.lang = language;
-    document.title = language === "pl"
-      ? "Piotr Jeleniewicz - portfolio"
-      : "Piotr Jeleniewicz - Portfolio";
+    const seo = language === "pl"
+      ? {
+          title: "Piotr Jeleniewicz | Elektronika i programowanie",
+          description: "Piotr Jeleniewicz studiuje elektronikę i telekomunikację oraz tworzy oprogramowanie w Gdyni. Zobacz projekty FPGA, Python, C++, web i automatyzację.",
+          socialDescription: "Portfolio z obszaru elektroniki, programowania i automatyzacji: FPGA, Python, C++, aplikacje webowe oraz sterowanie radioteleskopem.",
+          locale: "pl_PL"
+        }
+      : {
+          title: "Piotr Jeleniewicz | Electronics and Software Developer",
+          description: "Piotr Jeleniewicz is an electronics and telecommunications student and software developer in Gdynia. Explore his FPGA, Python, C++, web and automation projects.",
+          socialDescription: "Electronics, software and automation portfolio featuring FPGA, Python, C++, web applications and radio telescope control systems.",
+          locale: "en_US"
+        };
+
+    document.title = seo.title;
+    const description = document.querySelector('meta[name="description"]');
+    const openGraphTitle = document.querySelector('meta[property="og:title"]');
+    const openGraphDescription = document.querySelector('meta[property="og:description"]');
+    const openGraphLocale = document.querySelector('meta[property="og:locale"]');
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+    if (description) description.setAttribute("content", seo.description);
+    if (openGraphTitle) openGraphTitle.setAttribute("content", seo.title);
+    if (openGraphDescription) openGraphDescription.setAttribute("content", seo.socialDescription);
+    if (openGraphLocale) openGraphLocale.setAttribute("content", seo.locale);
+    if (twitterTitle) twitterTitle.setAttribute("content", seo.title);
+    if (twitterDescription) twitterDescription.setAttribute("content", seo.socialDescription);
 
     document.querySelectorAll("[data-i18n]").forEach((element) => {
       const key = element.dataset.i18n;
@@ -230,28 +244,18 @@
 
     if (toggle) {
       toggle.dataset.language = language;
-      toggle.setAttribute(
-        "aria-label",
-        language === "pl" ? "Przełącz stronę na język angielski" : "Switch the website to Polish"
-      );
+      toggle.setAttribute("aria-label", language === "pl" ? "Wersje językowe" : "Language versions");
       toggle.querySelectorAll("[data-lang-option]").forEach((option) => {
         const isActive = option.dataset.langOption === language;
         option.classList.toggle("is-active", isActive);
-        option.setAttribute("aria-hidden", isActive ? "false" : "true");
+        if (isActive) {
+          option.setAttribute("aria-current", "page");
+        } else {
+          option.removeAttribute("aria-current");
+        }
       });
     }
 
-    try {
-      localStorage.setItem(STORAGE_KEY, language);
-    } catch (_) {
-      /* Zmiana nadal działa w bieżącej karcie bez zapisu preferencji. */
-    }
-  }
-
-  if (toggle) {
-    toggle.addEventListener("click", () => {
-      applyLanguage(currentLanguage === "en" ? "pl" : "en");
-    });
   }
 
   applyLanguage(currentLanguage);
