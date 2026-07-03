@@ -27,6 +27,7 @@
 <meta content="en_US" property="og:locale:alternate"/>
 <meta content="Piotr" property="profile:first_name"/>
 <meta content="Jeleniewicz" property="profile:last_name"/>
+<meta content="Xcape53" property="profile:username"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Piotr Jeleniewicz | Elektronika i programowanie" name="twitter:title"/>
 <meta content="Portfolio z obszaru elektroniki, programowania i automatyzacji: FPGA, Python, C++, aplikacje webowe oraz sterowanie radioteleskopem." name="twitter:description"/>
@@ -48,7 +49,10 @@
       "inLanguage": [
         "en",
         "pl"
-      ]
+      ],
+      "publisher": {
+        "@id": "https://piotrjeleniewicz.com/#piotr-jeleniewicz"
+      }
     },
     {
       "@type": "ProfilePage",
@@ -56,49 +60,71 @@
       "url": "https://piotrjeleniewicz.com/pl/",
       "name": "Piotr Jeleniewicz - portfolio elektroniki i oprogramowania",
       "description": "Portfolio Piotra Jeleniewicza, studenta elektroniki i telekomunikacji oraz programisty z Gdyni.",
-      "dateModified": "2026-07-13T16:00:51+02:00",
+      "dateModified": "2026-07-13T17:08:22+02:00",
+      "inLanguage": "pl",
       "isPartOf": {
         "@id": "https://piotrjeleniewicz.com/#website"
       },
+      "about": {
+        "@id": "https://piotrjeleniewicz.com/#piotr-jeleniewicz"
+      },
       "mainEntity": {
-        "@type": "Person",
-        "@id": "https://piotrjeleniewicz.com/#piotr-jeleniewicz",
-        "name": "Piotr Jeleniewicz",
-        "alternateName": "Xcape",
-        "url": "https://piotrjeleniewicz.com/",
-        "jobTitle": "Software Developer and Electronics Engineering Student",
-        "description": "Electronics and telecommunications student at Gdansk University of Technology, software developer and creator of FPGA, automation and web projects.",
-        "homeLocation": {
-          "@type": "Place",
-          "name": "Gdynia, Poland"
-        },
-        "affiliation": {
-          "@type": "CollegeOrUniversity",
-          "name": "Gdańsk University of Technology",
-          "sameAs": "https://pg.edu.pl/"
-        },
-        "knowsAbout": [
-          "Electronics",
-          "Telecommunications",
-          "FPGA",
-          "Python",
-          "C++",
-          "JavaScript",
-          "Web development",
-          "Automation",
-          "Radio telescope software"
-        ],
-        "sameAs": [
-          "https://github.com/Xcape53"
-        ]
+        "@id": "https://piotrjeleniewicz.com/#piotr-jeleniewicz"
+      },
+      "author": {
+        "@id": "https://piotrjeleniewicz.com/#piotr-jeleniewicz"
       }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://piotrjeleniewicz.com/#piotr-jeleniewicz",
+      "name": "Piotr Jeleniewicz",
+      "alternateName": [
+        "Xcape",
+        "Xcape53"
+      ],
+      "identifier": "Xcape53",
+      "url": "https://piotrjeleniewicz.com/",
+      "jobTitle": "Programista i student elektroniki",
+      "description": "Student elektroniki i telekomunikacji na Politechnice Gdańskiej, programista oraz autor projektów z obszaru FPGA, automatyzacji i aplikacji webowych.",
+      "homeLocation": {
+        "@type": "Place",
+        "name": "Gdynia, Polska"
+      },
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "Politechnika Gdańska",
+        "sameAs": "https://pg.edu.pl/"
+      },
+      "memberOf": {
+        "@type": "Organization",
+        "@id": "https://simle.pl/#organization",
+        "name": "SimLE",
+        "url": "https://simle.pl/"
+      },
+      "knowsAbout": [
+        "Electronics",
+        "Telecommunications",
+        "FPGA",
+        "Python",
+        "C++",
+        "JavaScript",
+        "Web development",
+        "Automation",
+        "Radio telescope software"
+      ],
+      "sameAs": [
+        "https://github.com/Xcape53",
+        "https://www.linkedin.com/in/piotr-jeleniewicz/",
+        "https://www.e-korepetycje.net/xcape/matematyka"
+      ]
     }
   ]
 }
 </script>
-<link href="../css/font-awesome-pro.css" rel="stylesheet"/>
-<link href="../css/plugin.css" rel="stylesheet"/>
-<link href="../css/spacing.css" rel="stylesheet"/>
+<link href="../css/font-awesome-portfolio.css?v=20260713-perf" rel="stylesheet"/>
+<link href="../css/plugin-portfolio.css?v=20260713-perf" rel="stylesheet"/>
+<link href="../css/spacing-portfolio.css?v=20260713-perf" rel="stylesheet"/>
 <link href="../css/scroll_top.css" rel="stylesheet"/>
 <link href="../css/style.css?v=20260712-service-banner" rel="stylesheet"/>
 <link href="../css/responsive.css?v=20260711-i18n" rel="stylesheet"/>
@@ -180,7 +206,7 @@
 <a aria-disabled="true" class="tf__common_btn d-flex align-items-center download_btn is-disabled" data-i18n="banner.download" tabindex="-1">Pobierz CV <i class="isti-download"></i></a>
 </li>
 <li>
-<a class="tf__common_btn tf___video_btn" data-i18n="banner.github" href="https://github.com/Xcape53" rel="noopener" target="_blank"><i class="fab fa-github"></i>Mój GitHub</a>
+<a class="tf__common_btn tf___video_btn" data-i18n="banner.github" href="https://github.com/Xcape53" rel="me noopener" target="_blank"><i class="fab fa-github"></i>Mój GitHub</a>
 </li>
 </ul>
 </div>
@@ -577,7 +603,7 @@
 <div class="tf__project_card_head">
 <h4 data-i18n="side.radiotelescope.title">Panel sterowania radioteleskopem</h4>
 </div>
-<p data-i18n="side.radiotelescope.text">Panel sterowania (frontend i backend) do radioteleskopu o średnicy 3 m, budowanego w kole naukowym SimLE - zdalne sterowanie, śledzenie i monitorowanie w jednym interfejsie.</p>
+<p data-i18n="side.radiotelescope.text">Panel sterowania (frontend i backend) do <a class="project-source-link" href="https://simle.pl/seesky" rel="noopener" target="_blank">radioteleskopu o średnicy 3 m, budowanego w kole naukowym SimLE</a> - zdalne sterowanie, śledzenie i monitorowanie w jednym interfejsie.</p>
 <div class="tf__project_tags">
 <span class="chip">Flask</span>
 <span class="chip">Astropy</span>
@@ -667,7 +693,7 @@
 <li data-i18n="bio.item1">Pracy inżynierskiej nad agentem uczenia ze wzmocnieniem (PPO/DQN), który samodzielnie uczy się grać w grę zręcznościową</li>
 <li data-i18n="bio.item2">Rozwoju oprogramowania 3-metrowego radioteleskopu w kole naukowym SimLE: zdalnego sterowania, namierzania i śledzenia gwiazd oraz analizy danych SDR</li>
 <li data-i18n="bio.item3">Własnych projektach: agregatorze ofert pracy, tym portfolio i stronach przygotowywanych dla realnych klientów</li>
-<li data-i18n="bio.item4">Korepetycjach z matematyki od szkoły podstawowej po poziom rozszerzony w liceum</li>
+<li data-i18n="bio.item4">Korepetycje z matematyki - <a class="identity-link" href="https://www.e-korepetycje.net/xcape/matematyka" rel="me noopener" target="_blank">od szkoły podstawowej po poziom rozszerzony w liceum</a></li>
 </ul>
 <p data-i18n="bio.after">Po godzinach zgłębiam geografię, tworzę blendy muzyczne, dbam o formę i dietę na siłowni, eksperymentuję z narzędziami AI do separacji audio, albo dopiero zaczynam ogarniać wizualizacje architektoniczne w ComfyUI.</p>
 </div>
@@ -773,7 +799,7 @@
 <li data-i18n="activity.item4">Korepetycje z matematyki od szkoły podstawowej po poziom rozszerzony w liceum</li>
 </ul>
 <div class="tf__project_links">
-<a data-i18n="activity.github" href="https://github.com/Xcape53" rel="noopener" target="_blank"><i class="fab fa-github"></i> Więcej na GitHubie</a>
+<a data-i18n="activity.github" href="https://github.com/Xcape53" rel="me noopener" target="_blank"><i class="fab fa-github"></i> Więcej na GitHubie</a>
 </div>
 </div>
 </div>
@@ -827,11 +853,11 @@
 <h4 data-i18n="contact.links">Profile</h4>
 <ul>
 <li>
-<a href="https://github.com/Xcape53" rel="noopener" target="_blank"><i class="far fa-angle-double-right"></i>
+<a href="https://github.com/Xcape53" rel="me noopener" target="_blank"><i class="far fa-angle-double-right"></i>
 <span class="text_hover_animaiton">GitHub</span></a>
 </li>
 <li>
-<a href="https://www.linkedin.com/in/piotr-jeleniewicz/" rel="noopener" target="_blank"><i class="far fa-angle-double-right"></i>
+<a href="https://www.linkedin.com/in/piotr-jeleniewicz/" rel="me noopener" target="_blank"><i class="far fa-angle-double-right"></i>
 <span class="text_hover_animaiton">LinkedIn</span></a>
 </li>
 <li>
@@ -859,10 +885,10 @@
 <p>© Piotr Jeleniewicz 2026</p>
 <ul class="d-flex flex-wrap">
 <li>
-<a class="text_hover_animaiton" href="https://github.com/Xcape53" rel="noopener" target="_blank">GitHub</a>
+<a class="text_hover_animaiton" href="https://github.com/Xcape53" rel="me noopener" target="_blank">GitHub</a>
 </li>
 <li>
-<a class="text_hover_animaiton" href="https://www.linkedin.com/in/piotr-jeleniewicz/" rel="noopener" target="_blank">LinkedIn</a>
+<a class="text_hover_animaiton" href="https://www.linkedin.com/in/piotr-jeleniewicz/" rel="me noopener" target="_blank">LinkedIn</a>
 </li>
 </ul>
 </div>
@@ -887,13 +913,13 @@
 <div id="ball"></div>
 </div>
 <!--js-->
-<script src="../js/plugin.js"></script>
-<script src="../js/animation.js"></script>
+<script src="../js/plugin-core.min.js?v=20260713-perf"></script>
+<script src="../js/animation-core.js?v=20260713-perf"></script>
 <script src="../js/scroll_top.js"></script>
-<script src="../js/d3.v7.min.js"></script>
+<script src="../js/d3.banner.min.js?v=20260713-perf"></script>
 <script src="../js/animacja-banner.js?v=20260712-mobile-svg"></script>
 <script src="../js/i18n.js?v=20260713-seo"></script>
-<script src="../js/main.js"></script>
+<script src="../js/main.js?v=20260713-perf"></script>
 <script src="../js/effects.js?v=20260712-service-gallery"></script>
 </body>
 </html>

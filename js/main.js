@@ -22,15 +22,11 @@
     init() {
       isti.updateGUTProgress(), // <--- DODAJ TĘ LINIĘ
         isti.imgToSvg(),
-        isti.slider(),
         isti.customMouse(),
         isti.lenisScrollAnimation(),
         isti.stickyNavbar(),
-        isti.counter(),
         isti.textAnimation(),
-        isti.venobox(),
         isti.mobile_menu_icon(),
-        isti.parallax(),
         isti.menu2(),
         isti.progressbar(),
         isti.aboutImageSlider();
