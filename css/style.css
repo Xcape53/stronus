@@ -18,8 +18,6 @@ CSS TABLE OF CONTENTS
 /*==============================
   GLOBAL CSS START
 ===============================*/
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Spline+Sans:wght@300;400;500;600;700&display=swap");
-
 * {
   margin: 0;
   padding: 0;
@@ -98,12 +96,14 @@ button:focus {
   --secondaryFont: "Spline Sans", sans-serif;
 }
 
-.tf__common_heading h5 {
+.tf__common_heading h5,
+.tf__common_heading .tf__section_kicker {
   font-size: 20px;
   font-weight: 700;
   color: var(--colorPrimary);
   font-family: var(--secondaryFont);
   text-transform: uppercase;
+  margin-top: 0;
   margin-bottom: 13px;
 }
 
@@ -264,7 +264,8 @@ button:focus {
   position: relative;
 }
 
-.tf__main_menu .navbar-nav .nav-item > a {
+.tf__main_menu .navbar-nav .nav-item > a,
+.tf__main_menu .navbar-nav .nav-item > span.nav-link {
   font-size: 14px;
   font-weight: 800;
   color: var(--colorWhite);
@@ -601,6 +602,18 @@ button:focus {
   -webkit-animation: rotate_animi linear 60s infinite;
 }
 
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .tf__banner_img::after {
+    background-image: url(../images/responsive/circle-760.webp);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .tf__banner_img::after {
+    background-image: url(../images/responsive/circle-640.webp);
+  }
+}
+
 .tf__banner_text {
   display: flex;
   flex-direction: column;
@@ -613,7 +626,8 @@ button:focus {
   margin-bottom: 25px;
 }
 
-.tf__banner_text h3 {
+.tf__banner_text h3,
+.tf__banner_text .tf__banner_kicker {
   font-size: 20px;
   font-weight: 800;
   margin-bottom: 10px;
@@ -662,7 +676,7 @@ button:focus {
   margin-bottom: 0;
 }
 
-.tf__about_text p {
+.tf__about_text > p:not(.tf__section_kicker) {
   margin-top: 45px;
   line-height: 25px;
 }
@@ -780,10 +794,13 @@ button:focus {
   border-bottom: 1px solid #f9f9f642;
 }
 
-.tf__single_skill_left h6 {
+.tf__single_skill_left h6,
+.tf__single_skill_left .tf__skill_date {
   font-size: 24px;
   font-weight: 800;
   text-transform: capitalize;
+  color: var(--colorWhite);
+  margin-top: 0;
   margin-bottom: 10px;
 }
 
@@ -794,7 +811,7 @@ button:focus {
   color: var(--colorWhite);
 }
 
-.tf__single_skill_left p {
+.tf__single_skill_left p:not(.tf__skill_date) {
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -1251,7 +1268,8 @@ button:focus {
   margin-top: 45px;
 }
 
-.tf__contact_address h4 {
+.tf__contact_address h4,
+.tf__contact_address h3 {
   font-size: 24px;
   font-weight: 800;
   margin-bottom: 35px;
@@ -1278,7 +1296,8 @@ button:focus {
   margin-bottom: 5px;
 }
 
-.tf__contact_address ul li a {
+.tf__contact_address ul li a,
+.tf__contact_address ul li > .is-disabled {
   font-size: 14px;
   font-weight: 400;
   color: var(--colorWhite);
@@ -1292,7 +1311,8 @@ button:focus {
   -ms-transition: all linear 0.3s;
   -o-transition: all linear 0.3s;
 }
-.tf__contact_address ul li a span {
+.tf__contact_address ul li a span,
+.tf__contact_address ul li > .is-disabled span {
   font-size: 14px;
   font-weight: 400;
   color: var(--colorWhite);
@@ -1302,7 +1322,8 @@ button:focus {
   color: var(--colorPrimary);
 }
 
-.tf__contact_address ul li a i {
+.tf__contact_address ul li a i,
+.tf__contact_address ul li > .is-disabled i {
   color: var(--colorPrimary);
   margin-right: 10px;
 }
@@ -1338,14 +1359,15 @@ button:focus {
 
 .tf__main_copyright p {
   font-weight: 400;
-  opacity: 0.5;
+  color: #b1b1b1;
+  opacity: 1;
 }
 
 .tf__main_copyright ul li a {
   color: var(--colorWhite);
   margin-left: 50px;
   font-weight: 400;
-  opacity: 0.5;
+  opacity: 0.7;
   transition: all linear 0.3s;
   -webkit-transition: all linear 0.3s;
   -moz-transition: all linear 0.3s;
@@ -2816,7 +2838,7 @@ button:focus {
   fill: #111013;
 }
 
-h5.preloader-text {
+.preloader-text {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2826,12 +2848,12 @@ h5.preloader-text {
 }
 
 @media (max-width: 1040px) {
-  h5.preloader-text {
+  .preloader-text {
     font-size: 60px;
   }
 }
 
-h5.preloader-text::after {
+.preloader-text::after {
   content: "////////";
   position: absolute;
   left: 0;
@@ -3236,7 +3258,8 @@ html.lenis {
   margin-bottom: 15px;
 }
 
-.tf__project_card_head h4 {
+.tf__project_card_head h4,
+.tf__project_card_head h3 {
   font-size: 22px;
   font-weight: 700;
   color: var(--colorWhite);
@@ -3589,7 +3612,9 @@ html.lenis {
 }
 
 /* wszystkie screeny projektów da się kliknąć, żeby powiększyć (lightbox) */
-.tf__project_hero_media img { cursor: zoom-in; }
+.tf__project_hero_media img,
+.about-gallery img,
+.tf__single_service_img > div > img { cursor: zoom-in; }
 
 #fx-lightbox {
   position: fixed;
@@ -3705,7 +3730,8 @@ html.lenis {
 }
 
 .tf__activity_head i { font-size: 32px; color: var(--colorPrimary); margin: 0; }
-.tf__activity_head h4 { margin: 0; }
+.tf__activity_head h4,
+.tf__activity_head h3 { margin: 0; }
 
 .cc-ghchart {
   display: block;
@@ -4005,7 +4031,8 @@ html.fx-armed .fx-reveal.is-in {
     margin-bottom: 18px;
   }
 
-  .tf__banner_text h3 {
+  .tf__banner_text h3,
+  .tf__banner_text .tf__banner_kicker {
     font-size: clamp(20px, 6vw, 24px);
   }
 
@@ -4119,7 +4146,8 @@ html.fx-armed .fx-reveal.is-in {
     gap: 10px;
   }
 
-  .tf__activity_head h4 {
+  .tf__activity_head h4,
+  .tf__activity_head h3 {
     font-size: 19px;
   }
 }
@@ -4172,8 +4200,8 @@ html.fx-armed .fx-reveal.is-in {
 }
 
 /* CV pozostaje widoczne, ale jest tymczasowo odłączone. */
-a.is-disabled,
-a.is-disabled:hover {
+.is-disabled,
+.is-disabled:hover {
   pointer-events: none;
   cursor: default;
   opacity: 0.55;

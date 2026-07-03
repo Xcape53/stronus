@@ -43,12 +43,25 @@ def localize_content(soup: BeautifulSoup, dictionary: dict[str, str]) -> None:
 
 
 def prefix_relative_assets(soup: BeautifulSoup) -> None:
-    for attribute in ("href", "src"):
+    def prefixed(value: str) -> str:
+        if not value or value.startswith(("#", "/", "http://", "https://", "mailto:", "tel:", "data:")):
+            return value
+        return "../" + value.removeprefix("./")
+
+    for attribute in ("href", "src", "data-full-src"):
         for element in soup.select(f"[{attribute}]"):
             value = element.get(attribute, "")
-            if not value or value.startswith(("#", "/", "http://", "https://", "mailto:", "tel:", "data:")):
+            element[attribute] = prefixed(value)
+
+    for element in soup.select("[srcset]"):
+        candidates = []
+        for candidate in element.get("srcset", "").split(","):
+            parts = candidate.strip().split()
+            if not parts:
                 continue
-            element[attribute] = "../" + value.removeprefix("./")
+            parts[0] = prefixed(parts[0])
+            candidates.append(" ".join(parts))
+        element["srcset"] = ", ".join(candidates)
 
     for element in soup.select("[style]"):
         element["style"] = element["style"].replace("url(images/", "url(../images/")

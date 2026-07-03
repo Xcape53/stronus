@@ -223,6 +223,7 @@
   var lightboxImages = [];
   var lightboxIndex = 0;
   var touchStartX = null;
+  var lightboxRequest = 0;
 
   function updateLightboxLabels() {
     var polish = document.documentElement.lang === "pl";
@@ -235,8 +236,24 @@
   function renderLightbox() {
     var img = lightboxImages[lightboxIndex];
     if (!img) return;
-    lightboxImg.src = img.currentSrc || img.src;
+    var request = ++lightboxRequest;
+    var previewSrc = img.currentSrc || img.src;
+    var fullSrc = img.getAttribute("data-full-src") || previewSrc;
+    lightboxImg.src = previewSrc;
     lightboxImg.alt = img.alt;
+    lightboxImg.setAttribute("aria-busy", fullSrc !== previewSrc ? "true" : "false");
+    if (fullSrc !== previewSrc) {
+      var fullImage = new Image();
+      fullImage.onload = function () {
+        if (request !== lightboxRequest) return;
+        lightboxImg.src = fullSrc;
+        lightboxImg.setAttribute("aria-busy", "false");
+      };
+      fullImage.onerror = function () {
+        if (request === lightboxRequest) lightboxImg.setAttribute("aria-busy", "false");
+      };
+      fullImage.src = fullSrc;
+    }
     var hasGallery = lightboxImages.length > 1;
     lightbox.classList.toggle("has-gallery", hasGallery);
     lightboxCounter.textContent = hasGallery
@@ -245,6 +262,7 @@
   }
 
   function closeLightbox() {
+    lightboxRequest += 1;
     lightbox.classList.remove("is-open");
     lightbox.setAttribute("aria-hidden", "true");
     document.body.classList.remove("fx-lightbox-open");
@@ -284,9 +302,9 @@
     attributeFilter: ["lang"]
   });
 
-  document.querySelectorAll(".tf__project_hero_media img").forEach(function (img) {
+  document.querySelectorAll(".about-gallery img, .tf__project_hero_media img, .tf__single_service_img > div > img").forEach(function (img) {
     img.addEventListener("click", function () {
-      var gallery = img.closest(".tf__ph_gallery");
+      var gallery = img.closest(".tf__ph_gallery, .about-gallery");
       lightboxImages = gallery
         ? Array.prototype.slice.call(gallery.querySelectorAll("img"))
         : [img];

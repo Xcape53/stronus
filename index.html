@@ -47,6 +47,12 @@
     <title>Piotr Jeleniewicz | Electronics and Software Developer</title>
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="preload" as="image" href="images/banner_bg.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="images/responsive/circle-640.webp" type="image/webp" media="(max-width: 575.98px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="images/responsive/circle-760.webp" type="image/webp" media="(min-width: 576px) and (max-width: 991.98px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="images/circle.png" type="image/png" media="(min-width: 992px)" fetchpriority="high" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -121,8 +127,8 @@
     <link rel="stylesheet" href="css/plugin-portfolio.css?v=20260713-perf" />
     <link rel="stylesheet" href="css/spacing-portfolio.css?v=20260713-perf" />
     <link rel="stylesheet" href="css/scroll_top.css" />
-    <link rel="stylesheet" href="css/style.css?v=20260712-service-banner" />
-    <link rel="stylesheet" href="css/responsive.css?v=20260711-i18n" />
+    <link rel="stylesheet" href="css/style.css?v=20260713-accessibility-perf" />
+    <link rel="stylesheet" href="css/responsive.css?v=20260713-responsive-images" />
     <link rel="stylesheet" href="./isti-icon/style.css" />
   </head>
 
@@ -134,7 +140,7 @@
       <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
         <path id="svg" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
       </svg>
-      <h5 class="preloader-text">////////</h5>
+      <div class="preloader-text" aria-hidden="true">////////</div>
     </div>
     <!--================================
         PRELOADER END
@@ -170,11 +176,10 @@
               >
             </li>
             <li class="nav-item">
-              <a
+              <span
                 class="nav-link text_hover_animaiton is-disabled"
                 aria-disabled="true"
-                tabindex="-1"
-                >CV</a
+                >CV</span
               >
             </li>
             <li class="nav-item">
@@ -203,6 +208,7 @@
     <!--============================
         BANNER START
     ==============================-->
+    <main id="main-content">
     <section
       class="tf__banner pt_100 pl_60 pr_60 bg-fixed"
       style="background: url(images/banner_bg.jpg)"
@@ -218,7 +224,7 @@
 <!-- ... -->
           <div class="col-xxl-5 col-xl-6 ms-auto">
             <div class="tf__banner_text">
-          <h3 data-text-animation="rotate-in" data-i18n="banner.hello">Hello, I am</h3>
+          <p class="tf__banner_kicker" data-text-animation="rotate-in" data-i18n="banner.hello">Hello, I am</p>
           <h1 data-text-animation="rotate-in" data-i18n="banner.title">
             PIOTR JELENIEWICZ - ELECTRONICS AND SOFTWARE DEVELOPER
           </h1>
@@ -228,13 +234,12 @@
 
               <ul class="d-flex flex-wrap">
                 <li>
-                  <a
+                  <span
                     class="tf__common_btn d-flex align-items-center download_btn is-disabled"
                     aria-disabled="true"
-                    tabindex="-1"
                     data-i18n="banner.download"
                     >Download CV <i class="isti-download"></i
-                  ></a>
+                  ></span>
                 </li>
                 <li>
                   <a
@@ -265,7 +270,7 @@
         <div class="row">
           <div class="col-xl-4 col-lg-4">
             <div class="tf__common_heading tf__about_text">
-              <h5 data-i18n="about.kicker">About Me</h5>
+              <p class="tf__section_kicker" data-i18n="about.kicker">About Me</p>
               <h2 data-text-animation="rotate-in" data-split="word" data-i18n="about.title">
                         A Visual Journey through my Portfolio
                     </h2>
@@ -277,11 +282,11 @@
           <div class="col-xl-8 col-lg-8">
             <div class="tf__about_img">
               <div class="about-gallery">
-                <img src="images/set/blackBox.png" alt="BlackBox terminal logic game board" class="img-fluid w-100 active" loading="lazy" decoding="async" width="800" height="800">
-                <img src="images/set/stock.png" alt="C++ stock market analysis tool with a terminal chart" class="img-fluid w-100" loading="lazy" decoding="async" width="1848" height="800">
-                <img src="images/set/inventoryGen.png" alt="Minecraft-style inventory generator web interface" class="img-fluid w-100" loading="lazy" decoding="async" width="1456" height="827">
-                <img src="images/set/blockbench.png" alt="3D model created in Blockbench" class="img-fluid w-100" loading="lazy" decoding="async" width="1920" height="982">
-                <img src="images/set/room-render.webp" alt="Architectural room visualization rendered by Piotr Jeleniewicz" class="img-fluid w-100" loading="lazy" decoding="async" width="1674" height="1050">
+                <img src="images/responsive/blackBox-480.webp" srcset="images/responsive/blackBox-480.webp 480w, images/responsive/blackBox-720.webp 720w, images/responsive/blackBox-960.webp 800w" sizes="(max-width: 991px) 100vw, 67vw" data-full-src="images/set/blackBox.png" alt="BlackBox terminal logic game board" class="img-fluid w-100 active" loading="lazy" decoding="async" width="800" height="800">
+                <img src="images/responsive/stock-480.webp" srcset="images/responsive/stock-480.webp 480w, images/responsive/stock-720.webp 720w, images/responsive/stock-960.webp 960w" sizes="(max-width: 991px) 100vw, 67vw" data-full-src="images/set/stock.png" alt="C++ stock market analysis tool with a terminal chart" class="img-fluid w-100" loading="lazy" decoding="async" width="1848" height="800">
+                <img src="images/responsive/inventoryGen-480.webp" srcset="images/responsive/inventoryGen-480.webp 480w, images/responsive/inventoryGen-720.webp 720w, images/responsive/inventoryGen-960.webp 960w" sizes="(max-width: 991px) 100vw, 67vw" data-full-src="images/set/inventoryGen.png" alt="Minecraft-style inventory generator web interface" class="img-fluid w-100" loading="lazy" decoding="async" width="1456" height="827">
+                <img src="images/responsive/blockbench-480.webp" srcset="images/responsive/blockbench-480.webp 480w, images/responsive/blockbench-720.webp 720w, images/responsive/blockbench-960.webp 960w" sizes="(max-width: 991px) 100vw, 67vw" data-full-src="images/set/blockbench.png" alt="3D model created in Blockbench" class="img-fluid w-100" loading="lazy" decoding="async" width="1920" height="982">
+                <img src="images/responsive/room-render-480.webp" srcset="images/responsive/room-render-480.webp 480w, images/responsive/room-render-720.webp 720w, images/responsive/room-render-960.webp 960w" sizes="(max-width: 991px) 100vw, 67vw" data-full-src="images/set/room-render.webp" alt="Architectural room visualization rendered by Piotr Jeleniewicz" class="img-fluid w-100" loading="lazy" decoding="async" width="1674" height="1050">
               </div>
             </div>
           </div>
@@ -303,7 +308,7 @@
         <div class="row justify-content-center">
           <div class="col-xl-9">
             <div class="tf__common_heading tf__common_heading2">
-              <h5 data-i18n="service.kicker">Core Strengths</h5>
+              <p class="tf__section_kicker" data-i18n="service.kicker">Core Strengths</p>
               <h2 data-text-animation="rotate-in" data-split="word" data-i18n="service.title">
                 From Circuits to Code
               </h2>
@@ -321,7 +326,10 @@
                     data-lenis-prevent
                   >
                     <img
-                      src="images/projects/plain_axi4_lite.png"
+                      src="images/responsive/plain_axi4_lite-480.webp"
+                      srcset="images/responsive/plain_axi4_lite-480.webp 480w, images/responsive/plain_axi4_lite-720.webp 720w, images/responsive/plain_axi4_lite-960.webp 789w"
+                      sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
+                      data-full-src="images/projects/plain_axi4_lite.png"
                       alt="Vivado waveform simulation of an AXI4-Lite bus interface"
                       loading="lazy"
                       decoding="async"
@@ -330,7 +338,10 @@
                       class="is-active"
                     />
                     <img
-                      src="images/projects/anddd.png"
+                      src="images/responsive/anddd-480.webp"
+                      srcset="images/responsive/anddd-480.webp 480w, images/responsive/anddd-720.webp 720w, images/responsive/anddd-960.webp 960w"
+                      sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
+                      data-full-src="images/projects/anddd.png"
                       alt="Standard-cell IC layout view of a logic gate"
                       loading="lazy"
                       decoding="async"
@@ -338,7 +349,10 @@
                       height="690"
                     />
                     <img
-                      src="images/projects/image.png"
+                      src="images/responsive/image-480.webp"
+                      srcset="images/responsive/image-480.webp 480w, images/responsive/image-720.webp 683w"
+                      sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
+                      data-full-src="images/projects/image.png"
                       alt="Standard-cell IC layout and chip floorplan view"
                       loading="lazy"
                       decoding="async"
@@ -346,7 +360,10 @@
                       height="504"
                     />
                     <img
-                      src="images/projects/basys3-fpga-board.webp"
+                      src="images/responsive/basys3-fpga-board-480.webp"
+                      srcset="images/responsive/basys3-fpga-board-480.webp 480w, images/responsive/basys3-fpga-board-720.webp 720w, images/responsive/basys3-fpga-board-960.webp 960w"
+                      sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
+                      data-full-src="images/projects/basys3-fpga-board.webp"
                       alt="Basys 3 FPGA board wired to a breadboard, running a digital counter"
                       loading="lazy"
                       decoding="async"
@@ -354,7 +371,10 @@
                       height="1749"
                     />
                     <img
-                      src="images/projects/cnc-eti-logo.webp"
+                      src="images/responsive/cnc-eti-logo-480.webp"
+                      srcset="images/responsive/cnc-eti-logo-480.webp 480w, images/responsive/cnc-eti-logo-720.webp 720w, images/responsive/cnc-eti-logo-960.webp 960w"
+                      sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
+                      data-full-src="images/projects/cnc-eti-logo.webp"
                       alt="CNC engraving machine milling the Gdańsk University of Technology ETI logo"
                       loading="lazy"
                       decoding="async"
@@ -385,7 +405,10 @@
               <div class="tf__single_service_img">
                 <div data-animation="img-blur">
                   <img
-                    src="images/service_2.jpg"
+                    src="images/responsive/service_2-480.webp"
+                    srcset="images/responsive/service_2-480.webp 480w, images/responsive/service_2-720.webp 720w, images/responsive/service_2-960.webp 960w"
+                    sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
+                    data-full-src="images/service_2.jpg"
                     alt="Source code open in a programming editor"
                     class="img-fluid w-100"
                     loading="lazy"
@@ -418,7 +441,10 @@
                     data-lenis-prevent
                   >
                     <img
-                      src="images/projects/Screenshot_14.png"
+                      src="images/responsive/Screenshot_14-480.webp"
+                      srcset="images/responsive/Screenshot_14-480.webp 480w, images/responsive/Screenshot_14-720.webp 720w, images/responsive/Screenshot_14-960.webp 960w"
+                      sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
+                      data-full-src="images/projects/Screenshot_14.png"
                       alt="Docker Desktop with the user's application containers"
                       loading="lazy"
                       decoding="async"
@@ -427,7 +453,10 @@
                       class="is-active"
                     />
                     <img
-                      src="images/projects/eeeeee1212.png"
+                      src="images/responsive/eeeeee1212-480.webp"
+                      srcset="images/responsive/eeeeee1212-480.webp 480w, images/responsive/eeeeee1212-720.webp 720w, images/responsive/eeeeee1212-960.webp 960w"
+                      sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
+                      data-full-src="images/projects/eeeeee1212.png"
                       alt="VMware Workstation Pro used to manage virtual machines"
                       loading="lazy"
                       decoding="async"
@@ -468,7 +497,7 @@
             <div
               class="tf__common_heading tf__common_heading2 tf__skiil_heading"
             >
-              <h5 data-i18n="skills.kicker">Education & Experience</h5>
+              <p class="tf__section_kicker" data-i18n="skills.kicker">Education & Experience</p>
               <h2 data-text-animation="rotate-in" data-split="word" data-i18n="skills.title">
                 From Theory to Practice
               </h2>
@@ -487,7 +516,7 @@
                 <!-- Left: dates and school -->
                 <div class="col-xl-6 col-lg-6">
                   <div class="tf__single_skill_left">
-                    <h6 data-i18n="edu.present">2023 - present</h6>
+                    <p class="tf__skill_date" data-i18n="edu.present">2023 - present</p>
                     <span data-i18n="edu.university">Gdańsk University of Technology</span>
                     <p data-i18n="edu.degree">Electronics and Telecommunications, 3 year</p>
                   </div>
@@ -528,7 +557,7 @@
               <div class="row">
                 <div class="col-xl-3 col-lg-3">
                   <div class="tf__single_skill_left">
-                    <h6>2024.09 - 2024.10</h6>
+                    <p class="tf__skill_date">2024.09 - 2024.10</p>
                     <span>ASSECO</span>
                     <p data-i18n="edu.asseco.division">Telecommunications and Media Division</p>
                   </div>
@@ -567,7 +596,7 @@
               <div class="row">
                 <div class="col-xl-3 col-lg-3">
                   <div class="tf__single_skill_left">
-                    <h6>2019-2023</h6>
+                    <p class="tf__skill_date">2019-2023</p>
                     <span data-i18n="edu.school">III Liceum Ogólnokształcące in Sopot</span>
                     <p data-i18n="edu.profile">Polytechnic profile (mathematics and IT)</p>
                   </div>
@@ -610,7 +639,7 @@
         <div class="row justify-content-center">
           <div class="col-xl-9">
             <div class="tf__common_heading tf__common_heading2">
-              <h5 data-i18n="projects.kicker">My Projects</h5>
+              <p class="tf__section_kicker" data-i18n="projects.kicker">My Projects</p>
               <h2 data-text-animation="rotate-in" data-split="word" data-i18n="projects.title">
                 Things I Have Built
               </h2>
@@ -660,7 +689,10 @@
           <div class="col-lg-6">
             <div class="tf__project_hero_media">
               <img
-                src="images/projects/labinc.png"
+                src="images/responsive/labinc-480.webp"
+                srcset="images/responsive/labinc-480.webp 480w, images/responsive/labinc-720.webp 720w, images/responsive/labinc-960.webp 960w"
+                sizes="(max-width: 991px) 100vw, 50vw"
+                data-full-src="images/projects/labinc.png"
                 alt="LabInc: Chemical Tycoon - mining panel with coal mine and oil derrick"
                 loading="lazy"
                 decoding="async"
@@ -706,7 +738,10 @@
           <div class="col-lg-6">
             <div class="tf__project_hero_media tf__ph_gallery tf__ph_gallery--fit-h" id="gal-jobagg" data-lenis-prevent>
               <img
-                src="images/projects/jobagg-1.png"
+                src="images/responsive/jobagg-1-480.webp"
+                srcset="images/responsive/jobagg-1-480.webp 480w, images/responsive/jobagg-1-720.webp 720w, images/responsive/jobagg-1-960.webp 960w"
+                sizes="(max-width: 991px) 100vw, 50vw"
+                data-full-src="images/projects/jobagg-1.png"
                 alt="Job Search Aggregator - scraped offers table with filters, per-provider counts and AI analysis actions"
                 loading="lazy"
                 decoding="async"
@@ -715,7 +750,10 @@
                 class="is-active"
               />
               <img
-                src="images/projects/jobagg-2.png"
+                src="images/responsive/jobagg-2-480.webp"
+                srcset="images/responsive/jobagg-2-480.webp 480w, images/responsive/jobagg-2-720.webp 720w, images/responsive/jobagg-2-960.webp 960w"
+                sizes="(max-width: 991px) 100vw, 50vw"
+                data-full-src="images/projects/jobagg-2.png"
                 alt="Job Search Aggregator - Gemini deep research on a company: reputation, salary vs. market, culture warning signals"
                 loading="lazy"
                 decoding="async"
@@ -723,7 +761,10 @@
                 height="697"
               />
               <img
-                src="images/projects/jobagg-3.png"
+                src="images/responsive/jobagg-3-480.webp"
+                srcset="images/responsive/jobagg-3-480.webp 480w, images/responsive/jobagg-3-720.webp 720w, images/responsive/jobagg-3-960.webp 960w"
+                sizes="(max-width: 991px) 100vw, 50vw"
+                data-full-src="images/projects/jobagg-3.png"
                 alt="Job Search Aggregator - technology stack dictionary with AI-generated explanations"
                 loading="lazy"
                 decoding="async"
@@ -765,7 +806,10 @@
           <div class="col-lg-6">
             <div class="tf__project_hero_media tf__ph_gallery tf__ph_gallery--wide" id="gal-passmgr" data-lenis-prevent>
               <img
-                src="images/projects/passmgr-1.png"
+                src="images/responsive/passmgr-1-480.webp"
+                srcset="images/responsive/passmgr-1-480.webp 480w, images/responsive/passmgr-1-720.webp 720w, images/responsive/passmgr-1-960.webp 960w"
+                sizes="(max-width: 991px) 100vw, 50vw"
+                data-full-src="images/projects/passmgr-1.png"
                 alt="Password Manager - vault list with a Gmail entry open, showing username, password and notes fields"
                 loading="lazy"
                 decoding="async"
@@ -774,7 +818,10 @@
                 class="is-active"
               />
               <img
-                src="images/projects/passmgr-2.png"
+                src="images/responsive/passmgr-2-480.webp"
+                srcset="images/responsive/passmgr-2-480.webp 480w, images/responsive/passmgr-2-720.webp 720w, images/responsive/passmgr-2-960.webp 960w"
+                sizes="(max-width: 991px) 100vw, 50vw"
+                data-full-src="images/projects/passmgr-2.png"
                 alt="Password Manager - security dashboard with a vault strength score and per-account status"
                 loading="lazy"
                 decoding="async"
@@ -801,7 +848,7 @@
         <div class="row justify-content-center">
           <div class="col-xl-9">
             <div class="tf__common_heading tf__common_heading2">
-              <h5 data-i18n="side.kicker">Side Projects</h5>
+              <p class="tf__section_kicker" data-i18n="side.kicker">Side Projects</p>
               <h2 data-text-animation="rotate-in" data-split="word" data-i18n="side.title">
                 More of My Work
               </h2>
@@ -812,7 +859,7 @@
           <div class="col-xl-4 col-md-6 d-flex">
             <div class="tf__project_card fx-reveal">
               <div class="tf__project_card_head">
-                <h4>Game Inventory Generator</h4>
+                <h3>Game Inventory Generator</h3>
               </div>
               <p data-i18n="side.inventory.text">
                 Visual video game inventory generator - a web tool that builds
@@ -825,7 +872,7 @@
                 <span class="chip">CSS</span>
               </div>
               <div class="tf__project_links">
-                <a href="inventoryGen/index.html" target="_blank" rel="noopener" data-i18n="side.demo"
+                <a href="inventoryGen/index.html" target="_blank" rel="noopener" data-i18n="side.demo" aria-label="Open Game Inventory Generator live demo"
                   ><i class="fa-solid fa-arrow-up-right-from-square"></i> Live
                   demo</a
                 >
@@ -835,7 +882,7 @@
           <div class="col-xl-4 col-md-6 d-flex">
             <div class="tf__project_card fx-reveal">
               <div class="tf__project_card_head">
-                <h4 data-i18n="side.radiotelescope.title">Radio Telescope Control Panel</h4>
+                <h3 data-i18n="side.radiotelescope.title">Radio Telescope Control Panel</h3>
               </div>
               <p data-i18n="side.radiotelescope.text">
                 Frontend and backend control panel for the <a class="project-source-link" href="https://simle.pl/seesky" target="_blank" rel="noopener">SimLE student research club's 3 m radio telescope</a> - remote control, tracking and
@@ -847,7 +894,7 @@
                 <span class="chip">d3-celestial</span>
               </div>
               <div class="tf__project_links">
-                <a href="https://xcape53.github.io/SeeSky-tracking/" target="_blank" rel="noopener" data-i18n="side.demo"
+                <a href="https://xcape53.github.io/SeeSky-tracking/" target="_blank" rel="noopener" data-i18n="side.demo" aria-label="Open Radio Telescope Control Panel live demo"
                   ><i class="fa-solid fa-arrow-up-right-from-square"></i> Live
                   demo</a
                 >
@@ -858,7 +905,7 @@
           <div class="col-xl-4 col-md-6 d-flex">
             <div class="tf__project_card fx-reveal">
               <div class="tf__project_card_head">
-                <h4 data-i18n="side.florist.title">Florist Website</h4>
+                <h3 data-i18n="side.florist.title">Florist Website</h3>
                 <span class="chip chip-status" data-i18n="project.inProgress">In development</span>
               </div>
               <p data-i18n="side.florist.text">
@@ -874,7 +921,7 @@
           <div class="col-xl-4 col-md-6 d-flex">
             <div class="tf__project_card fx-reveal">
               <div class="tf__project_card_head">
-                <h4>BlackBox</h4>
+                <h3>BlackBox</h3>
               </div>
               <p data-i18n="side.blackbox.text">
                 Simple terminal-based logic game written in C++ - find the
@@ -889,7 +936,7 @@
           <div class="col-xl-4 col-md-6 d-flex">
             <div class="tf__project_card fx-reveal">
               <div class="tf__project_card_head">
-                <h4 data-i18n="side.stock.title">Stock Market Analysis Tool</h4>
+                <h3 data-i18n="side.stock.title">Stock Market Analysis Tool</h3>
               </div>
               <p data-i18n="side.stock.text">
                 Terminal application written in C++ that parses stock market
@@ -903,7 +950,7 @@
           <div class="col-xl-4 col-md-6 d-flex">
             <div class="tf__project_card fx-reveal">
               <div class="tf__project_card_head">
-                <h4>Yapper</h4>
+                <h3>Yapper</h3>
               </div>
               <p data-i18n="side.yapper.text">
                 Windows desktop app for speech-to-text transcription with two
@@ -933,7 +980,7 @@
           <div class="row justify-content-center">
             <div class="col-xl-10">
               <div class="tf__common_heading tf__common_heading2">
-                <h5 data-i18n="bio.kicker">About Me</h5>
+                <p class="tf__section_kicker" data-i18n="bio.kicker">About Me</p>
                 <h2 data-text-animation="rotate-in" data-i18n="bio.title">
                   About me
                 </h2>
@@ -1022,7 +1069,7 @@
         <div class="row justify-content-center">
           <div class="col-xl-9">
             <div class="tf__common_heading tf__common_heading2">
-              <h5 data-i18n="activity.kicker">Find Me Online</h5>
+              <p class="tf__section_kicker" data-i18n="activity.kicker">Find Me Online</p>
               <h2 data-text-animation="rotate-in" data-split="word" data-i18n="activity.title">
                 My Activity
               </h2>
@@ -1034,7 +1081,7 @@
             <div class="tf__online_card tf__activity_card fx-reveal">
               <div class="tf__activity_head">
                 <i class="fa-solid fa-robot"></i>
-                <h4 data-i18n="activity.usage">Coding Activity</h4>
+                <h3 data-i18n="activity.usage">Coding Activity</h3>
               </div>
               <!-- prawdziwy graf kontrybucji GitHub (ghchart.rshah.org), zapisany
                    statycznie i przekolorowany pod ciemne tło karty (fill:#EEEEEE
@@ -1076,7 +1123,7 @@
             <div class="tf__online_card tf__activity_card fx-reveal">
               <div class="tf__activity_head">
                 <i class="fa-solid fa-bolt"></i>
-                <h4 data-i18n="activity.now">Right Now</h4>
+                <h3 data-i18n="activity.now">Right Now</h3>
               </div>
               <ul class="about-me-list">
                 <li data-i18n="activity.item1">Engineering thesis - teaching a reinforcement-learning agent (PPO/DQN) to master an arcade game on its own</li>
@@ -1128,7 +1175,7 @@
             <div class="row justify-content-between">
               <div class="col-xl-6 col-md-6">
                 <div class="tf__contact_address">
-                  <h4 data-i18n="contact.heading">Contact Me</h4>
+                  <h3 data-i18n="contact.heading">Contact Me</h3>
                   <div class="tf__single_address d-flex flex-wrap">
                     <span
                       ><i class="fa-sharp fa-solid fa-paper-plane"></i
@@ -1151,7 +1198,7 @@
               </div>
               <div class="col-xl-6 col-md-6">
                 <div class="tf__contact_address">
-                  <h4 data-i18n="contact.links">Links</h4>
+                  <h3 data-i18n="contact.links">Links</h3>
                   <ul>
                     <li>
                       <a
@@ -1172,12 +1219,11 @@
                       >
                     </li>
                     <li>
-                      <a
+                      <span
                         class="is-disabled"
                         aria-disabled="true"
-                        tabindex="-1"
                         ><i class="far fa-angle-double-right"></i>
-                        <span class="text_hover_animaiton">CV (PDF)</span></a
+                        <span class="text_hover_animaiton">CV (PDF)</span></span
                       >
                     </li>
                   </ul>
@@ -1191,6 +1237,7 @@
     <!--============================
         CONTACT END
     ==============================-->
+    </main>
 
     <!--============================
         COPYRIGHT START
@@ -1201,7 +1248,7 @@
           <div
             class="tf__main_copyright d-flex flex-wrap justify-content-between"
           >
-            <p>© Piotr Jeleniewicz 2026</p>
+            <p>&copy; Piotr Jeleniewicz 2026</p>
             <ul class="d-flex flex-wrap">
               <li>
                 <a
@@ -1251,13 +1298,13 @@
       <div id="ball"></div>
     </div>
     <!--js-->
-    <script src="js/plugin-core.min.js?v=20260713-perf"></script>
-    <script src="js/animation-core.js?v=20260713-perf"></script>
-    <script src="js/scroll_top.js"></script>
-    <script src="js/d3.banner.min.js?v=20260713-perf"></script>
-    <script src="js/animacja-banner.js?v=20260712-mobile-svg"></script>
-    <script src="js/i18n.js?v=20260713-seo"></script>
-    <script src="js/main.js?v=20260713-perf"></script>
-    <script src="js/effects.js?v=20260712-service-gallery"></script>
+    <script defer src="js/plugin-core.min.js?v=20260713-perf"></script>
+    <script defer src="js/animation-core.js?v=20260713-perf"></script>
+    <script defer src="js/scroll_top.js"></script>
+    <script defer src="js/d3.banner.min.js?v=20260713-perf"></script>
+    <script defer src="js/animacja-banner.js?v=20260712-mobile-svg"></script>
+    <script defer src="js/i18n.js?v=20260713-seo"></script>
+    <script defer src="js/main.js?v=20260713-responsive-images"></script>
+    <script defer src="js/effects.js?v=20260713-responsive-images"></script>
   </body>
 </html>
