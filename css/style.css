@@ -3186,3 +3186,324 @@ html.lenis {
   background: var(--colorPrimary);
   color: var(--colorBlack);
 }
+
+/* ============================
+   PROJECT CARDS (custom)
+============================ */
+.tf__project_card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 40px;
+  padding: 30px 25px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  background: var(--colorDarkAccent);
+  transition: all 0.25s linear;
+}
+
+.tf__project_card:hover {
+  border-color: var(--colorPrimary);
+  transform: translateY(-5px);
+}
+
+.tf__project_card_head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.tf__project_card_head h4 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--colorWhite);
+  margin: 0;
+}
+
+.tf__project_card p {
+  color: var(--colorBodyText);
+  margin-bottom: 20px;
+}
+
+.tf__project_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.tf__project_tags .chip {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 13px;
+  border: 1px solid var(--colorPrimary);
+  color: var(--colorWhite);
+  background: transparent;
+  border-radius: 999px;
+}
+
+.chip-status {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 12px;
+  border: 1px solid var(--colorSecondary);
+  color: var(--colorBodyText);
+  border-radius: 999px;
+}
+
+.tf__project_links {
+  margin-top: 20px;
+}
+
+.tf__project_links a {
+  color: var(--colorPrimary);
+  font-weight: 600;
+  transition: color 0.2s linear;
+}
+
+.tf__project_links a:hover {
+  color: var(--colorWhite);
+}
+
+/* ============================
+   FIND ME ONLINE CARDS (custom)
+============================ */
+.tf__online_card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 40px;
+  padding: 35px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  background: var(--colorDarkAccent);
+  text-align: center;
+  transition: all 0.25s linear;
+}
+
+.tf__online_card:hover {
+  border-color: var(--colorPrimary);
+  transform: translateY(-5px);
+}
+
+.tf__online_card i {
+  font-size: 40px;
+  color: var(--colorPrimary);
+  margin-bottom: 15px;
+}
+
+.tf__online_card h4 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--colorWhite);
+  margin-bottom: 10px;
+}
+
+.tf__online_card p {
+  color: var(--colorBodyText);
+  margin: 0;
+}
+
+/* Contact e-mail link */
+.tf__address_area p a {
+  color: var(--colorBodyText);
+  transition: color 0.2s linear;
+}
+
+.tf__address_area p a:hover {
+  color: var(--colorPrimary);
+}
+
+
+/* ============================
+   FX PARALLAX BACKGROUNDS (custom)
+   P4 macierz LED / P6 gwiazdy
+   + separatory-oscyloskopy i magnetyczny przycisk
+============================ */
+.fx-host { position: relative; }
+.fx-host > .container { position: relative; z-index: 2; }
+
+.fx-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* "dziura" w ciemnym tle — ten sam gradient co banner, przyklejony do viewportu */
+.bg-window {
+  background: url(../images/banner_bg.jpg) center / cover no-repeat;
+  background-attachment: fixed !important;
+}
+
+.osc-sep {
+  display: block;
+  width: 100%;
+  height: 120px;
+  margin: 40px 0 0;
+}
+
+.fx-led-band {
+  position: relative;
+  height: 96px;
+  overflow: hidden;
+  margin-top: 60px;
+  border-top: 1px solid var(--colorDarkAccent);
+  border-bottom: 1px solid var(--colorDarkAccent);
+}
+
+.fx-led-band canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#mag { display: inline-block; will-change: transform; }
+
+/* obracający się kwadrat (.tf__banner_img::after) nie może wystawać
+   rogami poza baner na czarne tło sekcji niżej */
+.tf__banner { overflow: hidden; }
+
+/* --- My Activity: kafelki GitHub + snapshot użycia Claude Code --- */
+.tf__activity_card { text-align: left; }
+
+.tf__activity_head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.tf__activity_head i { font-size: 32px; color: var(--colorPrimary); margin: 0; }
+.tf__activity_head h4 { margin: 0; }
+
+.gh-graph {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 9px);
+  grid-auto-columns: 9px;
+  gap: 3px;
+  margin-bottom: 14px;
+  min-height: 81px;
+  align-content: center;
+}
+
+.gh-graph .d { border-radius: 2px; }
+
+.gh-graph-note { margin: 0; color: var(--colorBodyText); }
+
+.gh-graph-total {
+  color: var(--colorBodyText);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.cc-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.cc-stat {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cc-stat .cc-num {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--colorPrimary);
+  line-height: 1.2;
+}
+
+.cc-stat .cc-label {
+  font-size: 13px;
+  color: var(--colorBodyText);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* odsłanianie kart — stan ukryty tylko gdy JS doda fx-armed na <html> */
+html.fx-armed .fx-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+html.fx-armed .fx-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* wyższe "okno" z niebieskim gradientem (+200px łącznie) */
+#projects.bg-window { padding-top: 250px; }
+#activity.bg-window { padding-bottom: 180px; }
+
+/* --- kontakt: kicker + LET'S TALK + magnetyczny przycisk --- */
+.tf__contact_kicker {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--colorPrimary);
+  margin-bottom: 14px;
+}
+
+.tf__lets_talk {
+  font-size: clamp(56px, 8vw, 104px);
+  font-weight: 800;
+  line-height: 1.02;
+  text-transform: uppercase;
+  color: var(--colorWhite);
+  margin-bottom: 34px;
+}
+
+.tf__lets_talk .talk {
+  font-size: inherit;   /* nadpisuje globalne "span {font-size:16px}" z szablonu */
+  font-weight: inherit;
+  line-height: inherit;
+  /* kontur musi być na Poppins: glify Spline Sans mają nakładające się
+     kontury i text-stroke rysuje w środku "śmieci" */
+  font-family: "Poppins", sans-serif;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--colorWhite);
+  transition: color 0.3s linear, -webkit-text-stroke-color 0.3s linear;
+  cursor: default;
+}
+
+.tf__lets_talk .talk:hover {
+  color: var(--colorPrimary);
+  -webkit-text-stroke-color: var(--colorPrimary);
+}
+
+/* strefa magnesu: padding powiększa obszar łapania kursora,
+   ujemny margines niweluje wpływ na layout */
+.tf__contact_mail {
+  display: inline-block;
+  padding: 48px 64px;
+  margin: -48px -64px;
+}
+
+.tf__contact_mail .tf__subscribtion {
+  position: static;
+  display: inline-block;
+}
+
+@media (max-width: 767px) {
+  .fx-led-band { height: 72px; }
+  .osc-sep { height: 80px; }
+  #projects.bg-window { padding-top: 180px; }
+  #activity.bg-window { padding-bottom: 120px; }
+  .tf__lets_talk { font-size: 48px; }
+  .tf__contact_mail { padding: 24px 24px; margin: -24px; }
+}
