@@ -152,6 +152,19 @@
       g.style.width = Math.round(w) + "px";
     }
   }
+  function hydrateGalleryImage(img) {
+    if (!img) return;
+    var viewSrcset = img.getAttribute("data-view-srcset");
+    var viewSrc = img.getAttribute("data-view-src");
+    if (viewSrcset) {
+      img.setAttribute("srcset", viewSrcset);
+      img.removeAttribute("data-view-srcset");
+    }
+    if (viewSrc) {
+      img.setAttribute("src", viewSrc);
+      img.removeAttribute("data-view-src");
+    }
+  }
   document.querySelectorAll(".tf__ph_gallery").forEach(function (g) {
     var imgs = g.querySelectorAll("img");
     var dots = g.querySelectorAll(".tf__ph_gallery_dots span");
@@ -163,12 +176,24 @@
     if (imgs.length < 2) return;
     var idx = 0, cooling = false;
     function show(next) {
+      hydrateGalleryImage(imgs[next]);
       imgs[idx].classList.remove("is-active");
       if (dots[idx]) dots[idx].classList.remove("is-active");
       idx = next;
       imgs[idx].classList.add("is-active");
       if (dots[idx]) dots[idx].classList.add("is-active");
       applySize(imgs[idx]);
+      hydrateGalleryImage(imgs[(idx + 1) % imgs.length]);
+    }
+    if ("IntersectionObserver" in window) {
+      var imageObserver = new IntersectionObserver(function (entries) {
+        if (!entries.some(function (entry) { return entry.isIntersecting; })) return;
+        imageObserver.disconnect();
+        hydrateGalleryImage(imgs[1]);
+      }, { rootMargin: "0px" });
+      imageObserver.observe(g);
+    } else {
+      hydrateGalleryImage(imgs[1]);
     }
     g.addEventListener("wheel", function (e) {
       if (reduced || g.classList.contains("tf__ph_gallery--fixed")) return;
@@ -236,10 +261,11 @@
   function renderLightbox() {
     var img = lightboxImages[lightboxIndex];
     if (!img) return;
+    hydrateGalleryImage(img);
     var request = ++lightboxRequest;
-    var previewSrc = img.currentSrc || img.src;
+    var previewSrc = img.currentSrc || img.src || img.getAttribute("data-view-src") || "";
     var fullSrc = img.getAttribute("data-full-src") || previewSrc;
-    lightboxImg.src = previewSrc;
+    if (previewSrc) lightboxImg.src = previewSrc;
     lightboxImg.alt = img.alt;
     lightboxImg.setAttribute("aria-busy", fullSrc !== previewSrc ? "true" : "false");
     if (fullSrc !== previewSrc) {

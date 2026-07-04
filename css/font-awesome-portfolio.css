@@ -2,7 +2,7 @@
   font-family: "Font Awesome 6 Brands";
   font-style: normal;
   font-weight: 400;
-  font-display: block;
+  font-display: swap;
   src: url(../fonts/fa-brands-portfolio.woff2) format("woff2");
 }
 
@@ -10,7 +10,7 @@
   font-family: "Font Awesome 6 Pro";
   font-style: normal;
   font-weight: 400;
-  font-display: block;
+  font-display: swap;
   src: url(../fonts/fa-regular-portfolio.woff2) format("woff2");
 }
 
@@ -18,7 +18,7 @@
   font-family: "Font Awesome 6 Pro";
   font-style: normal;
   font-weight: 900;
-  font-display: block;
+  font-display: swap;
   src: url(../fonts/fa-solid-portfolio.woff2) format("woff2");
 }
 

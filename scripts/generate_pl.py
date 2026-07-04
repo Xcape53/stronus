@@ -48,20 +48,21 @@ def prefix_relative_assets(soup: BeautifulSoup) -> None:
             return value
         return "../" + value.removeprefix("./")
 
-    for attribute in ("href", "src", "data-full-src"):
+    for attribute in ("href", "src", "data-full-src", "data-view-src"):
         for element in soup.select(f"[{attribute}]"):
             value = element.get(attribute, "")
             element[attribute] = prefixed(value)
 
-    for element in soup.select("[srcset]"):
-        candidates = []
-        for candidate in element.get("srcset", "").split(","):
-            parts = candidate.strip().split()
-            if not parts:
-                continue
-            parts[0] = prefixed(parts[0])
-            candidates.append(" ".join(parts))
-        element["srcset"] = ", ".join(candidates)
+    for attribute in ("srcset", "data-view-srcset"):
+        for element in soup.select(f"[{attribute}]"):
+            candidates = []
+            for candidate in element.get(attribute, "").split(","):
+                parts = candidate.strip().split()
+                if not parts:
+                    continue
+                parts[0] = prefixed(parts[0])
+                candidates.append(" ".join(parts))
+            element[attribute] = ", ".join(candidates)
 
     for element in soup.select("[style]"):
         element["style"] = element["style"].replace("url(images/", "url(../images/")
