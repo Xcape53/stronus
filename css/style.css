@@ -3378,19 +3378,9 @@ html.lenis {
    (LabInc dodatkowo ma dryfujące chmury w tle - canvas #fx-clouds w effects.js) */
 .tf__project_hero { min-height: 68vh; }
 
-/* treść wszystkich trzech głównych sekcji ma zostać NAD #fx-tint (z-index:1) —
-   inaczej tint (mix-blend-mode:screen) wybielałby tekst/screeny, zamiast działać
-   wyłącznie jak barwione tło sekcji */
+/* treść ma zostać NAD canvasem chmur (#fx-clouds, z-index:0 z .fx-bg) */
+.tf__project_hero { position: relative; }
 .tf__project_hero > .col-lg-6 { position: relative; z-index: 2; }
-
-/* chmury mają płynąć od krawędzi do krawędzi ekranu, nie tylko w obrębie
-   wyśrodkowanego .container — canvas wyłamuje się na pełną szerokość viewportu */
-#fx-clouds {
-  left: 50%;
-  width: 100vw;
-  max-width: none; /* .row > * (Bootstrap) narzuca max-width:100% — canvas ma wyjść poza container */
-  transform: translateX(-50%);
-}
 
 .tf__ph_kicker {
   display: block;
@@ -3595,15 +3585,18 @@ html.fx-armed .fx-reveal.is-in {
 #projects.bg-window { padding-top: 250px; }
 #activity.bg-window { padding-bottom: 180px; }
 
-/* tint ekranu wyróżnionych projektów — nakładka tworzona w effects.js,
-   kolor/krycie sterowane co klatkę wg data-tint najbliższego środka hero */
-#fx-tint {
-  position: fixed;
-  inset: 0;
-  z-index: 1; /* nad tłem sekcji (bg-window), ale POD treścią — patrz .tf__project_hero > [class*="col-"] niżej */
+/* glow za całym panelem wyróżnionego projektu (tekst + zdjęcie) — stały,
+   lokalny, w kolorze data-tint danej sekcji (--tint-rgb ustawiane raz w
+   effects.js), zamiast tintu na cały viewport który za mocno zmieniał
+   kolor strony przy scrollu. Radialny gradient, najmocniejszy w środku
+   panelu, pod treścią (z-index:2) i nad tłem sekcji. */
+.tf__project_hero[data-tint]::before {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  z-index: 0;
   pointer-events: none;
-  mix-blend-mode: screen; /* tylko rozjaśnia — tekst i tła nie ciemnieją */
-  background: transparent;
+  background: radial-gradient(ellipse at center, rgba(var(--tint-rgb, 44, 127, 254), 0.45), transparent 72%);
 }
 
 /* --- kontakt: kicker + LET'S TALK + magnetyczny przycisk --- */

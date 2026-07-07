@@ -245,37 +245,13 @@
     });
   }
 
-  /* ---------- tint ekranu przy wyróżnionych projektach ----------
-     Każdy .tf__project_hero[data-tint] barwi cały viewport swoim kolorem
-     (LabInc — jaśniejszy niebieski, agregator — zieleń, menedżer haseł —
-     fiolet), im bliżej środka ekranu, tym mocniej. Nakładka #fx-tint
-     powstaje tylko z JS-em i nie działa przy reduced-motion. */
-  var heroes = [];
+  /* ---------- glow wokół screenów wyróżnionych projektów ----------
+     Zamiast tintu na cały viewport (za mocno "pływał" kolorem przy
+     scrollu) — stały, lokalny box-shadow w kolorze data-tint dookoła
+     .tf__project_hero_media danej sekcji, ustawiany raz przez CSS var. */
   document.querySelectorAll(".tf__project_hero[data-tint]").forEach(function (el) {
-    heroes.push({ el: el, rgb: el.getAttribute("data-tint") });
+    el.style.setProperty("--tint-rgb", el.getAttribute("data-tint"));
   });
-  var tint = null;
-  if (heroes.length && !reduced) {
-    tint = document.createElement("div");
-    tint.id = "fx-tint";
-    tint.setAttribute("aria-hidden", "true");
-    document.body.appendChild(tint);
-  }
-  function drawTint() {
-    var best = null, bestC = 0;
-    heroes.forEach(function (h) {
-      var r = h.el.getBoundingClientRect();
-      var mid = r.top + r.height / 2;
-      var c = 1 - Math.abs(mid - vh / 2) / (vh * 0.6); // 1 = idealnie na środku
-      if (c > bestC) { bestC = c; best = h; }
-    });
-    if (best && bestC > 0) {
-      var e = bestC * bestC * (3 - 2 * bestC); // smoothstep — łagodne wejście/zejście
-      tint.style.background = "rgba(" + best.rgb + "," + (e * 0.55).toFixed(3) + ")";
-    } else {
-      tint.style.background = "transparent";
-    }
-  }
 
   /* ---------- ostatnie repozytoria GitHuba (#gh-repos) ----------
      Pobiera 5 ostatnio aktualizowanych repozytoriów z API GitHuba
@@ -334,7 +310,6 @@
     T += 0.016;
     if (led && near(ledBand)) drawLED(prog(ledBand));
     if (cloudsCv && near(labHero)) drawClouds();
-    if (tint) drawTint();
     if (sky && near(sEdu)) drawSky(prog(sEdu), T);
     seps.forEach(function (st) { if (near(st.cv)) drawSep(st, T); });
     if (!reduced) requestAnimationFrame(loop);
