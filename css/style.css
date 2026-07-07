@@ -3382,6 +3382,17 @@ html.lenis {
 .tf__project_hero { position: relative; }
 .tf__project_hero > .col-lg-6 { position: relative; z-index: 2; }
 
+/* chmury mają się wygaszać gradientem przy lewej/prawej krawędzi boxa,
+   zamiast być ucinane prostą linią na granicy canvasu */
+#fx-clouds {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent),
+    linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent),
+    linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  mask-composite: intersect;
+}
+
 .tf__ph_kicker {
   display: block;
   font-size: 13px;
@@ -3403,6 +3414,47 @@ html.lenis {
 
 .tf__project_hero_text .tf__project_tags { margin-top: 24px; }
 
+/* tekst wyrównany w stronę zdjęcia w danej sekcji: 01 LabInc i 03 Password
+   Manager (obrazek z prawej) — do prawej; 02 Job Aggregator (obrazek
+   z lewej, flex-lg-row-reverse) — do lewej */
+.tf__project_hero_text .about-me-list li {
+  width: fit-content;
+  max-width: 480px;
+  text-align: left;
+}
+
+#p-labinc .tf__project_hero_text,
+#p-passmgr .tf__project_hero_text {
+  text-align: right;
+}
+
+#p-jobagg .tf__project_hero_text {
+  text-align: left;
+}
+
+#p-labinc .tf__project_hero_text .tf__project_card_head,
+#p-labinc .tf__project_hero_text .tf__project_tags,
+#p-passmgr .tf__project_hero_text .tf__project_card_head,
+#p-passmgr .tf__project_hero_text .tf__project_tags {
+  justify-content: flex-end;
+}
+
+#p-jobagg .tf__project_hero_text .tf__project_card_head,
+#p-jobagg .tf__project_hero_text .tf__project_tags {
+  justify-content: flex-start;
+}
+
+#p-labinc .about-me-list li,
+#p-passmgr .about-me-list li {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+#p-jobagg .about-me-list li {
+  margin-left: 0;
+  margin-right: auto;
+}
+
 .tf__project_hero_media {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
@@ -3419,25 +3471,51 @@ html.lenis {
 }
 
 /* galeria realnych screenów (Job Search Aggregator / Password Manager):
-   jedno zdjęcie naraz, w tym samym bounding boxie co pojedynczy screen
-   LabInc — scroll myszką nad zdjęciem przełącza z fade in/out (effects.js) */
-.tf__ph_gallery { position: relative; }
+   jedno zdjęcie naraz, bez przycinania. Domyślnie (passmgr): wysokość
+   znormalizowana (stała), szerokość boxu dopasowuje się dynamicznie do
+   proporcji aktywnego zdjęcia — box jest domyślnie wyrównany do lewej,
+   czyli "rośnie" w stronę przeciwną do tekstu (który jest po prawej).
+   scroll myszką nad zdjęciem przełącza z fade in/out */
+.tf__ph_gallery {
+  position: relative;
+  height: 336px;
+  max-width: 100%;
+  transition: width 0.4s ease;
+}
+
+/* jobagg ma tekst PO PRAWEJ (flex-lg-row-reverse) — box ma wypełniać całą
+   szerokość kolumny (taki sam odstęp do tekstu jak w LabInc) i "rosnąć"
+   w pionie zamiast w poziomie, żeby lewa/prawa granica zawsze zostawały
+   w tym samym miejscu, blisko tekstu */
+#gal-jobagg.tf__ph_gallery--fit-h {
+  width: 100%;
+  height: auto;
+  transition: height 0.4s ease;
+}
 
 .tf__ph_gallery.tf__project_hero_media img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain !important; /* nadpisuje globalne img{object-fit:cover!important} z base CSS */
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s ease;
 }
 
+/* passmgr: box trochę szerszy niż naturalne proporcje zdjęcia — lekko
+   przycięty od dołu (object-position: top) zamiast dokładać czarne pasy */
+.tf__ph_gallery--wide.tf__project_hero_media img {
+  object-fit: cover !important;
+  object-position: top center;
+}
+
 .tf__ph_gallery.tf__project_hero_media img.is-active { opacity: 1; pointer-events: auto; }
 
-#gal-jobagg { aspect-ratio: 1903 / 915; }
-#gal-passmgr { aspect-ratio: 1496 / 1030; }
+@media (max-width: 991px) {
+  .tf__ph_gallery { height: 220px; }
+}
 
 .tf__ph_gallery_dots {
   position: absolute;
@@ -3497,49 +3575,6 @@ html.lenis {
 .tf__activity_head i { font-size: 32px; color: var(--colorPrimary); margin: 0; }
 .tf__activity_head h4 { margin: 0; }
 
-.gh-graph-note { margin: 0 0 16px; color: var(--colorBodyText); }
-
-.gh-repos { margin-bottom: 16px; }
-
-.gh-repo {
-  display: block;
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.gh-repo:first-child { padding-top: 0; }
-
-.gh-repo-name {
-  display: block;
-  font-weight: 700;
-  color: var(--colorWhite);
-  transition: color 0.2s linear;
-}
-
-.gh-repo:hover .gh-repo-name { color: var(--colorPrimary); }
-
-.gh-repo-desc {
-  display: block;
-  font-size: 13px;
-  color: var(--colorBodyText);
-  margin-top: 2px;
-}
-
-.gh-repo-meta {
-  display: block;
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--colorBodyText);
-  margin-top: 5px;
-}
-
-.gh-repo-lang {
-  color: var(--colorPrimary);
-  font-weight: 700;
-  margin-right: 10px;
-}
-
 .cc-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -3588,15 +3623,31 @@ html.fx-armed .fx-reveal.is-in {
 /* glow za całym panelem wyróżnionego projektu (tekst + zdjęcie) — stały,
    lokalny, w kolorze data-tint danej sekcji (--tint-rgb ustawiane raz w
    effects.js), zamiast tintu na cały viewport który za mocno zmieniał
-   kolor strony przy scrollu. Radialny gradient, najmocniejszy w środku
-   panelu, pod treścią (z-index:2) i nad tłem sekcji. */
+   kolor strony przy scrollu. Wypełniony zaokrąglony prostokąt na
+   bounding boxie panelu, rozmyty filtrem blur — stąd "scribble", miękka
+   nierówna krawędź zamiast gradientowego rozlania od środka. Pod
+   treścią (z-index:2), nad tłem sekcji. */
 .tf__project_hero[data-tint]::before {
   content: "";
   position: absolute;
-  inset: -60px;
+  inset: 20% -4% 20% -4%;
   z-index: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, rgba(var(--tint-rgb, 44, 127, 254), 0.45), transparent 72%);
+  border-radius: 48px;
+  background: rgba(var(--tint-rgb, 44, 127, 254), 0.55);
+  filter: blur(42px);
+}
+
+/* Job Search Aggregator: gradient od lewego górnego do prawego dolnego rogu
+   zamiast jednolitego koloru */
+#p-jobagg::before {
+  background: linear-gradient(135deg, rgba(58, 245, 85, 0.55), rgba(41, 237, 129, 0.55));
+}
+
+/* Password Manager: jeszcze ciemniejsze i wyższe tło niż reszta projektów */
+#p-passmgr::before {
+  inset: 8% -4% 8% -4%;
+  background: rgba(8, 8, 10, 0.75);
 }
 
 /* --- kontakt: kicker + LET'S TALK + magnetyczny przycisk --- */

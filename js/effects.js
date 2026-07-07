@@ -101,14 +101,26 @@
     cv.addEventListener("mouseleave", function () { st.mx = -999; });
     seps.push(st);
   });
+  // aproksymacja Fouriera fali prostokątnej z 4 harmonicznych (1,3,5,7),
+  // znormalizowana do amplitudy ~1 jak czysty sinus
+  var SQUARE_HARMONICS = [1, 3, 5, 7];
+  function fourierSquare(phase) {
+    var sum = 0;
+    for (var i = 0; i < SQUARE_HARMONICS.length; i++) {
+      var k = SQUARE_HARMONICS[i];
+      sum += Math.sin(k * phase) / k;
+    }
+    return sum * (4 / Math.PI);
+  }
   function drawSep(st, t) {
     var c = st.cv.getContext("2d");
     c.clearRect(0, 0, st.s.w, st.s.h);
     c.strokeStyle = blueA(.65); c.lineWidth = 2; c.beginPath();
     for (var x = 0; x <= st.s.w; x += 3) {
-      var boost = Math.max(0, 1 - Math.abs(x - st.mx) / 130) * 30;
-      var y = st.s.h / 2 + Math.sin(x * .045 + t * 3.5) * (8 + boost) +
-        Math.sin(x * .012 - t * 2.4) * 5;
+      var mix = Math.max(0, 1 - Math.abs(x - st.mx) / 130); // 0 z dala od myszki, 1 tuż przy niej
+      var phase = x * .045 + t * 3.5;
+      var wave = Math.sin(phase) * (1 - mix) + fourierSquare(phase) * mix;
+      var y = st.s.h / 2 + wave * (8 + mix * 22);
       x === 0 ? c.moveTo(x, y) : c.lineTo(x, y);
     }
     c.stroke();
@@ -160,13 +172,33 @@
   }
 
   /* ---------- galeria screenów (.tf__ph_gallery) ----------
-     Kilka zdjęć nałożonych na siebie w tym samym boxie. Scroll myszką nad
-     zdjęciem przełącza między nimi z fade in/out zamiast przewijać stronę —
-     ale tylko dopóki jest gdzie przełączać; na pierwszym/ostatnim zdjęciu
-     scroll w tę stronę przechodzi normalnie do przewijania strony. */
+     Kilka zdjęć nałożonych na siebie w tym samym boxie o stałej,
+     znormalizowanej wysokości (CSS). Szerokość boxu dopasowuje się co
+     zdjęcie do jego naturalnych proporcji — bez czarnych pasów i bez
+     przycinania. Scroll myszką nad zdjęciem przełącza między nimi z
+     fade in/out zamiast przewijać stronę — ale tylko dopóki jest gdzie
+     przełączać; na pierwszym/ostatnim zdjęciu scroll w tę stronę
+     przechodzi normalnie do przewijania strony. */
+  function sizeGalleryTo(g, img) {
+    if (!img.naturalWidth) return;
+    if (g.classList.contains("tf__ph_gallery--fit-h")) {
+      // szerokość stała (do granicy tekstu), zmienia się wysokość
+      g.style.height = Math.round((img.naturalHeight / img.naturalWidth) * g.clientWidth) + "px";
+    } else {
+      // wysokość stała, zmienia się szerokość
+      var w = (img.naturalWidth / img.naturalHeight) * g.clientHeight;
+      if (g.classList.contains("tf__ph_gallery--wide")) w *= 1.16; // trochę szerzej niż naturalne proporcje — dół się przycina (object-position: top)
+      g.style.width = Math.round(w) + "px";
+    }
+  }
   document.querySelectorAll(".tf__ph_gallery").forEach(function (g) {
     var imgs = g.querySelectorAll("img");
     var dots = g.querySelectorAll(".tf__ph_gallery_dots span");
+    function applySize(img) {
+      if (img.complete && img.naturalWidth) sizeGalleryTo(g, img);
+      else img.addEventListener("load", function () { sizeGalleryTo(g, img); }, { once: true });
+    }
+    applySize(imgs[0]);
     if (imgs.length < 2) return;
     var idx = 0, cooling = false;
     function show(next) {
@@ -175,6 +207,7 @@
       idx = next;
       imgs[idx].classList.add("is-active");
       if (dots[idx]) dots[idx].classList.add("is-active");
+      applySize(imgs[idx]);
     }
     g.addEventListener("wheel", function (e) {
       if (reduced) return;
@@ -252,48 +285,6 @@
   document.querySelectorAll(".tf__project_hero[data-tint]").forEach(function (el) {
     el.style.setProperty("--tint-rgb", el.getAttribute("data-tint"));
   });
-
-  /* ---------- ostatnie repozytoria GitHuba (#gh-repos) ----------
-     Pobiera 5 ostatnio aktualizowanych repozytoriów z API GitHuba
-     i buduje listę (nazwa, opis, język, data). Przy błędzie notka + link. */
-  var ghRepos = document.getElementById("gh-repos");
-  if (ghRepos && window.fetch) {
-    fetch("https://api.github.com/users/" + ghRepos.getAttribute("data-user") +
-      "/repos?sort=pushed&per_page=5")
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function (repos) {
-        if (!repos.length) return;
-        ghRepos.innerHTML = "";
-        repos.forEach(function (rp) {
-          var a = document.createElement("a");
-          a.className = "gh-repo";
-          a.href = rp.html_url; a.target = "_blank"; a.rel = "noopener";
-          var name = document.createElement("span");
-          name.className = "gh-repo-name"; name.textContent = rp.name;
-          a.appendChild(name);
-          if (rp.description) {
-            var desc = document.createElement("span");
-            desc.className = "gh-repo-desc"; desc.textContent = rp.description;
-            a.appendChild(desc);
-          }
-          var meta = document.createElement("span");
-          meta.className = "gh-repo-meta";
-          if (rp.language) {
-            var lang = document.createElement("span");
-            lang.className = "gh-repo-lang"; lang.textContent = rp.language;
-            meta.appendChild(lang);
-          }
-          meta.appendChild(document.createTextNode(
-            "updated " + new Date(rp.pushed_at).toLocaleDateString("en-GB",
-              { day: "numeric", month: "short", year: "numeric" })));
-          a.appendChild(meta);
-          ghRepos.appendChild(a);
-        });
-      })
-      .catch(function () {
-        ghRepos.innerHTML = '<p class="gh-graph-note">Could not load repositories - see the profile below.</p>';
-      });
-  }
 
   /* ---------- resize ---------- */
   window.addEventListener("resize", function () {
