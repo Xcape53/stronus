@@ -159,48 +159,163 @@
     reveals.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- kafelki kontrybucji GitHuba (#gh-graph) ----------
-     Pobiera ostatni rok aktywności z publicznego API i rysuje siatkę
-     7xN w kolorystyce strony. Przy błędzie zostaje notka + link. */
-  var ghGraph = document.getElementById("gh-graph");
-  var ghTotal = document.getElementById("gh-graph-total");
-  var ghDays = null;
-  var GH_LEVELS = ["rgba(255,255,255,.08)", "rgba(44,127,254,.28)",
-    "rgba(44,127,254,.5)", "rgba(44,127,254,.75)", "rgba(44,127,254,1)"];
-  function ghRender() {
-    if (!ghGraph || !ghDays || !ghGraph.clientWidth) return;
-    var weeksFit = Math.max(10, Math.floor((ghGraph.clientWidth + 3) / 12));
-    var cells = ghDays.slice(-weeksFit * 7);
-    ghGraph.innerHTML = "";
-    cells.forEach(function (c) {
-      var d = document.createElement("div");
-      d.className = "d";
-      d.style.background = GH_LEVELS[c ? c.level : 0];
-      if (c) d.title = c.date + ": " + c.count + " contributions";
-      ghGraph.appendChild(d);
+  /* ---------- galeria screenów (.tf__ph_gallery) ----------
+     Kilka zdjęć nałożonych na siebie w tym samym boxie. Scroll myszką nad
+     zdjęciem przełącza między nimi z fade in/out zamiast przewijać stronę —
+     ale tylko dopóki jest gdzie przełączać; na pierwszym/ostatnim zdjęciu
+     scroll w tę stronę przechodzi normalnie do przewijania strony. */
+  document.querySelectorAll(".tf__ph_gallery").forEach(function (g) {
+    var imgs = g.querySelectorAll("img");
+    var dots = g.querySelectorAll(".tf__ph_gallery_dots span");
+    if (imgs.length < 2) return;
+    var idx = 0, cooling = false;
+    function show(next) {
+      imgs[idx].classList.remove("is-active");
+      if (dots[idx]) dots[idx].classList.remove("is-active");
+      idx = next;
+      imgs[idx].classList.add("is-active");
+      if (dots[idx]) dots[idx].classList.add("is-active");
+    }
+    g.addEventListener("wheel", function (e) {
+      if (reduced) return;
+      var next = idx + (e.deltaY > 0 ? 1 : -1);
+      if (next < 0 || next >= imgs.length || cooling) return;
+      e.preventDefault();
+      cooling = true;
+      show(next);
+      setTimeout(function () { cooling = false; }, 550);
+    }, { passive: false });
+  });
+
+  /* ---------- lightbox: kliknięcie na screen go powiększa ---------- */
+  var lightbox = document.createElement("div");
+  lightbox.id = "fx-lightbox";
+  var lightboxImg = document.createElement("img");
+  lightbox.appendChild(lightboxImg);
+  document.body.appendChild(lightbox);
+  lightbox.addEventListener("click", function () { lightbox.classList.remove("is-open"); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") lightbox.classList.remove("is-open");
+  });
+  document.querySelectorAll(".tf__project_hero_media img").forEach(function (img) {
+    img.addEventListener("click", function () {
+      lightboxImg.src = img.currentSrc || img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add("is-open");
+    });
+  });
+
+  /* ---------- chmury dryfujące w tle sekcji LabInc (#p-labinc) ----------
+     Kilka miękkich "kłębów" (gradienty radialne) suwających się w poziomie,
+     część w lewo, część w prawo, różnymi prędkościami — pasuje do nieba
+     widocznego na screenie z gry. */
+  var labHero = document.getElementById("p-labinc");
+  var cloudsCv = document.getElementById("fx-clouds");
+  var cloudsS = cloudsCv ? fit(cloudsCv) : null;
+  var clouds = [];
+  for (var ci = 0; ci < 6; ci++) {
+    var dir = Math.random() < 0.5 ? 1 : -1;
+    clouds.push({
+      x: Math.random(),
+      y: 0.08 + Math.random() * 0.8,
+      scale: 0.7 + Math.random() * 1.1,
+      speed: dir * (0.00015 + Math.random() * 0.00035),
+      a: 0.05 + Math.random() * 0.06
     });
   }
-  if (ghGraph && window.fetch) {
-    fetch("https://github-contributions-api.jogruber.de/v4/" +
-      ghGraph.getAttribute("data-user") + "?y=last")
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
-        var days = data.contributions || [];
-        if (!days.length) return;
-        // dopełnij początek do niedzieli i koniec do soboty (pełne kolumny-tygodnie)
-        var pre = new Date(days[0].date + "T12:00").getDay();
-        var post = 6 - new Date(days[days.length - 1].date + "T12:00").getDay();
-        ghDays = [];
-        while (pre--) ghDays.push(null);
-        ghDays = ghDays.concat(days);
-        while (post--) ghDays.push(null);
-        ghRender();
-        if (ghTotal && data.total && data.total.lastYear !== undefined) {
-          ghTotal.textContent = data.total.lastYear + " contributions in the last year";
-        }
+  var CLOUD_PUFFS = [[0, 0, 46], [38, 6, 34], [-36, 8, 32], [16, -14, 30], [-18, -10, 26]];
+  function drawCloud(c, x, y, s, a) {
+    CLOUD_PUFFS.forEach(function (pf) {
+      var r = pf[2] * s, px = x + pf[0] * s, py = y + pf[1] * s;
+      var grad = c.createRadialGradient(px, py, 0, px, py, r);
+      grad.addColorStop(0, inkA(a));
+      grad.addColorStop(1, inkA(0));
+      c.fillStyle = grad;
+      c.beginPath(); c.arc(px, py, r, 0, 6.3); c.fill();
+    });
+  }
+  function drawClouds() {
+    var c = cloudsCv.getContext("2d");
+    c.clearRect(0, 0, cloudsS.w, cloudsS.h);
+    clouds.forEach(function (cl) {
+      cl.x += cl.speed;
+      if (cl.x > 1.25) cl.x = -0.25;
+      if (cl.x < -0.25) cl.x = 1.25;
+      drawCloud(c, cl.x * cloudsS.w, cl.y * cloudsS.h, cl.scale, cl.a);
+    });
+  }
+
+  /* ---------- tint ekranu przy wyróżnionych projektach ----------
+     Każdy .tf__project_hero[data-tint] barwi cały viewport swoim kolorem
+     (LabInc — jaśniejszy niebieski, agregator — zieleń, menedżer haseł —
+     fiolet), im bliżej środka ekranu, tym mocniej. Nakładka #fx-tint
+     powstaje tylko z JS-em i nie działa przy reduced-motion. */
+  var heroes = [];
+  document.querySelectorAll(".tf__project_hero[data-tint]").forEach(function (el) {
+    heroes.push({ el: el, rgb: el.getAttribute("data-tint") });
+  });
+  var tint = null;
+  if (heroes.length && !reduced) {
+    tint = document.createElement("div");
+    tint.id = "fx-tint";
+    tint.setAttribute("aria-hidden", "true");
+    document.body.appendChild(tint);
+  }
+  function drawTint() {
+    var best = null, bestC = 0;
+    heroes.forEach(function (h) {
+      var r = h.el.getBoundingClientRect();
+      var mid = r.top + r.height / 2;
+      var c = 1 - Math.abs(mid - vh / 2) / (vh * 0.6); // 1 = idealnie na środku
+      if (c > bestC) { bestC = c; best = h; }
+    });
+    if (best && bestC > 0) {
+      var e = bestC * bestC * (3 - 2 * bestC); // smoothstep — łagodne wejście/zejście
+      tint.style.background = "rgba(" + best.rgb + "," + (e * 0.55).toFixed(3) + ")";
+    } else {
+      tint.style.background = "transparent";
+    }
+  }
+
+  /* ---------- ostatnie repozytoria GitHuba (#gh-repos) ----------
+     Pobiera 5 ostatnio aktualizowanych repozytoriów z API GitHuba
+     i buduje listę (nazwa, opis, język, data). Przy błędzie notka + link. */
+  var ghRepos = document.getElementById("gh-repos");
+  if (ghRepos && window.fetch) {
+    fetch("https://api.github.com/users/" + ghRepos.getAttribute("data-user") +
+      "/repos?sort=pushed&per_page=5")
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (repos) {
+        if (!repos.length) return;
+        ghRepos.innerHTML = "";
+        repos.forEach(function (rp) {
+          var a = document.createElement("a");
+          a.className = "gh-repo";
+          a.href = rp.html_url; a.target = "_blank"; a.rel = "noopener";
+          var name = document.createElement("span");
+          name.className = "gh-repo-name"; name.textContent = rp.name;
+          a.appendChild(name);
+          if (rp.description) {
+            var desc = document.createElement("span");
+            desc.className = "gh-repo-desc"; desc.textContent = rp.description;
+            a.appendChild(desc);
+          }
+          var meta = document.createElement("span");
+          meta.className = "gh-repo-meta";
+          if (rp.language) {
+            var lang = document.createElement("span");
+            lang.className = "gh-repo-lang"; lang.textContent = rp.language;
+            meta.appendChild(lang);
+          }
+          meta.appendChild(document.createTextNode(
+            "updated " + new Date(rp.pushed_at).toLocaleDateString("en-GB",
+              { day: "numeric", month: "short", year: "numeric" })));
+          a.appendChild(meta);
+          ghRepos.appendChild(a);
+        });
       })
       .catch(function () {
-        ghGraph.innerHTML = '<p class="gh-graph-note">Could not load the graph - see the profile below.</p>';
+        ghRepos.innerHTML = '<p class="gh-graph-note">Could not load repositories - see the profile below.</p>';
       });
   }
 
@@ -209,8 +324,8 @@
     vh = window.innerHeight;
     if (led) ledS = fit(led);
     if (sky) skyS = fit(sky);
+    if (cloudsCv) cloudsS = fit(cloudsCv);
     seps.forEach(function (st) { st.s = fit(st.cv); });
-    ghRender();
   });
 
   /* ---------- pętla główna ---------- */
@@ -218,6 +333,8 @@
   function loop() {
     T += 0.016;
     if (led && near(ledBand)) drawLED(prog(ledBand));
+    if (cloudsCv && near(labHero)) drawClouds();
+    if (tint) drawTint();
     if (sky && near(sEdu)) drawSky(prog(sEdu), T);
     seps.forEach(function (st) { if (near(st.cv)) drawSep(st, T); });
     if (!reduced) requestAnimationFrame(loop);

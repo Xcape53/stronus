@@ -438,22 +438,35 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xl-4 col-md-6 d-flex">
-            <div class="tf__project_card fx-reveal">
+        <!-- 01: LabInc — pełna szerokość, screenshot po prawej -->
+        <div class="row align-items-center tf__project_hero fx-reveal fx-host" id="p-labinc" data-tint="0,122,204">
+          <canvas class="fx-bg" id="fx-clouds"></canvas>
+          <div class="col-lg-6">
+            <div class="tf__project_hero_text">
+              <span class="tf__ph_kicker">01 / Java Desktop Game</span>
               <div class="tf__project_card_head">
-                <h4>LabInc: Chemical Tycoon</h4>
+                <h3>LabInc: Chemical Tycoon</h3>
+                <span class="chip chip-status">Completed</span>
               </div>
               <p>
-                Incremental/idle simulation game - manage mines and chemical
-                factories, from a coal mine up to a nuclear reactor producing
-                synthetic elements. 16 factories, 118 chemical elements, an
-                achievement system and save/load functionality.
+                An educational strategy game combining incremental/idle
+                mechanics with chemistry. You start with a simple coal mine
+                and grow a production empire of 16 factories - all the way to
+                a nuclear reactor producing synthetic elements.
               </p>
+              <ul class="about-me-list">
+                <li>All 118 chemical elements to produce and sell - from carbon to oganesson</li>
+                <li>Exponential economy scaling from $0.01 up to $10<sup>35</sup></li>
+                <li>18 achievements plus automatic and manual game saves</li>
+                <li>Custom dark Swing GUI - Mining, Factories, Market and Achievements panels, animated effects and sound</li>
+              </ul>
               <div class="tf__project_tags">
-                <span class="chip">Java</span>
+                <span class="chip">Java 8+</span>
                 <span class="chip">Swing</span>
                 <span class="chip">Maven</span>
+                <span class="chip">JNA</span>
+                <span class="chip">Batik (SVG)</span>
+                <span class="chip">MP3SPI</span>
               </div>
               <div class="tf__project_links">
                 <a
@@ -465,18 +478,42 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-4 col-md-6 d-flex">
-            <div class="tf__project_card fx-reveal">
+          <div class="col-lg-6">
+            <div class="tf__project_hero_media">
+              <img
+                src="images/projects/labinc.png"
+                alt="LabInc: Chemical Tycoon - mining panel with coal mine and oil derrick"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 02: Job Search Aggregator — media (pipeline) po lewej -->
+        <div
+          class="row align-items-center flex-lg-row-reverse tf__project_hero fx-reveal"
+          id="p-jobagg"
+          data-tint="49,240,108"
+        >
+          <div class="col-lg-6">
+            <div class="tf__project_hero_text">
+              <span class="tf__ph_kicker">02 / Data &amp; AI Tool</span>
               <div class="tf__project_card_head">
-                <h4>Job Search Aggregator</h4>
+                <h3>Job Search Aggregator</h3>
                 <span class="chip chip-status">In development</span>
               </div>
               <p>
-                Tool that aggregates job offers from major job portals, filters
-                and ranks them, then runs a Deep Research stage (Gemini API)
-                returning company reputation, salary vs. market median, real
-                tech stack and red flags.
+                A tool that hunts for jobs so I don't have to. It scrapes
+                offers from major job portals, merges them into a single
+                ranked list and then investigates the most promising ones
+                in depth.
               </p>
+              <ul class="about-me-list">
+                <li>Aggregates offers from multiple job portals into one list</li>
+                <li>Filtering per provider or globally, with ranked results</li>
+                <li>Deep Research stage (Gemini API): company profile, GoWork/Glassdoor reputation, salary vs. market median, work mode, the actual tech stack and benefits</li>
+                <li>Red-flag detection - planned layoffs, complex reporting structures, organizational silos</li>
+              </ul>
               <div class="tf__project_tags">
                 <span class="chip">Web scraping</span>
                 <span class="chip">Gemini API</span>
@@ -484,19 +521,71 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-4 col-md-6 d-flex">
-            <div class="tf__project_card fx-reveal">
+          <div class="col-lg-6">
+            <div class="tf__project_hero_media tf__ph_gallery" id="gal-jobagg" data-lenis-prevent>
+              <img
+                src="images/projects/jobagg-1.png"
+                alt="Job Search Aggregator - scraped offers table with filters, per-provider counts and AI analysis actions"
+                loading="lazy"
+                class="is-active"
+              />
+              <img
+                src="images/projects/jobagg-2.png"
+                alt="Job Search Aggregator - Gemini deep research on a company: reputation, salary vs. market, culture warning signals"
+                loading="lazy"
+              />
+              <img
+                src="images/projects/jobagg-3.png"
+                alt="Job Search Aggregator - technology stack dictionary with AI-generated explanations"
+                loading="lazy"
+              />
+              <div class="tf__ph_gallery_dots">
+                <span class="is-active"></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03: Password Manager — media (sejf) po prawej -->
+        <div class="row align-items-center tf__project_hero fx-reveal" id="p-passmgr" data-tint="28,28,30">
+          <div class="col-lg-6">
+            <div class="tf__project_hero_text">
+              <span class="tf__ph_kicker">03 / Cross-platform App</span>
               <div class="tf__project_card_head">
-                <h4>Password Manager</h4>
+                <h3>Password Manager</h3>
                 <span class="chip chip-status">In development</span>
               </div>
               <p>
-                Simple cross-platform password manager for Windows and Linux,
-                developed as a group project.
+                A simple cross-platform password manager developed as a group
+                project - one lightweight vault that behaves the same on
+                Windows and Linux.
               </p>
+              <ul class="about-me-list">
+                <li>Runs natively on Windows and Linux</li>
+                <li>Built by a small student team as a group project</li>
+              </ul>
               <div class="tf__project_tags">
                 <span class="chip">Windows</span>
                 <span class="chip">Linux</span>
+                <span class="chip">Cross-platform</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="tf__project_hero_media tf__ph_gallery" id="gal-passmgr" data-lenis-prevent>
+              <img
+                src="images/projects/passmgr-1.png"
+                alt="Password Manager - vault list with a Gmail entry open, showing username, password and notes fields"
+                loading="lazy"
+                class="is-active"
+              />
+              <img
+                src="images/projects/passmgr-2.png"
+                alt="Password Manager - security dashboard with a vault strength score and per-account status"
+                loading="lazy"
+              />
+              <div class="tf__ph_gallery_dots">
+                <span class="is-active"></span><span></span>
               </div>
             </div>
           </div>
@@ -642,27 +731,6 @@
           <div class="col-md-6 d-flex">
             <div class="tf__online_card tf__activity_card fx-reveal">
               <div class="tf__activity_head">
-                <i class="fab fa-github"></i>
-                <h4>GitHub Activity</h4>
-              </div>
-              <!-- kafelki kontrybucji rysowane przez effects.js z publicznego API -->
-              <div class="gh-graph" id="gh-graph" data-user="Xcape53">
-                <p class="gh-graph-note">Loading contribution activity...</p>
-              </div>
-              <p class="gh-graph-total" id="gh-graph-total"></p>
-              <div class="tf__project_links">
-                <a
-                  href="https://github.com/Xcape53"
-                  target="_blank"
-                  rel="noopener"
-                  ><i class="fab fa-github"></i> View profile</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 d-flex">
-            <div class="tf__online_card tf__activity_card fx-reveal">
-              <div class="tf__activity_head">
                 <i class="fa-solid fa-robot"></i>
                 <h4>Claude Code Usage</h4>
               </div>
@@ -692,6 +760,26 @@
                   rel="noopener"
                   ><i class="fa-solid fa-arrow-up-right-from-square"></i>
                   Built with Claude Code</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex">
+            <div class="tf__online_card tf__activity_card fx-reveal">
+              <div class="tf__activity_head">
+                <i class="fab fa-github"></i>
+                <h4>Latest on GitHub</h4>
+              </div>
+              <!-- lista ostatnich repozytoriów pobierana przez effects.js z API GitHuba -->
+              <div class="gh-repos" id="gh-repos" data-user="Xcape53">
+                <p class="gh-graph-note">Loading repositories...</p>
+              </div>
+              <div class="tf__project_links">
+                <a
+                  href="https://github.com/Xcape53"
+                  target="_blank"
+                  rel="noopener"
+                  ><i class="fab fa-github"></i> View profile</a
                 >
               </div>
             </div>

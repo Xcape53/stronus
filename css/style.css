@@ -3369,6 +3369,131 @@ html.lenis {
    rogami poza baner na czarne tło sekcji niżej */
 .tf__banner { overflow: hidden; }
 
+/* --- pełnoszerokościowe sekcje głównych projektów (#projects) --- */
+.tf__project_hero { margin-top: 110px; }
+
+#projects .tf__project_hero:first-of-type { margin-top: 30px; }
+
+/* wszystkie trzy główne sekcje rozciągnięte na dużą część wysokości ekranu
+   (LabInc dodatkowo ma dryfujące chmury w tle - canvas #fx-clouds w effects.js) */
+.tf__project_hero { min-height: 68vh; }
+
+/* treść wszystkich trzech głównych sekcji ma zostać NAD #fx-tint (z-index:1) —
+   inaczej tint (mix-blend-mode:screen) wybielałby tekst/screeny, zamiast działać
+   wyłącznie jak barwione tło sekcji */
+.tf__project_hero > .col-lg-6 { position: relative; z-index: 2; }
+
+/* chmury mają płynąć od krawędzi do krawędzi ekranu, nie tylko w obrębie
+   wyśrodkowanego .container — canvas wyłamuje się na pełną szerokość viewportu */
+#fx-clouds {
+  left: 50%;
+  width: 100vw;
+  max-width: none; /* .row > * (Bootstrap) narzuca max-width:100% — canvas ma wyjść poza container */
+  transform: translateX(-50%);
+}
+
+.tf__ph_kicker {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--colorPrimary);
+  margin-bottom: 14px;
+}
+
+.tf__project_hero_text h3 {
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--colorWhite);
+  margin: 0;
+}
+
+.tf__project_hero_text p { margin: 20px 0; }
+
+.tf__project_hero_text .tf__project_tags { margin-top: 24px; }
+
+.tf__project_hero_media {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: var(--colorDarkAccent);
+  overflow: hidden;
+}
+
+.tf__project_hero_media img { display: block; width: 100%; height: auto; }
+
+@media (max-width: 991px) {
+  .tf__project_hero { margin-top: 70px; min-height: auto; }
+  .tf__project_hero_media { margin-top: 30px; }
+  .tf__project_hero_text h3 { font-size: 28px; }
+}
+
+/* galeria realnych screenów (Job Search Aggregator / Password Manager):
+   jedno zdjęcie naraz, w tym samym bounding boxie co pojedynczy screen
+   LabInc — scroll myszką nad zdjęciem przełącza z fade in/out (effects.js) */
+.tf__ph_gallery { position: relative; }
+
+.tf__ph_gallery.tf__project_hero_media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.tf__ph_gallery.tf__project_hero_media img.is-active { opacity: 1; pointer-events: auto; }
+
+#gal-jobagg { aspect-ratio: 1903 / 915; }
+#gal-passmgr { aspect-ratio: 1496 / 1030; }
+
+.tf__ph_gallery_dots {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.tf__ph_gallery_dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transition: background 0.3s ease;
+}
+
+.tf__ph_gallery_dots span.is-active { background: var(--colorWhite); }
+
+/* wszystkie screeny projektów da się kliknąć, żeby powiększyć (lightbox) */
+.tf__project_hero_media img { cursor: zoom-in; }
+
+#fx-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  background: rgba(9, 8, 12, 0.92);
+  cursor: zoom-out;
+}
+
+#fx-lightbox.is-open { display: flex; }
+
+#fx-lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
+}
+
 /* --- My Activity: kafelki GitHub + snapshot użycia Claude Code --- */
 .tf__activity_card { text-align: left; }
 
@@ -3382,25 +3507,47 @@ html.lenis {
 .tf__activity_head i { font-size: 32px; color: var(--colorPrimary); margin: 0; }
 .tf__activity_head h4 { margin: 0; }
 
-.gh-graph {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: repeat(7, 9px);
-  grid-auto-columns: 9px;
-  gap: 3px;
-  margin-bottom: 14px;
-  min-height: 81px;
-  align-content: center;
+.gh-graph-note { margin: 0 0 16px; color: var(--colorBodyText); }
+
+.gh-repos { margin-bottom: 16px; }
+
+.gh-repo {
+  display: block;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.gh-graph .d { border-radius: 2px; }
+.gh-repo:first-child { padding-top: 0; }
 
-.gh-graph-note { margin: 0; color: var(--colorBodyText); }
+.gh-repo-name {
+  display: block;
+  font-weight: 700;
+  color: var(--colorWhite);
+  transition: color 0.2s linear;
+}
 
-.gh-graph-total {
+.gh-repo:hover .gh-repo-name { color: var(--colorPrimary); }
+
+.gh-repo-desc {
+  display: block;
+  font-size: 13px;
   color: var(--colorBodyText);
-  font-size: 14px;
-  margin-bottom: 20px;
+  margin-top: 2px;
+}
+
+.gh-repo-meta {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--colorBodyText);
+  margin-top: 5px;
+}
+
+.gh-repo-lang {
+  color: var(--colorPrimary);
+  font-weight: 700;
+  margin-right: 10px;
 }
 
 .cc-stats {
@@ -3447,6 +3594,17 @@ html.fx-armed .fx-reveal.is-in {
 /* wyższe "okno" z niebieskim gradientem (+200px łącznie) */
 #projects.bg-window { padding-top: 250px; }
 #activity.bg-window { padding-bottom: 180px; }
+
+/* tint ekranu wyróżnionych projektów — nakładka tworzona w effects.js,
+   kolor/krycie sterowane co klatkę wg data-tint najbliższego środka hero */
+#fx-tint {
+  position: fixed;
+  inset: 0;
+  z-index: 1; /* nad tłem sekcji (bg-window), ale POD treścią — patrz .tf__project_hero > [class*="col-"] niżej */
+  pointer-events: none;
+  mix-blend-mode: screen; /* tylko rozjaśnia — tekst i tła nie ciemnieją */
+  background: transparent;
+}
 
 /* --- kontakt: kicker + LET'S TALK + magnetyczny przycisk --- */
 .tf__contact_kicker {
