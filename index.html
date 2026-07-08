@@ -201,11 +201,41 @@
             <div class="tf__single_service" data-animation="fade-left">
               <div class="tf__single_service_img">
                 <div data-animation="img-blur">
-                  <img
-                    src="images/service_1.jpg"
-                    alt="service"
-                    class="img-fluid w-100"
-                  />
+                  <div
+                    class="tf__ph_gallery tf__project_hero_media tf__ph_gallery--fixed"
+                    id="gal-electronics"
+                    data-lenis-prevent
+                  >
+                    <img
+                      src="images/projects/plain_axi4_lite.png"
+                      alt="Vivado waveform simulation of an AXI4-Lite bus interface"
+                      loading="lazy"
+                      class="is-active"
+                    />
+                    <img
+                      src="images/projects/anddd.png"
+                      alt="Standard-cell IC layout view of a logic gate"
+                      loading="lazy"
+                    />
+                    <img
+                      src="images/projects/image.png"
+                      alt="Standard-cell IC layout and chip floorplan view"
+                      loading="lazy"
+                    />
+                    <img
+                      src="images/projects/FLKC9BXIWMQUJ37.png"
+                      alt="Basys 3 FPGA board wired to a breadboard, running a digital counter"
+                      loading="lazy"
+                    />
+                    <img
+                      src="images/projects/Screenshot_13.png"
+                      alt="CNC engraving machine milling the Gdańsk University of Technology ETI logo"
+                      loading="lazy"
+                    />
+                    <div class="tf__ph_gallery_dots">
+                      <span class="is-active"></span><span></span><span></span><span></span><span></span>
+                    </div>
+                  </div>
                 </div>
                 <span><i class="isti-copy1"></i></span>
               </div>
@@ -271,11 +301,6 @@
     <!--============================
         SERVICE END
     ==============================-->
-
-    <!-- P4: macierz LED — scroll przewija komunikat na wyświetlaczu -->
-    <div class="fx-led-band" id="fx-led-band" aria-hidden="true">
-      <canvas id="fx-led"></canvas>
-    </div>
 
     <!--============================
         SKILL START
@@ -734,25 +759,83 @@
                 <i class="fa-solid fa-robot"></i>
                 <h4>Claude Code Usage</h4>
               </div>
-              <!-- snapshot z lokalnych logów (ccusage); odświeżanie: patrz CLAUDE.md -->
-              <div class="cc-stats">
-                <div class="cc-stat">
-                  <span class="cc-num">580M+</span>
-                  <span class="cc-label">tokens processed</span>
-                </div>
-                <div class="cc-stat">
-                  <span class="cc-num">3.6M</span>
-                  <span class="cc-label">tokens generated</span>
-                </div>
-                <div class="cc-stat">
-                  <span class="cc-num">26</span>
-                  <span class="cc-label">days of building</span>
-                </div>
-                <div class="cc-stat">
-                  <span class="cc-num">Fable 5</span>
-                  <span class="cc-label">current model</span>
-                </div>
+              <!-- snapshot z lokalnych logów (ccusage daily --json, tylko modelBreakdowns
+                   z "claude" w nazwie); odświeżanie: patrz CLAUDE.md -->
+              <div class="cc-heatmap" aria-hidden="true">
+                <span class="cc-day lv0" title="2026-04-27"></span>
+                <span class="cc-day lv0" title="2026-04-28"></span>
+                <span class="cc-day lv1" title="2026-04-29: 1.2M tokens"></span>
+                <span class="cc-day lv0" title="2026-04-30"></span>
+                <span class="cc-day lv0" title="2026-05-01"></span>
+                <span class="cc-day lv0" title="2026-05-02"></span>
+                <span class="cc-day lv0" title="2026-05-03"></span>
+                <span class="cc-day lv0" title="2026-05-04"></span>
+                <span class="cc-day lv0" title="2026-05-05"></span>
+                <span class="cc-day lv0" title="2026-05-06"></span>
+                <span class="cc-day lv0" title="2026-05-07"></span>
+                <span class="cc-day lv0" title="2026-05-08"></span>
+                <span class="cc-day lv0" title="2026-05-09"></span>
+                <span class="cc-day lv0" title="2026-05-10"></span>
+                <span class="cc-day lv0" title="2026-05-11"></span>
+                <span class="cc-day lv0" title="2026-05-12"></span>
+                <span class="cc-day lv0" title="2026-05-13"></span>
+                <span class="cc-day lv0" title="2026-05-14"></span>
+                <span class="cc-day lv0" title="2026-05-15"></span>
+                <span class="cc-day lv0" title="2026-05-16"></span>
+                <span class="cc-day lv0" title="2026-05-17"></span>
+                <span class="cc-day lv0" title="2026-05-18"></span>
+                <span class="cc-day lv0" title="2026-05-19"></span>
+                <span class="cc-day lv0" title="2026-05-20"></span>
+                <span class="cc-day lv0" title="2026-05-21"></span>
+                <span class="cc-day lv0" title="2026-05-22"></span>
+                <span class="cc-day lv0" title="2026-05-23"></span>
+                <span class="cc-day lv0" title="2026-05-24"></span>
+                <span class="cc-day lv0" title="2026-05-25"></span>
+                <span class="cc-day lv0" title="2026-05-26"></span>
+                <span class="cc-day lv0" title="2026-05-27"></span>
+                <span class="cc-day lv1" title="2026-05-28: 2.0M tokens"></span>
+                <span class="cc-day lv2" title="2026-05-29: 6.7M tokens"></span>
+                <span class="cc-day lv0" title="2026-05-30"></span>
+                <span class="cc-day lv0" title="2026-05-31"></span>
+                <span class="cc-day lv0" title="2026-06-01"></span>
+                <span class="cc-day lv0" title="2026-06-02"></span>
+                <span class="cc-day lv0" title="2026-06-03"></span>
+                <span class="cc-day lv1" title="2026-06-04: 0.6M tokens"></span>
+                <span class="cc-day lv0" title="2026-06-05"></span>
+                <span class="cc-day lv0" title="2026-06-06"></span>
+                <span class="cc-day lv0" title="2026-06-07"></span>
+                <span class="cc-day lv3" title="2026-06-08: 27.5M tokens"></span>
+                <span class="cc-day lv1" title="2026-06-09: 1.2M tokens"></span>
+                <span class="cc-day lv3" title="2026-06-10: 29.8M tokens"></span>
+                <span class="cc-day lv4" title="2026-06-11: 76.6M tokens"></span>
+                <span class="cc-day lv0" title="2026-06-12"></span>
+                <span class="cc-day lv2" title="2026-06-13: 19.3M tokens"></span>
+                <span class="cc-day lv2" title="2026-06-14: 14.6M tokens"></span>
+                <span class="cc-day lv3" title="2026-06-15: 20.4M tokens"></span>
+                <span class="cc-day lv3" title="2026-06-16: 44.4M tokens"></span>
+                <span class="cc-day lv2" title="2026-06-17: 18.2M tokens"></span>
+                <span class="cc-day lv0" title="2026-06-18"></span>
+                <span class="cc-day lv0" title="2026-06-19"></span>
+                <span class="cc-day lv1" title="2026-06-20: 3.9M tokens"></span>
+                <span class="cc-day lv3" title="2026-06-21: 49.7M tokens"></span>
+                <span class="cc-day lv2" title="2026-06-22: 8.4M tokens"></span>
+                <span class="cc-day lv2" title="2026-06-23: 18.7M tokens"></span>
+                <span class="cc-day lv4" title="2026-06-24: 83.1M tokens"></span>
+                <span class="cc-day lv2" title="2026-06-25: 10.3M tokens"></span>
+                <span class="cc-day lv1" title="2026-06-26: 1.3M tokens"></span>
+                <span class="cc-day lv0" title="2026-06-27"></span>
+                <span class="cc-day lv1" title="2026-06-28: 0.2M tokens"></span>
+                <span class="cc-day lv3" title="2026-06-29: 26.0M tokens"></span>
+                <span class="cc-day lv0" title="2026-06-30"></span>
+                <span class="cc-day lv1" title="2026-07-01: 0.7M tokens"></span>
+                <span class="cc-day lv4" title="2026-07-02: 64.2M tokens"></span>
+                <span class="cc-day lv3" title="2026-07-03: 43.7M tokens"></span>
+                <span class="cc-day lv3" title="2026-07-04: 40.0M tokens"></span>
+                <span class="cc-day lv2" title="2026-07-05: 17.9M tokens"></span>
+                <span class="cc-day lv1" title="2026-07-06: 0.5M tokens"></span>
+                <span class="cc-day lv4" title="2026-07-07: 145.8M tokens"></span>
               </div>
+              <p class="cc-summary">29 active days since April &middot; 772M+ tokens processed &middot; currently on Fable 5</p>
               <div class="tf__project_links">
                 <a
                   href="https://claude.com/claude-code"
@@ -874,7 +957,7 @@
                 LET'S <span class="talk">TALK</span>
               </h2>
               <div class="tf__contact_mail" id="magzone">
-                <a href="mailto:xcape53@gmail.com" class="tf__subscribtion" id="mag"
+                <a href="mailto:jeleniewicz@op.pl" class="tf__subscribtion" id="mag"
                   >EMAIL ME</a
                 >
               </div>
@@ -892,8 +975,8 @@
                     ></span>
                     <div class="tf__address_area">
                       <p>
-                        <a href="mailto:xcape53@gmail.com"
-                          >xcape53@gmail.com</a
+                        <a href="mailto:jeleniewicz@op.pl"
+                          >jeleniewicz@op.pl</a
                         >
                       </p>
                     </div>

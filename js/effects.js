@@ -1,7 +1,6 @@
 /* ============================================================
    effects.js — parallaxowe tła sekcji i mikro-efekty
    dołożone do oryginalnego designu strony:
-   - P4: macierz LED przewijana scrollem (pasek #fx-led-band, nad My skills)
    - P6: gwiezdne niebo w dwóch głębokościach (tło #edu / SimLE)
    - efekt 13: separatory-oscyloskopy (.osc-sep, reagują na mysz)
    - efekt 05: magnetyczny przycisk EMAIL ME (#magzone / #mag)
@@ -12,7 +11,6 @@
   "use strict";
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var vh = window.innerHeight;
-  var BLUE = "#2c7ffe";
 
   function blueA(a) { return "rgba(44,127,254," + a + ")"; }
   function inkA(a) { return "rgba(242,243,247," + a + ")"; }
@@ -32,43 +30,6 @@
   function near(el) {
     var r = el.getBoundingClientRect();
     return r.bottom > -80 && r.top < vh + 80;
-  }
-
-  /* ---------- P4: macierz LED (pasek nad My skills) ---------- */
-  var ledBand = document.getElementById("fx-led-band");
-  var led = document.getElementById("fx-led");
-  var ledS = led ? fit(led) : null;
-  // najmocniejsze umiejętności wg profilu (ROBOTA) i technologii z projektów
-  var MSG = "PYTHON * C++ * JAVA * JAVASCRIPT * AUTOHOTKEY * GIMP * LINUX * REST API * SDR * ";
-  var ROWS = 13, pix = null, msgW = 0;
-  if (led) {
-    var off = document.createElement("canvas"), offc = off.getContext("2d");
-    offc.font = "bold 12px Consolas, monospace";
-    msgW = Math.ceil(offc.measureText(MSG).width) + 40;
-    off.width = msgW; off.height = ROWS;
-    offc = off.getContext("2d");
-    offc.font = "bold 12px Consolas, monospace";
-    offc.fillStyle = "#fff"; offc.textBaseline = "middle";
-    offc.fillText(MSG, 0, ROWS / 2 + 1);
-    pix = offc.getImageData(0, 0, msgW, ROWS).data;
-  }
-  function lit(col, row) { return pix[(row * msgW + (col % msgW)) * 4 + 3] > 120; }
-  function drawLED(p) {
-    var c = led.getContext("2d"); c.clearRect(0, 0, ledS.w, ledS.h);
-    var cell = Math.max(5, Math.floor(ledS.w / 230)); // drobne diody = niski pasek i więcej tekstu naraz
-    var cols = Math.ceil(ledS.w / cell);
-    var top = (ledS.h - ROWS * cell) / 2;
-    var win = Math.floor(p * msgW * 0.45); // wolniejsze przewijanie napisu
-    for (var r = 0; r < ROWS; r++) {
-      for (var cl = 0; cl < cols; cl++) {
-        var on = lit(cl + win, r);
-        c.fillStyle = on ? BLUE : inkA(.06);
-        c.beginPath();
-        c.arc(cl * cell + cell / 2, top + r * cell + cell / 2,
-          on ? cell * .34 : cell * .16, 0, 6.3);
-        c.fill();
-      }
-    }
   }
 
   /* ---------- P6: gwiezdne niebo (tło #edu) ---------- */
@@ -180,7 +141,7 @@
      przełączać; na pierwszym/ostatnim zdjęciu scroll w tę stronę
      przechodzi normalnie do przewijania strony. */
   function sizeGalleryTo(g, img) {
-    if (!img.naturalWidth) return;
+    if (!img.naturalWidth || g.classList.contains("tf__ph_gallery--fixed")) return; // box ma stały rozmiar z CSS, bez przeliczeń
     if (g.classList.contains("tf__ph_gallery--fit-h")) {
       // szerokość stała (do granicy tekstu), zmienia się wysokość
       g.style.height = Math.round((img.naturalHeight / img.naturalWidth) * g.clientWidth) + "px";
@@ -218,6 +179,16 @@
       show(next);
       setTimeout(function () { cooling = false; }, 550);
     }, { passive: false });
+
+    // Galeria "--fixed" (karta usługi Electronics) siedzi w gridzie usług —
+    // nikt nie scrolluje myszką nad małą miniaturką, więc bez auto-cyklu
+    // widać tylko pierwsze zdjęcie. Przełącza się sama, w pętli.
+    if (g.classList.contains("tf__ph_gallery--fixed") && !reduced) {
+      setInterval(function () {
+        if (!near(g)) return;
+        show((idx + 1) % imgs.length);
+      }, 3200);
+    }
   });
 
   /* ---------- lightbox: kliknięcie na screen go powiększa ---------- */
@@ -289,7 +260,6 @@
   /* ---------- resize ---------- */
   window.addEventListener("resize", function () {
     vh = window.innerHeight;
-    if (led) ledS = fit(led);
     if (sky) skyS = fit(sky);
     if (cloudsCv) cloudsS = fit(cloudsCv);
     seps.forEach(function (st) { st.s = fit(st.cv); });
@@ -299,7 +269,6 @@
   var T = 0;
   function loop() {
     T += 0.016;
-    if (led && near(ledBand)) drawLED(prog(ledBand));
     if (cloudsCv && near(labHero)) drawClouds();
     if (sky && near(sEdu)) drawSky(prog(sEdu), T);
     seps.forEach(function (st) { if (near(st.cv)) drawSep(st, T); });
