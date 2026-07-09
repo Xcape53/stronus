@@ -3667,14 +3667,52 @@ html.lenis {
 .cc-summary {
   font-size: 13px;
   color: var(--colorBodyText);
+  margin: 0 0 16px;
+}
+
+.cc-mytools {
   margin: 0 0 20px;
 }
 
-.cc-summary_detail {
+.cc-mytools_label {
   display: block;
-  margin-top: 4px;
+  font-size: 13px;
+  color: var(--colorBodyText);
+  margin-bottom: 8px;
+}
+
+.cc-mytools_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.cc-tool-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  text-align: left;
+  transition: border-color 0.2s linear, transform 0.2s linear;
+}
+
+.cc-tool-stat:hover {
+  border-color: var(--colorPrimary);
+  transform: translateY(-2px);
+}
+
+.cc-tool-stat_name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--colorWhite);
+}
+
+.cc-tool-stat_detail {
   font-size: 11px;
-  opacity: 0.6;
+  color: var(--colorBodyText);
+  opacity: 0.75;
 }
 
 .cc-tools {
@@ -3713,10 +3751,11 @@ html.fx-armed .fx-reveal.is-in {
 }
 
 /* wyższe "okno" z niebieskim gradientem (+200px łącznie) */
-/* #online domyka okno #projects+#online od dołu - #activity przeniesiono
-   za #about-me i straciło bg-window, więc hak paddingu wędruje tu z niego */
+/* okno ciągnie się teraz przez #projects + #online + #about-me (na życzenie
+   usera - #about-me też ma dostawać stałe niebieskie tło); #about-me domyka
+   je od dołu, bo zaraz za nim jest #activity bez bg-window */
 #projects.bg-window { padding-top: 250px; }
-#online.bg-window { padding-bottom: 180px; }
+#about-me.bg-window { padding-bottom: 180px; }
 
 /* glow za całym panelem wyróżnionego projektu (tekst + zdjęcie) - stały,
    lokalny, w kolorze data-tint danej sekcji (--tint-rgb ustawiane raz w
@@ -3802,7 +3841,7 @@ html.fx-armed .fx-reveal.is-in {
 @media (max-width: 767px) {
   .osc-sep { height: 80px; }
   #projects.bg-window { padding-top: 180px; }
-  #online.bg-window { padding-bottom: 120px; }
+  #about-me.bg-window { padding-bottom: 120px; }
   .tf__lets_talk { font-size: 48px; }
   .tf__contact_mail { padding: 24px 24px; margin: -24px; }
 }

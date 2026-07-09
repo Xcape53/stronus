@@ -775,7 +775,7 @@
     <!--============================
         ABOUT ME START (was: BLOG)
     ==============================-->
-    <section class="tf__about_me pt_145 pb_120" id="about-me">
+    <section class="tf__about_me pt_145 pb_120 bg-window" id="about-me">
       <div class="container">
         <div class="row">
           <div class="row justify-content-center">
@@ -896,20 +896,23 @@
                 width="663"
                 height="104"
               />
-              <p class="cc-summary" data-i18n="activity.summary">Shipping something most days - features, data pipelines and internal tools, with Claude Code and Codex. <span class="cc-summary_detail">772M+ tokens processed &middot; currently on Fable 5</span></p>
+              <p class="cc-summary" data-i18n="activity.summary">Shipping something most days - features, data pipelines and internal tools, with Claude Code and Codex.</p>
+              <div class="cc-mytools">
+                <span class="cc-mytools_label" data-i18n="activity.mytools">My Tools</span>
+                <div class="cc-mytools_row">
+                  <a class="cc-tool-stat" href="https://claude.com/claude-code" target="_blank" rel="noopener">
+                    <span class="cc-tool-stat_name">Claude Code</span>
+                    <span class="cc-tool-stat_detail" data-i18n="activity.claudedetail">772M+ tokens processed</span>
+                  </a>
+                  <a class="cc-tool-stat" href="https://chatgpt.com/codex" target="_blank" rel="noopener">
+                    <span class="cc-tool-stat_name">Codex</span>
+                    <span class="cc-tool-stat_detail" data-i18n="activity.codexdetail">Everyday coding partner</span>
+                  </a>
+                </div>
+              </div>
               <div class="cc-tools">
                 <span class="cc-tools_label" data-i18n="activity.alsowith">Also using:</span>
-                <span class="chip">Codex</span>
                 <span class="chip">VS Code</span>
-              </div>
-              <div class="tf__project_links">
-                <a
-                  href="https://claude.com/claude-code"
-                  target="_blank"
-                  rel="noopener"
-                  data-i18n="activity.claude"><i class="fa-solid fa-arrow-up-right-from-square"></i>
-                  Built with Claude Code</a
-                >
               </div>
             </div>
           </div>
