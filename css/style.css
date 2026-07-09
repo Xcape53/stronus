@@ -3684,6 +3684,29 @@ html.lenis {
   margin: 0 0 20px;
 }
 
+.cc-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 20px;
+}
+
+.cc-tools_label {
+  font-size: 13px;
+  color: var(--colorBodyText);
+}
+
+.cc-tools .chip {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 13px;
+  border: 1px solid var(--colorPrimary);
+  color: var(--colorWhite);
+  background: transparent;
+  border-radius: 999px;
+}
+
 /* odsłanianie kart - stan ukryty tylko gdy JS doda fx-armed na <html> */
 html.fx-armed .fx-reveal {
   opacity: 0;
