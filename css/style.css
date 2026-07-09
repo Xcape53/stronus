@@ -3655,33 +3655,26 @@ html.lenis {
 .tf__activity_head i { font-size: 32px; color: var(--colorPrimary); margin: 0; }
 .tf__activity_head h4 { margin: 0; }
 
-.cc-heatmap {
-  display: grid;
-  grid-template-rows: repeat(7, 1fr);
-  grid-auto-flow: column;
-  grid-auto-columns: 12px;
-  gap: 3px;
+.cc-ghchart {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
   margin-bottom: 14px;
-  overflow-x: auto;
-  padding-bottom: 2px;
+  border-radius: 4px;
 }
-
-.cc-day {
-  width: 12px;
-  height: 12px;
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.cc-day.lv1 { background: rgba(44, 127, 254, 0.35); }
-.cc-day.lv2 { background: rgba(44, 127, 254, 0.55); }
-.cc-day.lv3 { background: rgba(44, 127, 254, 0.78); }
-.cc-day.lv4 { background: var(--colorPrimary); }
 
 .cc-summary {
   font-size: 13px;
   color: var(--colorBodyText);
   margin: 0 0 20px;
+}
+
+.cc-summary_detail {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  opacity: 0.6;
 }
 
 .cc-tools {
@@ -3720,8 +3713,10 @@ html.fx-armed .fx-reveal.is-in {
 }
 
 /* wyższe "okno" z niebieskim gradientem (+200px łącznie) */
+/* #online domyka okno #projects+#online od dołu - #activity przeniesiono
+   za #about-me i straciło bg-window, więc hak paddingu wędruje tu z niego */
 #projects.bg-window { padding-top: 250px; }
-#activity.bg-window { padding-bottom: 180px; }
+#online.bg-window { padding-bottom: 180px; }
 
 /* glow za całym panelem wyróżnionego projektu (tekst + zdjęcie) - stały,
    lokalny, w kolorze data-tint danej sekcji (--tint-rgb ustawiane raz w
@@ -3807,7 +3802,7 @@ html.fx-armed .fx-reveal.is-in {
 @media (max-width: 767px) {
   .osc-sep { height: 80px; }
   #projects.bg-window { padding-top: 180px; }
-  #activity.bg-window { padding-bottom: 120px; }
+  #online.bg-window { padding-bottom: 120px; }
   .tf__lets_talk { font-size: 48px; }
   .tf__contact_mail { padding: 24px 24px; margin: -24px; }
 }
