@@ -3354,9 +3354,10 @@ html.lenis {
 .tf__banner { overflow: hidden; }
 
 /* --- pełnoszerokościowe sekcje głównych projektów (#projects) --- */
-.tf__project_hero { margin-top: 110px; }
+/* odstępy w tej sekcji zmniejszone o ~25% na życzenie usera (było 110/30) */
+.tf__project_hero { margin-top: 82px; }
 
-#projects .tf__project_hero:first-of-type { margin-top: 30px; }
+#projects .tf__project_hero:first-of-type { margin-top: 22px; }
 
 /* wszystkie trzy główne sekcje rozciągnięte na dużą część wysokości ekranu
    (LabInc dodatkowo ma dryfujące chmury w tle - canvas #fx-clouds w effects.js) */
@@ -3394,9 +3395,13 @@ html.lenis {
   margin: 0;
 }
 
-.tf__project_hero_text p { margin: 20px 0; }
+.tf__project_hero_text p { margin: 15px 0; }
 
-.tf__project_hero_text .tf__project_tags { margin-top: 24px; }
+.tf__project_hero_text .about-me-list { margin-top: 14px; }
+
+.tf__project_hero_text .about-me-list li { margin-bottom: 8px; }
+
+.tf__project_hero_text .tf__project_tags { margin-top: 18px; }
 
 /* tekst wyrównany w stronę zdjęcia w danej sekcji: 01 LabInc i 03 Password
    Manager (obrazek z prawej) - do prawej; 02 Job Aggregator (obrazek
@@ -3428,9 +3433,23 @@ html.lenis {
   justify-content: flex-start;
 }
 
+/* checkmarki tych dwóch list mają siedzieć w jednej kolumnie zamiast
+   przesuwać się per linijka - blok <ul> jest right-aligned jako całość
+   (fit-content), a każde <li> rozciąga się na 100% jego szerokości, więc
+   checkmark (::before, left:0) zawsze trafia w to samo miejsce */
+#p-labinc .about-me-list,
+#p-passmgr .about-me-list {
+  width: fit-content;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: 0;
+}
+
 #p-labinc .about-me-list li,
 #p-passmgr .about-me-list li {
-  margin-left: auto;
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
   margin-right: 0;
 }
 
@@ -3449,8 +3468,8 @@ html.lenis {
 .tf__project_hero_media img { display: block; width: 100%; height: auto; }
 
 @media (max-width: 991px) {
-  .tf__project_hero { margin-top: 70px; min-height: auto; }
-  .tf__project_hero_media { margin-top: 30px; }
+  .tf__project_hero { margin-top: 52px; min-height: auto; }
+  .tf__project_hero_media { margin-top: 22px; }
   .tf__project_hero_text h3 { font-size: 28px; }
 }
 
