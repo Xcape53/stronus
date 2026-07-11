@@ -3267,6 +3267,14 @@ html.lenis {
   color: var(--colorWhite);
 }
 
+.tf__project_links_note {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--colorBodyText);
+  opacity: 0.7;
+}
+
 /* ============================
    FIND ME ONLINE CARDS (custom)
 ============================ */
