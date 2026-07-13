@@ -759,18 +759,9 @@
 <i class="fa-solid fa-robot"></i>
 <h3 data-i18n="activity.usage">Aktywność w kodowaniu</h3>
 </div>
-<!-- prawdziwy graf kontrybucji GitHub (ghchart.rshah.org), zapisany
-                   statycznie i przekolorowany pod ciemne tło karty (fill:#EEEEEE
-                   -> #1d2024, odpowiednik dotychczasowego cc-day.lv0 na tym tle);
-                   shape-rendering:crispedges jest usuwane i dodawany viewBox, bo
-                   crispedges + skalowanie CSS (width:100%) dawało nierówne odstępy
-                   między komórkami (raz 1px, raz 2px) - bez tego atrybutu każda
-                   komórka skaluje się tak samo. Odświeżanie:
-                   curl "https://ghchart.rshah.org/2c7ffe/Xcape53" | sed
-                   -e 's/fill:#EEEEEE/fill:#1d2024/g' -e 's/shape-rendering:crispedges;//g'
-                   -e 's/<svg version="1.1"/<svg viewBox="0 0 663 104" version="1.1"/'
-                   > images/gh-contributions.svg -->
-<img alt="GitHub contribution graph for Xcape53" class="cc-ghchart" decoding="async" height="104" loading="lazy" src="../images/gh-contributions.svg" width="663"/>
+<!-- Statyczny snapshot oficjalnego kalendarza kontrybucji GitHub,
+                   generowany przez: python scripts/generate_github_contributions.py -->
+<img alt="GitHub contribution graph for Xcape53" class="cc-ghchart" decoding="async" height="104" loading="lazy" src="../images/gh-contributions.svg?v=20260714-github-sync" width="663"/>
 <p class="cc-summary" data-i18n="activity.uptodate">Inżynieria oprogramowania nigdy nie stoi w miejscu, a narzędzia, które ją napędzają, zmieniają się jeszcze szybciej - kto nie nadąża, zostaje w tyle. Bycie na bieżąco czyni mnie bardziej produktywnym, a nie mniej ostrożnym: w czułych systemach trzeba ich używać uważnie i metodycznie.</p>
 <div class="cc-mytools">
 <span class="cc-mytools_label" data-i18n="activity.mytools">Moje narzędzia</span>
