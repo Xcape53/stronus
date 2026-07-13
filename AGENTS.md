@@ -23,6 +23,7 @@ Static personal portfolio website (Piotr Jeleniewicz / "Xcape"), built by custom
 - `C:\Users\user1\Documents\Backups\stronus\stronus_backup_2026-07-12_gallery\` - snapshot immediately before upgrading the image lightbox and replacing the IT Tools stock photo with the user's screenshots.
 - `C:\Users\user1\Documents\Backups\stronus\stronus_backup_2026-07-12_projects-banner\` - snapshot immediately before fixing service-card galleries, mobile banner scaling, side-project order and Codex activity statistics.
 - `C:\Users\user1\Documents\Backups\stronus\stronus_backup_2026-07-13_seo\` - snapshot immediately before the technical SEO, crawlable Polish version, structured data and image-performance update.
+- `C:\Users\user1\Documents\Backups\stronus\stronus_backup_2026-07-13_pre-responsive-images\` - snapshot immediately before responsive image delivery, deferred full-resolution lightbox loading and accessibility fixes from the second mobile PageSpeed audit.
 - `C:\Users\user1\Documents\Backups\stronus\stronus_backup_2026-07-13_pre-performance\` - pristine snapshot immediately before removing unused CSS, JavaScript and icon-font payload from the production page.
 - Rule from the user: before any major design edit, make a fresh backup copy first - a pristine backup must always exist.
 
@@ -70,6 +71,7 @@ Static personal portfolio website (Piotr Jeleniewicz / "Xcape"), built by custom
 - The existing tutoring item in the visible About Me list links to the E-Korepetycje profile. Keep `.identity-link` visually identical to surrounding text so this identity connection does not change the layout.
 - The visible H1 includes `Piotr Jeleniewicz` and the electronics/software focus in both languages. Preserve the name in the static H1 and title. Write naturally and never add keyword-stuffed hidden copy or a meta keywords tag.
 - Descriptive images have meaningful alt text, intrinsic dimensions, lazy loading below the fold and async decoding. Optimized delivery variants are `images/set/room-render.webp`, `images/projects/cnc-eti-logo.webp` and `images/projects/basys3-fpga-board.webp`. Original user images remain untouched.
+- Page views use WebP variants from `images/responsive/` through `srcset`; original full-resolution files are stored only in `data-full-src` and are requested by `js/effects.js` after the user opens the lightbox. Keep source files untouched and do not replace `data-full-src` with eagerly loaded `src` values. The rotating banner frame uses `circle-640.webp` on phones, `circle-760.webp` on tablets and the original `circle.png` on desktop.
 - `inventoryGen/index.html` has its own title, description and canonical URL. Keep this mini-app URL in the sitemap only while the page remains functional and index-worthy.
 - Code changes cannot guarantee a ranking position. After deployment, verify the domain in Google Search Console and Bing Webmaster Tools, submit `https://piotrjeleniewicz.com/sitemap.xml`, inspect `/`, `/pl/` and `/inventoryGen/`, then monitor real queries, indexing and Core Web Vitals instead of guessing.
 
