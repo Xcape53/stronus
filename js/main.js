@@ -63,12 +63,29 @@
 
       const images = gallery.querySelectorAll("img");
       let currentIndex = 0;
+      let started = false;
 
-      if (images.length > 0) {
-        images[currentIndex].classList.add("active");
+      const hydrate = (image) => {
+        if (image.dataset.viewSrcset) {
+          image.srcset = image.dataset.viewSrcset;
+          delete image.dataset.viewSrcset;
+        }
+        if (image.dataset.viewSrc) {
+          image.src = image.dataset.viewSrc;
+          delete image.dataset.viewSrc;
+        }
+      };
+
+      const start = () => {
+        if (started || images.length < 2) return;
+        started = true;
+        hydrate(images[1]);
 
         setInterval(() => {
+          const rect = gallery.parentElement.getBoundingClientRect();
+          if (rect.bottom <= 0 || rect.top >= window.innerHeight) return;
           const nextIndex = (currentIndex + 1) % images.length;
+          hydrate(images[nextIndex]);
 
           images[currentIndex].classList.add("exit");
           images[currentIndex].classList.remove("active");
@@ -81,7 +98,22 @@
           }, 800);
 
           currentIndex = nextIndex;
+          hydrate(images[(currentIndex + 1) % images.length]);
         }, 5000);
+      };
+
+      if (images.length > 0) {
+        images[currentIndex].classList.add("active");
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver((entries) => {
+            if (!entries.some((entry) => entry.isIntersecting)) return;
+            observer.disconnect();
+            start();
+          }, { rootMargin: "0px" });
+          observer.observe(gallery.parentElement);
+        } else {
+          start();
+        }
       }
     },
     updateGUTProgress() {
