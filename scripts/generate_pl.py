@@ -110,6 +110,12 @@ def generate() -> None:
                 entity["url"] = "https://piotrjeleniewicz.com/pl/"
                 entity["name"] = "Piotr Jeleniewicz - portfolio elektroniki i oprogramowania"
                 entity["description"] = "Portfolio Piotra Jeleniewicza, studenta elektroniki i telekomunikacji oraz programisty z Gdyni."
+                entity["inLanguage"] = "pl"
+            elif entity.get("@type") == "Person":
+                entity["jobTitle"] = "Programista i student elektroniki"
+                entity["description"] = "Student elektroniki i telekomunikacji na Politechnice Gdańskiej, programista oraz autor projektów z obszaru FPGA, automatyzacji i aplikacji webowych."
+                entity["homeLocation"]["name"] = "Gdynia, Polska"
+                entity["affiliation"]["name"] = "Politechnika Gdańska"
         structured_data.string = "\n" + json.dumps(data, ensure_ascii=False, indent=2) + "\n"
 
     prefix_relative_assets(soup)

@@ -3163,6 +3163,18 @@ html.lenis {
   color: var(--colorBodyText);
 }
 
+.about-me-list .identity-link,
+.about-me-list .identity-link:hover {
+  display: inline;
+  color: inherit;
+}
+
+.project-source-link,
+.project-source-link:hover {
+  display: inline;
+  color: inherit;
+}
+
 .about-me-list li::before {
   content: "\f00c"; /* check icon */
   font-family: "Font Awesome 6 Pro";
