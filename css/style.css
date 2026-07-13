@@ -714,7 +714,7 @@ button:focus {
   position: relative;
 }
 
-.tf__single_service_img span {
+.tf__single_service_img > span {
   position: absolute;
   top: -50px;
   left: 30px;
@@ -754,10 +754,10 @@ button:focus {
   line-height: 25px;
 }
 
- .tf__single_service:hover .tf__single_service_img span {
-  background: var(--colorSecondary);
-  color: var(--colorWhite);
-} 
+.tf__single_service:hover .tf__single_service_img > span {
+  background: var(--colorPrimary);
+  color: var(--colorBlack);
+}
 
 .tf__single_service_text a:hover {
   color: var(--colorPrimary);
@@ -3068,6 +3068,14 @@ html.lenis {
   z-index: 2 !important;
   opacity: 1 !important;
   visibility: visible !important;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.tf__banner_img svg text {
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* 3. Dostosowujemy obracające się tło do kontenera */
@@ -3558,11 +3566,15 @@ html.lenis {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.35);
-  transition: background 0.3s ease;
+  background: var(--colorWhite);
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
 }
 
-.tf__ph_gallery_dots span.is-active { background: var(--colorWhite); }
+.tf__ph_gallery_dots span.is-active {
+  background: var(--colorWhite);
+  opacity: 1;
+}
 
 /* wszystkie screeny projektów da się kliknąć, żeby powiększyć (lightbox) */
 .tf__project_hero_media img { cursor: zoom-in; }

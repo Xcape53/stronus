@@ -171,7 +171,7 @@
       applySize(imgs[idx]);
     }
     g.addEventListener("wheel", function (e) {
-      if (reduced) return;
+      if (reduced || g.classList.contains("tf__ph_gallery--fixed")) return;
       var next = idx + (e.deltaY > 0 ? 1 : -1);
       if (next < 0 || next >= imgs.length || cooling) return;
       e.preventDefault();

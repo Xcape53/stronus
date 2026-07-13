@@ -26,6 +26,14 @@ function runBannerAnimation() {
     return;
   }
   const svg = d3.select(svgElement);
+  const LOGICAL_SIZE = 750;
+  svg
+    .attr("viewBox", `0 0 ${LOGICAL_SIZE} ${LOGICAL_SIZE}`)
+    .attr("preserveAspectRatio", "xMidYMid meet")
+    .attr("focusable", "false")
+    .style("user-select", "none")
+    .style("-webkit-user-select", "none");
+  svgElement.addEventListener("selectstart", event => event.preventDefault());
   if (container.clientWidth === 0 || container.clientHeight === 0) {
     console.error("BŁĄD KRYTYCZNY: Wymiary kontenera to 0.");
     return;
@@ -47,8 +55,8 @@ function runBannerAnimation() {
   gradient.append("stop").attr("offset", "100%").attr("stop-color", "#642efd");
   let width, height;
   function updateDimensions() {
-    const rect = container.getBoundingClientRect();
-    width = rect.width; height = rect.height;
+    width = LOGICAL_SIZE;
+    height = LOGICAL_SIZE;
     gradient.attr("x1", 0).attr("y1", 0).attr("x2", width).attr("y2", height);
   }
   updateDimensions();
@@ -259,7 +267,7 @@ function runBannerAnimation() {
     nodeSel.exit().remove();
     const enter = nodeSel.enter().append("g").attr("class", "node-group").attr("transform", d => `translate(${d.x || width / 2}, ${d.y || height / 2})`);
     enter.append("circle").attr("r", d => d.main ? 9 : 6).attr("fill", "transparent");
-    enter.append("text").text(d => d.label).attr("text-anchor", "middle").attr("dy", ".3em").attr("fill", "transparent").attr("font-size", "10px").style("pointer-events", "none");
+    enter.append("text").text(d => d.label).attr("text-anchor", "middle").attr("dy", ".3em").attr("fill", "transparent").attr("font-size", "10px").style("pointer-events", "none").style("user-select", "none").style("-webkit-user-select", "none");
     nodeSel = enter.merge(nodeSel);
     nodeSel.select("circle").attr("fill", "transparent").attr("r", d => d.main ? 6 : 6);
   }
