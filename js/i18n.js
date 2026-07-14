@@ -209,15 +209,15 @@
     document.documentElement.lang = language;
     const seo = language === "pl"
       ? {
-          title: "Piotr Jeleniewicz | Elektronika i programowanie",
-          description: "Piotr Jeleniewicz studiuje elektronikę i telekomunikację oraz tworzy oprogramowanie w Gdyni. Zobacz projekty FPGA, Python, C++, web i automatyzację.",
-          socialDescription: "Portfolio z obszaru elektroniki, programowania i automatyzacji: FPGA, Python, C++, aplikacje webowe oraz sterowanie radioteleskopem.",
+          title: "Piotr Jeleniewicz | Software and Automation",
+          description: "Tworzę aplikacje, automatyzacje i systemy techniczne z wykorzystaniem AI, backendu i elektroniki. Portfolio studenta Politechniki Gdańskiej z Gdyni.",
+          socialDescription: "Tworzę aplikacje, automatyzacje i systemy techniczne z wykorzystaniem AI, backendu i elektroniki. Portfolio studenta Politechniki Gdańskiej z Gdyni.",
           locale: "pl_PL"
         }
       : {
-          title: "Piotr Jeleniewicz | Electronics and Software Developer",
-          description: "Piotr Jeleniewicz is an electronics and telecommunications student and software developer in Gdynia. Explore his FPGA, Python, C++, web and automation projects.",
-          socialDescription: "Electronics, software and automation portfolio featuring FPGA, Python, C++, web applications and radio telescope control systems.",
+          title: "Piotr Jeleniewicz | Software and Automation",
+          description: "I build applications, automation tools and technical systems using AI, backend development and electronics. Engineering student based in Gdynia, Poland.",
+          socialDescription: "I build applications, automation tools and technical systems using AI, backend development and electronics. Engineering student based in Gdynia, Poland.",
           locale: "en_US"
         };
 

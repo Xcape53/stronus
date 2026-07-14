@@ -74,27 +74,27 @@ def generate() -> None:
     soup.html["lang"] = "pl"
     localize_content(soup, translations["pl"])
 
-    soup.title.string = "Piotr Jeleniewicz | Elektronika i programowanie"
+    soup.title.string = "Piotr Jeleniewicz | Software and Automation"
     set_meta(
         soup,
         'meta[name="description"]',
-        "Piotr Jeleniewicz studiuje elektronikę i telekomunikację oraz tworzy oprogramowanie w Gdyni. Zobacz projekty FPGA, Python, C++, web i automatyzację.",
+        "Tworzę aplikacje, automatyzacje i systemy techniczne z wykorzystaniem AI, backendu i elektroniki. Portfolio studenta Politechniki Gdańskiej z Gdyni.",
     )
-    set_meta(soup, 'meta[property="og:title"]', "Piotr Jeleniewicz | Elektronika i programowanie")
+    set_meta(soup, 'meta[property="og:title"]', "Piotr Jeleniewicz | Software and Automation")
     set_meta(
         soup,
         'meta[property="og:description"]',
-        "Portfolio z obszaru elektroniki, programowania i automatyzacji: FPGA, Python, C++, aplikacje webowe oraz sterowanie radioteleskopem.",
+        "Tworzę aplikacje, automatyzacje i systemy techniczne z wykorzystaniem AI, backendu i elektroniki. Portfolio studenta Politechniki Gdańskiej z Gdyni.",
     )
     set_meta(soup, 'meta[property="og:url"]', "https://piotrjeleniewicz.com/pl/")
     set_meta(soup, 'meta[property="og:locale"]', "pl_PL")
     set_meta(soup, 'meta[property="og:locale:alternate"]', "en_US")
     set_meta(soup, 'meta[property="og:image:alt"]', "Portfolio Piotra Jeleniewicza - elektronika i oprogramowanie")
-    set_meta(soup, 'meta[name="twitter:title"]', "Piotr Jeleniewicz | Elektronika i programowanie")
+    set_meta(soup, 'meta[name="twitter:title"]', "Piotr Jeleniewicz | Software and Automation")
     set_meta(
         soup,
         'meta[name="twitter:description"]',
-        "Portfolio z obszaru elektroniki, programowania i automatyzacji: FPGA, Python, C++, aplikacje webowe oraz sterowanie radioteleskopem.",
+        "Tworzę aplikacje, automatyzacje i systemy techniczne z wykorzystaniem AI, backendu i elektroniki. Portfolio studenta Politechniki Gdańskiej z Gdyni.",
     )
     set_meta(soup, 'meta[name="twitter:image:alt"]', "Portfolio Piotra Jeleniewicza - elektronika i oprogramowanie")
 
@@ -122,12 +122,12 @@ def generate() -> None:
             if entity.get("@type") == "ProfilePage":
                 entity["@id"] = "https://piotrjeleniewicz.com/pl/#profile"
                 entity["url"] = "https://piotrjeleniewicz.com/pl/"
-                entity["name"] = "Piotr Jeleniewicz - portfolio elektroniki i oprogramowania"
-                entity["description"] = "Portfolio Piotra Jeleniewicza, studenta elektroniki i telekomunikacji oraz programisty z Gdyni."
+                entity["name"] = "Piotr Jeleniewicz - Software and Automation Portfolio"
+                entity["description"] = "Tworzę aplikacje, automatyzacje i systemy techniczne z wykorzystaniem AI, backendu i elektroniki. Portfolio studenta Politechniki Gdańskiej z Gdyni."
                 entity["inLanguage"] = "pl"
             elif entity.get("@type") == "Person":
                 entity["jobTitle"] = "Programista i student elektroniki"
-                entity["description"] = "Student elektroniki i telekomunikacji na Politechnice Gdańskiej, programista oraz autor projektów z obszaru FPGA, automatyzacji i aplikacji webowych."
+                entity["description"] = "Student elektroniki i telekomunikacji na Politechnice Gdańskiej, skupiony na tworzeniu oprogramowania, automatyzacji, AI i systemach technicznych."
                 entity["homeLocation"]["name"] = "Gdynia, Polska"
                 entity["affiliation"]["name"] = "Politechnika Gdańska"
         structured_data.string = "\n" + json.dumps(data, ensure_ascii=False, indent=2) + "\n"
