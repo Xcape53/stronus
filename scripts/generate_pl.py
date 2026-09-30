@@ -78,13 +78,13 @@ def generate() -> None:
     set_meta(
         soup,
         'meta[name="description"]',
-        "Tworzę aplikacje, automatyzacje i systemy techniczne z wykorzystaniem AI, backendu i elektroniki. Portfolio studenta Politechniki Gdańskiej z Gdyni.",
+        "Piotr Jeleniewicz - student ostatniego semestru PG. Integracje aplikacji, automatyzacja procesów i projekty tworzone z AI. Gdynia, Trójmiasto.",
     )
     set_meta(soup, 'meta[property="og:title"]', "Piotr Jeleniewicz | Software and Automation")
     set_meta(
         soup,
         'meta[property="og:description"]',
-        "Tworzę aplikacje, automatyzacje i systemy techniczne z wykorzystaniem AI, backendu i elektroniki. Portfolio studenta Politechniki Gdańskiej z Gdyni.",
+        "Piotr Jeleniewicz - student ostatniego semestru PG. Integracje aplikacji, automatyzacja procesów i projekty tworzone z AI. Gdynia, Trójmiasto.",
     )
     set_meta(soup, 'meta[property="og:url"]', "https://piotrjeleniewicz.com/pl/")
     set_meta(soup, 'meta[property="og:locale"]', "pl_PL")
@@ -94,7 +94,7 @@ def generate() -> None:
     set_meta(
         soup,
         'meta[name="twitter:description"]',
-        "Tworzę aplikacje, automatyzacje i systemy techniczne z wykorzystaniem AI, backendu i elektroniki. Portfolio studenta Politechniki Gdańskiej z Gdyni.",
+        "Piotr Jeleniewicz - student ostatniego semestru PG. Integracje aplikacji, automatyzacja procesów i projekty tworzone z AI. Gdynia, Trójmiasto.",
     )
     set_meta(soup, 'meta[name="twitter:image:alt"]', "Portfolio Piotra Jeleniewicza - elektronika i oprogramowanie")
 
@@ -123,11 +123,11 @@ def generate() -> None:
                 entity["@id"] = "https://piotrjeleniewicz.com/pl/#profile"
                 entity["url"] = "https://piotrjeleniewicz.com/pl/"
                 entity["name"] = "Piotr Jeleniewicz - Software and Automation Portfolio"
-                entity["description"] = "Tworzę aplikacje, automatyzacje i systemy techniczne z wykorzystaniem AI, backendu i elektroniki. Portfolio studenta Politechniki Gdańskiej z Gdyni."
+                entity["description"] = "Piotr Jeleniewicz - student ostatniego semestru PG. Integracje aplikacji, automatyzacja procesów i projekty tworzone z AI. Gdynia, Trójmiasto."
                 entity["inLanguage"] = "pl"
             elif entity.get("@type") == "Person":
-                entity["jobTitle"] = "Programista i student elektroniki"
-                entity["description"] = "Student elektroniki i telekomunikacji na Politechnice Gdańskiej, skupiony na tworzeniu oprogramowania, automatyzacji, AI i systemach technicznych."
+                entity["jobTitle"] = "Student Elektroniki i Telekomunikacji"
+                entity["description"] = "Student ostatniego semestru Elektroniki i Telekomunikacji na PG, zainteresowany integracją systemów, automatyzacją procesów i tworzeniem aplikacji z AI."
                 entity["homeLocation"]["name"] = "Gdynia, Polska"
                 entity["affiliation"]["name"] = "Politechnika Gdańska"
         structured_data.string = "\n" + json.dumps(data, ensure_ascii=False, indent=2) + "\n"

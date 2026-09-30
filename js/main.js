@@ -117,28 +117,33 @@
       }
     },
     updateGUTProgress() {
-      const startDate = new Date("2023-10-01");
-      const endDate = new Date("2027-02-01");
-      const currentDate = new Date();
-
-      // Całkowity czas trwania studiów w milisekundach
-      const totalDuration = endDate.getTime() - startDate.getTime();
-      // Czas, który upłynął od rozpoczęcia
-      let elapsedDuration = currentDate.getTime() - startDate.getTime();
-
-      // Zabezpieczenie, aby procent nie był < 0 lub > 100
-      if (elapsedDuration < 0) {
-        elapsedDuration = 0;
-      }
-      if (elapsedDuration > totalDuration) {
-        elapsedDuration = totalDuration;
-      }
-
-      const percentage = (elapsedDuration / totalDuration) * 100;
-      const roundedPercentage = Math.round(percentage);
-
-      // Znajdź odpowiedni pasek i zaktualizuj jego atrybut data-percentage
-      $("#bar2 .fill").attr("data-percentage", roundedPercentage);
+      // Kalendarze PG 2023/24-2026/27: dni zajęć, bez sesji, wakacji i świąt.
+      // https://pg.edu.pl/studenci/studia/kalendarz-roku-akademickiego
+      const semesters = [
+        [["2023-10-01", "2023-10-31"], ["2023-11-03", "2023-11-10"], ["2023-11-12", "2023-12-22"], ["2024-01-03", "2024-01-05"], ["2024-01-07", "2024-01-25"]],
+        [["2024-02-21", "2024-03-28"], ["2024-04-03", "2024-04-30"], ["2024-05-04", "2024-05-18"], ["2024-05-20", "2024-05-29"], ["2024-06-01", "2024-06-14"]],
+        [["2024-10-01", "2024-10-30"], ["2024-11-02", "2024-11-10"], ["2024-11-12", "2024-12-22"], ["2025-01-03", "2025-01-05"], ["2025-01-07", "2025-01-30"]],
+        [["2025-02-24", "2025-04-17"], ["2025-04-23", "2025-04-30"], ["2025-05-04", "2025-06-07"], ["2025-06-09", "2025-06-15"]],
+        [["2025-10-01", "2025-10-30"], ["2025-11-03", "2025-11-10"], ["2025-11-12", "2025-12-21"], ["2026-01-05", "2026-01-05"], ["2026-01-07", "2026-01-30"]],
+        [["2026-02-23", "2026-04-02"], ["2026-04-08", "2026-04-30"], ["2026-05-04", "2026-05-23"], ["2026-05-25", "2026-06-03"], ["2026-06-05", "2026-06-14"]],
+        [["2026-10-01", "2026-10-30"], ["2026-11-02", "2026-11-10"], ["2026-11-12", "2026-12-09"], ["2026-12-12", "2026-12-14"]],
+      ];
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      let totalDays = 0;
+      let completedDays = 0;
+      semesters.forEach((ranges) => ranges.forEach(([start, end]) => {
+        const day = new Date(start + "T00:00:00");
+        const last = new Date(end + "T00:00:00");
+        while (day <= last) {
+          if (day.getDay() !== 0 && day.getDay() !== 6) {
+            totalDays += 1;
+            if (day < today) completedDays += 1;
+          }
+          day.setDate(day.getDate() + 1);
+        }
+      }));
+      $("#bar2 .fill").attr("data-percentage", Math.round(completedDays / totalDays * 100));
     },
     progressbar() {
       var progressbar = $(".tf__team_skills_bar_single .barfiller");

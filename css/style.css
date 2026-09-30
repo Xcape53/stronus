@@ -855,13 +855,13 @@ button:focus {
   z-index: 2;
 }
 
-/* 7 semesters = 6 lines */
-.barfiller-semesters .mark:nth-of-type(1) { left: calc(100% / 7 * 1); }
-.barfiller-semesters .mark:nth-of-type(2) { left: calc(100% / 7 * 2); }
-.barfiller-semesters .mark:nth-of-type(3) { left: calc(100% / 7 * 3); }
-.barfiller-semesters .mark:nth-of-type(4) { left: calc(100% / 7 * 4); }
-.barfiller-semesters .mark:nth-of-type(5) { left: calc(100% / 7 * 5); }
-.barfiller-semesters .mark:nth-of-type(6) { left: calc(100% / 7 * 6); }
+/* Sześć semestrów po 15 tygodni, ostatni 10 tygodni. */
+.barfiller-semesters .mark:nth-of-type(1) { left: 15%; }
+.barfiller-semesters .mark:nth-of-type(2) { left: 30%; }
+.barfiller-semesters .mark:nth-of-type(3) { left: 45%; }
+.barfiller-semesters .mark:nth-of-type(4) { left: 60%; }
+.barfiller-semesters .mark:nth-of-type(5) { left: 75%; }
+.barfiller-semesters .mark:nth-of-type(6) { left: 90%; }
 /* semester progress bar end */
 
 /* ----------------------------
@@ -1556,13 +1556,13 @@ button:focus {
   z-index: 2;
 }
 
-/* 7 semesters = 6 lines */
-.barfiller-semesters .mark:nth-of-type(1) { left: calc(100% / 7 * 1); }
-.barfiller-semesters .mark:nth-of-type(2) { left: calc(100% / 7 * 2); }
-.barfiller-semesters .mark:nth-of-type(3) { left: calc(100% / 7 * 3); }
-.barfiller-semesters .mark:nth-of-type(4) { left: calc(100% / 7 * 4); }
-.barfiller-semesters .mark:nth-of-type(5) { left: calc(100% / 7 * 5); }
-.barfiller-semesters .mark:nth-of-type(6) { left: calc(100% / 7 * 6); }
+/* Sześć semestrów po 15 tygodni, ostatni 10 tygodni. */
+.barfiller-semesters .mark:nth-of-type(1) { left: 15%; }
+.barfiller-semesters .mark:nth-of-type(2) { left: 30%; }
+.barfiller-semesters .mark:nth-of-type(3) { left: 45%; }
+.barfiller-semesters .mark:nth-of-type(4) { left: 60%; }
+.barfiller-semesters .mark:nth-of-type(5) { left: 75%; }
+.barfiller-semesters .mark:nth-of-type(6) { left: 90%; }
 /* semester progress bar end */
 
 /* ----------------------------
@@ -4206,3 +4206,20 @@ html.fx-armed .fx-reveal.is-in {
   cursor: default;
   opacity: 0.55;
 }
+
+/* Korekty przeglądu profilu: typografia, edukacja i link do GitHuba. */
+#about .tf__about_text h2 { font-size: clamp(32px, 3vw, 48px); line-height: 1.12; }
+#edu .education-line { display: block; font-size: inherit; font-weight: 400; line-height: 1.5; margin: 0 0 5px; text-transform: none; color: inherit; }
+#edu .education-line small { font-size: .78em; color: var(--colorWhite); opacity: .7; }
+#edu .experience-points { margin: 0; padding-left: 18px; list-style: disc; color: var(--colorBodyText); }
+#edu .experience-points li { list-style: disc; font-size: 16px; line-height: 1.55; padding-left: 2px; margin: 0 0 9px; }
+#edu .experience-points li:last-child { margin-bottom: 0; }
+#edu .semester-labels { display: grid; width: 100%; grid-template-columns: repeat(6, 15%) 10%; margin-top: 0; }
+#edu .semester-labels span { font-size: 11px; opacity: .55; text-align: center; line-height: 1; }
+#edu .semester-caption { font-size: 11px; opacity: .65; line-height: 1.5; margin-top: 7px; }
+#edu .semester-caption span { font-size: inherit; }
+#edu .semester-status { display: block; }
+#edu .tf__skill_date { text-transform: none; }
+#edu #bar1 .tip { left: auto !important; right: 0; margin-left: 0; }
+#activity [data-i18n="activity.github"] { display: inline-flex; align-items: center; gap: 9px; line-height: 1.3; }
+#activity [data-i18n="activity.github"] i { margin: 0; font-size: 20px; line-height: 1; flex: 0 0 auto; }
