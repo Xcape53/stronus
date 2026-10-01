@@ -2,7 +2,19 @@
 
 Personal portfolio for Piotr Jeleniewicz, an electronics and telecommunications student and software developer based in Gdynia, Poland.
 
-[View the live website](https://piotrjeleniewicz.com/)
+[View the live website](https://piotrjeleniewicz.com/) · [Polish version](https://piotrjeleniewicz.com/pl/)
+
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="docs/profile/cover-dark.svg">
+<img alt="portfolio functional overview" src="docs/profile/cover-light.svg" width="650">
+</picture>
+
+<details>
+<summary>Live website preview</summary>
+
+<img src="docs/profile/website.jpg" alt="Portfolio home page" width="900">
+
+</details>
 
 ## Highlights
 
