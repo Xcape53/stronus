@@ -15,7 +15,7 @@ Personal portfolio for Piotr Jeleniewicz, an electronics and telecommunications 
 
 ## Technology
 
-The website is built with plain HTML, CSS, and JavaScript. It has no package manager or build step. The original ThemeForest template has been extended with custom responsive styles, localization, galleries, and visual effects.
+The website is built with plain HTML, CSS, and JavaScript. The original ThemeForest template has been extended with custom responsive styles, localization, galleries, and visual effects. Deployment serves static files directly; local Python scripts regenerate the Polish page and the production CSS bundle.
 
 ## Project structure
 
@@ -26,6 +26,7 @@ The website is built with plain HTML, CSS, and JavaScript. It has no package man
 - `images/` - project screenshots and optimized image variants
 - `inventoryGen/` - standalone Minecraft inventory generator
 - `scripts/generate_pl.py` - Polish page generator
+- `scripts/build_css.py` - production CSS bundle generator
 - `.github/workflows/static.yml` - GitHub Pages deployment
 
 ## Local development
@@ -47,6 +48,14 @@ python scripts/generate_pl.py
 ```
 
 Commit `pl/index.html` together with its source changes.
+
+After editing source styles, rebuild the production stylesheet:
+
+```bash
+python scripts/build_css.py
+```
+
+Commit the regenerated `css/site-portfolio.min.css` with the source styles.
 
 ## Deployment
 
